@@ -140,4 +140,22 @@ fn main() {
         plan.final_collapse_hash
     );
     println!("  └──────────────────────────────────────────────────────────────────────────────┘");
+    println!();
+
+    println!("  ┌── 6. QUANT-TERN BRIDGE (crush-love-dev × pureQTern × quanttern · 全) ────────┐");
+    println!(
+        "  │ Tribute   : {}",
+        plan.quant_tern_receipt.fish_tribute_for_mom
+    );
+    println!(
+        "  │ Affect Tag: {} | Gate Trits: {:?} | Scale γ = {:.4}",
+        plan.quant_tern_receipt.qt_hex_tag,
+        plan.quant_tern_receipt.gate_trits,
+        plan.quant_tern_receipt.gamma_scale
+    );
+    println!(
+        "  │ Matvec i32: {:?} | Golden Hash: 0x{:016x}",
+        plan.quant_tern_receipt.matvec_logits, plan.quant_tern_receipt.golden_hash
+    );
+    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
 }

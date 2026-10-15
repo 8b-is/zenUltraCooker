@@ -85,6 +85,7 @@ zenUltraCooker/
     │   └── src/
     │       ├── lib.rs                   # E2E ZenCookerFeastPlan pipeline + unit tests
     │       ├── mem16_wave.rs            # MEM|16-10 POP->COLLAPSE sequence & Hullámelmélet Wavechord
+    │       ├── quant_tern.rs            # QUANT-TERN bridge (crush-love-dev × pureQTern × quanttern · 全)
     │       ├── telemetry.rs             # Garmin, Fridge, Costco, Mobile/Area & poop~~~~sample toggle
     │       ├── spice_plating.rs         # Personalized Scoville dosing & Fine-Dining Körítés blueprint
     │       └── bonfire_mmo.rs           # Family Bonfire MMO avatars, quests & Techno-Buddhist journal

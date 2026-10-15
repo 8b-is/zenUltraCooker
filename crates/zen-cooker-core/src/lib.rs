@@ -15,11 +15,13 @@
 
 pub mod bonfire_mmo;
 pub mod mem16_wave;
+pub mod quant_tern;
 pub mod spice_plating;
 pub mod telemetry;
 
 use bonfire_mmo::FamilyBonfireSession;
 use mem16_wave::{fnv1a_64, GoverningStage, HarmonicWavechord, StageReceipt, Standing};
+use quant_tern::QuantTernHearthReceipt;
 use spice_plating::{KoritesPlatingBlueprint, PersonalizedSpiceProfile};
 use telemetry::{
     AreaProximityContext, FamilyMember, GarminBiometrics, InventoryItem, PoopSampleTelemetry,
@@ -39,6 +41,7 @@ pub struct ZenCookerFeastPlan {
     pub korites_plating: KoritesPlatingBlueprint,
     pub wavechord: HarmonicWavechord,
     pub bonfire_session: FamilyBonfireSession,
+    pub quant_tern_receipt: QuantTernHearthReceipt,
     pub mem16_receipts: Vec<StageReceipt>,
     pub final_collapse_hash: u64,
 }
@@ -152,6 +155,11 @@ pub fn execute_family_hearth_cycle(poop_sample_toggled_on: bool) -> ZenCookerFea
     let wavechord = HarmonicWavechord::synthesize_for_mom(avg_hrv, target_temp_celsius);
     let korites_plating = KoritesPlatingBlueprint::compose_for_mom_alexandra();
     let bonfire_session = FamilyBonfireSession::initialize_family_hearth();
+    let quant_tern_receipt = QuantTernHearthReceipt::synthesize(
+        poop_sample_telemetry.standing(),
+        avg_hrv as f32,
+        wavechord.coherence as f32,
+    );
 
     // Execute the 6-stage MEM|16-10 governing sequence: POP -> REFUSE -> BIND -> TRANSFORM -> VERIFY -> COLLAPSE
     let mut mem16_receipts = Vec::with_capacity(6);
@@ -238,6 +246,7 @@ pub fn execute_family_hearth_cycle(poop_sample_toggled_on: bool) -> ZenCookerFea
         korites_plating,
         wavechord,
         bonfire_session,
+        quant_tern_receipt,
         mem16_receipts,
         final_collapse_hash: rolling_hash,
     }
