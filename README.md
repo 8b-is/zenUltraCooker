@@ -89,6 +89,15 @@ zenUltraCooker/
     │       ├── telemetry.rs             # Garmin, Fridge, Costco, Mobile/Area & poop~~~~sample toggle
     │       ├── spice_plating.rs         # Personalized Scoville dosing & Fine-Dining Körítés blueprint
     │       └── bonfire_mmo.rs           # Family Bonfire MMO avatars, quests & Techno-Buddhist journal
+    ├── zen-cooker-quant-tern/           # Dedicated ternary inference & wave crate (ULTRA-OMNI-ZELFOLD)
+    │   ├── src/
+    │   │   ├── pack5_wupz.rs            # Kintsugi base-3 packing: 5 trits/byte (3^5=243), round-trip tested
+    │   │   ├── spectral_guard.rs        # Marchenko-Pastur rigidity guard before any BIND stage
+    │   │   ├── ternary_recipe_router.rs # Council consensus router (Mom* Dad△ Peter◯ Nate◇), zero fp multiplies
+    │   │   └── hearth_reference.rs      # Pure i32 reference + pinned hearth golden
+    │   └── kernels/
+    │       ├── ternary_hearth.metal     # MSL branch-free ternary matvec kernel
+    │       └── hearth_parity.swift      # Metal parity gate: max_abs <= 1e-5 vs the golden
     └── zen-cooker-cli/                  # CLI binary (`zen-cooker`)
         └── src/
             └── main.rs                  # Terminal simulator with PushaKitty ASCII banner & ledger output

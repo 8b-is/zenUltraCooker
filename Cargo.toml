@@ -3,6 +3,7 @@ resolver = "2"
 members = [
     "crates/zen-cooker-core",
     "crates/zen-cooker-cli",
+    "crates/zen-cooker-quant-tern",
 ]
 
 [workspace.package]

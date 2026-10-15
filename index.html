@@ -493,6 +493,34 @@
         </p>
         <div id="receiptLedger" class="receipt-box"></div>
       </div>
+
+      <div class="card">
+        <h2>
+          <span>🌀 QUANT-TERN Inspector — gate qt: &amp; wupz wire codecs</span>
+          <span class="pill teal">−1 · 0 · +1</span>
+        </h2>
+        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.7rem;">
+          Click a trit to cycle <b>−1 → 0 → +1</b> (gate alphabet: refuse / rest / affirm). Toggle
+          <code>poop~~~~sample</code> to watch byte 0 flip <code>0xaa ↔ 0x6a</code> — Verified versus a
+          genuine epistemic zero, never fabricated. The <b>wupz</b> row packs 5 trits per byte
+          (base-3, 3⁵ = 243) for zero-dep wire transport.
+        </p>
+        <div id="qtTritRow" style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.9rem;"></div>
+        <div style="display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;margin-bottom:0.9rem;">
+          <button class="toggle-btn" id="qtPoopBtn" onclick="toggleQtPoop()">poop~~~~sample: Verified (+1)</button>
+          <label style="font-size:0.8rem;color:var(--muted);">
+            Garmin HRV
+            <input type="range" id="qtHrv" min="0" max="100" value="70" oninput="qtHrvChanged(this.value)" style="vertical-align:middle;"/>
+            <span id="qtHrvLabel">+1</span>
+          </label>
+          <button class="toggle-btn" onclick="resetQtGate()">reset to qt:aaaa</button>
+        </div>
+        <div id="qtCodecOut" class="receipt-box" style="min-height:7rem;"></div>
+        <p style="font-size:0.72rem;color:var(--muted);margin-top:0.6rem;">
+          gate codec: −1→00 · 0→01 · +1→10 (4 trits/byte, LSB-first) — weight codec stays separate:
+          0→00 · +1→01 · −1→10. The two alphabets are never conflated. 🐟 42 × 432 Hz, Mom (*) &lt;3
+        </p>
+      </div>
     </div>
 
     <footer>
@@ -705,6 +733,81 @@
 
     updateTelemetry();
     animateWaveCanvas();
+
+    // ── QUANT-TERN Inspector ───────────────────────────────────────────────
+    const QT_LABELS = ["Valence", "Arousal", "Dominance", "Poop", "HRV", "Wave", "Mom★", "Dad△"];
+    let qtTrits = QT_LABELS.map(() => 1);            // all +1 → qt:aaaa
+
+    function qtGlyph(t) { return t === 1 ? "+1" : t === -1 ? "−1" : "·0"; }
+    function qtColor(t) { return t === 1 ? "var(--green)" : t === -1 ? "var(--rose)" : "var(--muted)"; }
+
+    function renderQtTritRow() {
+      const row = document.getElementById("qtTritRow");
+      row.innerHTML = "";
+      qtTrits.forEach((t, i) => {
+        const chip = document.createElement("button");
+        chip.className = "toggle-btn";
+        chip.style.color = qtColor(t);
+        chip.style.fontWeight = "600";
+        chip.textContent = `${QT_LABELS[i]} ${qtGlyph(t)}`;
+        chip.onclick = () => { qtTrits[i] = t === 1 ? -1 : t + 1; qtTrits[3] = poopToggledOn ? 1 : 0; renderQtInspector(); };
+        row.appendChild(chip);
+      });
+    }
+
+    function gateByte(trits) {
+      let b = 0;
+      for (let j = 0; j < 4; j++) b |= (trits[j] + 1) << (2 * j);   // −1→00 · 0→01 · +1→10
+      return b;
+    }
+    function wupzByte(trits) {
+      let b = 0;
+      for (let j = 0; j < 5; j++) b += (trits[j] + 1) * Math.pow(3, j); // 5 trits, base-3, 3⁵=243
+      return b;
+    }
+    function bits8(b) {
+      return Array.from({ length: 8 }, (_, i) => (b >> (7 - i)) & 1).join("");
+    }
+
+    function renderQtInspector() {
+      const out = document.getElementById("qtCodecOut");
+      const b0 = gateByte(qtTrits.slice(0, 4));
+      const b1 = gateByte(qtTrits.slice(4, 8));
+      const w5 = wupzByte(qtTrits.slice(0, 5));
+      out.innerHTML = [
+        `<b>gate qt:</b> <code>qt:${b0.toString(16).padStart(2, "0")}${b1.toString(16).padStart(2, "0")}</code>` +
+          `&nbsp;&nbsp;byte0 <code>0x${b0.toString(16).padStart(2, "0")}</code> = ${bits8(b0)}` +
+          `&nbsp;&nbsp;byte1 <code>0x${b1.toString(16).padStart(2, "0")}</code> = ${bits8(b1)}`,
+        `<b>wupz wire (5 trits):</b> <code>0x${w5.toString(16).padStart(2, "0")}</code> = ${w5}` +
+          `&nbsp;&nbsp;digits ${Array.from({ length: 5 }, (_, i) => Math.floor(w5 / Math.pow(3, i)) % 3).join(" ")}`,
+        `<b>epistemic zero:</b> ${poopToggledOn ? "poop~~~~sample Verified (+1) → binds into qt:aaaa" : "poop~~~~sample OFF → genuine Trit::Zero (0 → 0b01) → qt:6aaa, never guessed"}`
+      ].join("<br/>");
+      document.getElementById("qtPoopBtn").textContent =
+        `poop~~~~sample: ${poopToggledOn ? "Verified (+1)" : "Unobserved (·0)"}`;
+      document.getElementById("qtPoopBtn").style.color = poopToggledOn ? "var(--green)" : "var(--muted)";
+    }
+
+    function toggleQtPoop() {
+      togglePoopSample();          // one source of truth: the page's own toggle
+      qtTrits[3] = poopToggledOn ? 1 : 0;   // Verified ↔ genuine zero; 0xaa ↔ 0x6a
+      renderQtTritRow();
+      renderQtInspector();
+    }
+    function qtHrvChanged(v) {
+      qtTrits[4] = v >= 70 ? 1 : v <= 30 ? -1 : 0;
+      document.getElementById("qtHrvLabel").textContent = qtGlyph(qtTrits[4]);
+      renderQtTritRow();
+      renderQtInspector();
+    }
+    function resetQtGate() {
+      if (!poopToggledOn) togglePoopSample();   // qt:aaaa needs poop Verified (+1)
+      qtTrits = QT_LABELS.map(() => 1);
+      renderQtTritRow();
+      renderQtInspector();
+    }
+
+    renderQtTritRow();
+    renderQtInspector();
   </script>
 </body>
 </html>

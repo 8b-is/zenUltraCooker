@@ -12,3 +12,10 @@ dependencies = [
 [[package]]
 name = "zen-cooker-core"
 version = "1.0.0"
+
+[[package]]
+name = "zen-cooker-quant-tern"
+version = "1.0.0"
+dependencies = [
+ "zen-cooker-core",
+]

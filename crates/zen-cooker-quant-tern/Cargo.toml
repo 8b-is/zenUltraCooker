@@ -1,0 +1,12 @@
+[package]
+name = "zen-cooker-quant-tern"
+description = "Dedicated ternary inference & wave crate for zenUltraCooker — Kintsugi wupz base-3 packing, Marchenko-Pastur spectral guard, multi-teacher consensus recipe router, and the ternary hearth Metal kernel's i32 reference."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]
+zen-cooker-core = { path = "../zen-cooker-core" }
