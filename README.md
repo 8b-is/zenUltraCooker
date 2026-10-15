@@ -108,7 +108,10 @@ zenUltraCooker/
 ## 4. Quickstart & Verification
 
 ```bash
-# 1. Format, lint (zero warnings), and run unit tests
+# 0. The DO exit contract, one command (fmt → clippy -D warnings → test → Metal parity)
+./scripts/verify.sh
+
+# 1. Format, lint (zero warnings), and run unit tests (individually)
 cargo fmt --check
 cargo clippy --all-targets -- -D warnings
 cargo test
