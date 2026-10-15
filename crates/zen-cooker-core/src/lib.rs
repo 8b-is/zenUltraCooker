@@ -297,6 +297,10 @@ mod tests {
         assert_eq!(plan.wavechord.bass_dad_pillar_hz, 288.0);
         assert!(plan.wavechord.coherence >= 0.90);
         assert_eq!(plan.wavechord.ascii_wave.chars().count(), 16);
+        assert_eq!(
+            plan.wavechord.bleeding_edge_8k_digest,
+            6_981_541_600_308_333_846 // 0x60e374b73207cd16 (matches mem-16-10 BleedingEdge8k)
+        );
     }
 
     #[test]

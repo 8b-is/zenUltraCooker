@@ -59,6 +59,11 @@ fn main() {
         plan.wavechord.ascii_wave,
         plan.wavechord.coherence * 100.0
     );
+    println!(
+        "  │ Escalation: mem16 (16B) -> 32 (32B XOR:0x{:02x}) ~~> 8k (bleeding-edge 8192B/8192-trit: 0x{:016x})",
+        plan.wavechord.mem32_wave_frame[31],
+        plan.wavechord.bleeding_edge_8k_digest
+    );
     println!("  └──────────────────────────────────────────────────────────────────────────────┘");
     println!();
 
