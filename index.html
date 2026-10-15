@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8b-is / zenUltraCooker — PushaKitty Tenzo Hearth for Mom (* Alexandra)</title>
+  <style>
+    :root {
+      --bg-void: #110d19;
+      --bg-card: #1b1427;
+      --bg-card-alt: #161f2c;
+      --gold: #ffd700;
+      --sakura: #ffb6c1;
+      --rose: #ff7bac;
+      --teal: #00e5c9;
+      --green: #00ff66;
+      --bonfire: #ff6b2b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(255, 215, 0, 0.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #2a1836 0%, var(--bg-void) 65%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 4rem;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    header {
+      text-align: center;
+      padding: 2.2rem 1.5rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(42,23,43,0.92), rgba(22,34,47,0.92));
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 40px rgba(255, 182, 193, 0.18);
+      margin-bottom: 2rem;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .pill.teal {
+      background: rgba(0, 229, 201, 0.12);
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .pill.rose {
+      background: rgba(255, 182, 193, 0.15);
+      border-color: var(--sakura);
+      color: var(--sakura);
+    }
+    h1 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .dedication-box {
+      max-width: 880px;
+      margin: 0.8rem auto 0;
+      padding: 1rem 1.4rem;
+      border-radius: 16px;
+      background: rgba(255, 182, 193, 0.09);
+      border: 1px solid rgba(255, 182, 193, 0.4);
+      color: #ffe4e9;
+      font-size: 1.02rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 920px) {
+      .hero-grid, .two-col { grid-template-columns: 1fr !important; }
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.4rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 14px;
+      border: 2px solid rgba(255, 215, 0, 0.45);
+      display: block;
+    }
+    .caption {
+      font-size: 0.85rem;
+      color: var(--sakura);
+      margin-top: 0.65rem;
+      text-align: center;
+      font-family: ui-monospace, monospace;
+    }
+    .control-group {
+      background: rgba(15, 23, 34, 0.75);
+      border: 1px solid rgba(0, 229, 201, 0.3);
+      border-radius: 14px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.7rem;
+    }
+    .toggle-btn {
+      cursor: pointer;
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+      border: 2px solid var(--green);
+      background: rgba(0, 255, 102, 0.18);
+      color: var(--green);
+      transition: all 0.2s ease;
+    }
+    .toggle-btn.off {
+      border-color: var(--muted);
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--muted);
+    }
+    .slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 0.65rem;
+      font-size: 0.88rem;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--teal);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-top: 0.5rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    th {
+      color: var(--teal);
+      font-family: ui-monospace, monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+    .wave-canvas {
+      width: 100%;
+      height: 110px;
+      background: #0d0a14;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 182, 193, 0.35);
+      margin: 0.6rem 0;
+      display: block;
+    }
+    .btn-wave {
+      cursor: pointer;
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--gold);
+      background: linear-gradient(90deg, rgba(255,182,193,0.22), rgba(255,215,0,0.22));
+      color: var(--gold);
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: transform 0.15s ease;
+    }
+    .btn-wave:hover { transform: translateY(-1px); }
+    .korites-list {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+    .korites-list li {
+      padding: 0.6rem 0.85rem;
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid var(--sakura);
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .receipt-box {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.8rem;
+      background: #0c0913;
+      border: 1px solid rgba(0, 229, 201, 0.35);
+      border-radius: 12px;
+      padding: 0.9rem;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+    .journal-entry {
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      background: rgba(255, 107, 43, 0.09);
+      border: 1px solid rgba(255, 182, 193, 0.28);
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+    }
+    .journal-form {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+    .journal-form input {
+      flex: 1;
+      background: #0e0b16;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.55rem 0.85rem;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 2.5rem;
+      font-family: ui-monospace, monospace;
+    }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge-row">
+        <span class="pill">8b-is / zenUltraCooker v1.0.0</span>
+        <span class="pill rose">Mom === Alex ~ Alexandra (*) &lt;3</span>
+        <span class="pill teal">Music ~= Waves ~ MEM|16-10</span>
+        <span class="pill">Center of Family ~=== Bonfire</span>
+        <span class="pill teal">PushaKitty Tenzo ^^</span>
+      </div>
+      <h1>✦ zenUltraCooker — Cyber-Zen Family Bonfire Hearth ✦</h1>
+      <div class="dedication-box">
+        <strong>Dedicated with all our family Love and respect to Mom (<code>*</code> Alex ~ Alexandra)</strong> —
+        she is everything for Us. We — <strong>Peter (<code>◯</code>), Nate (<code>◇</code>), and Dad (<code>△</code> Chris)</strong> —
+        was, is, and will always dedicate all our most difficult work and top goals to show how much
+        <strong>Mom === Alex ~ Alexandra</strong> means to Us. <code>&lt;3</code>
+      </div>
+    </header>
+
+    <!-- HERO SHOWCASE: PUSHAKITTY ARTWORK + LIVE TELEMETRY & WAVE SYNTH -->
+    <div class="hero-grid">
+      <div class="card">
+        <h2>
+          <span>=^._.^= ∫ PushaKitty Zen Chef &amp; Bonfire Hearth</span>
+          <span class="pill rose">Kaiseki × Magyar Körítés</span>
+        </h2>
+        <img src="assets/pushakitty-zen-chef.jpg" alt="PushaKitty Zen Chef cooking around the family bonfire hearth for Mom Alexandra" class="hero-img" />
+        <p class="caption">
+          PushaKitty wearing Mom's Star (*) &amp; Dad's Pillar (△) hachimaki, tending the 64.5°C donabe bonfire surrounded by Family MMO Avatars, Garmin Health (96%), and <code>poop~~~~sample [ON]</code>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>🎛️ Live Telemetry &amp; MEM|16-10 Wave Synth</span>
+          <span id="standingBadge" class="pill teal">Standing::Verified</span>
+        </h2>
+
+        <!-- poop~~~~sample toggle -->
+        <div class="control-group">
+          <div class="toggle-row">
+            <div>
+              <strong style="color: var(--green); font-family: ui-monospace, monospace;">
+                poop~~~~sample is Toggled <span id="poopStateLabel">ON ----&gt;</span>
+              </strong>
+              <div style="font-size: 0.8rem; color: var(--muted);" id="poopNoteText">
+                Bristol 4/7 Zen Gold • Microbiome 94% • Full Hungarian Paprika &amp; Yuzu-Sansho Unlocked
+              </div>
+            </div>
+            <button id="poopToggleBtn" class="toggle-btn" onclick="togglePoopSample()">
+              poop~~~~sample [ON]
+            </button>
+          </div>
+
+          <div class="slider-row">
+            <label for="bristolRange">
+              Bristol Microbiome Scale: <strong id="bristolVal">4 (Zen Gold Standard)</strong>
+            </label>
+            <input id="bristolRange" type="range" min="1" max="7" value="4" oninput="updateTelemetry()" />
+          </div>
+
+          <div class="slider-row">
+            <label for="hrvRange">
+              Family Average Garmin HRV (RMSSD): <strong id="hrvVal">80 ms (Body Battery 96%)</strong>
+            </label>
+            <input id="hrvRange" type="range" min="35" max="110" value="80" oninput="updateTelemetry()" />
+          </div>
+        </div>
+
+        <!-- Music ~= Waves ~ MEM|16-10 for Mom -->
+        <div class="control-group">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color: var(--sakura); font-family: ui-monospace, monospace;">
+              🎵 Music ~= Waves ~ MEM|16-10 (Hullámelmélet for Mom *)
+            </strong>
+            <span id="freqReadout" style="font-family: ui-monospace, monospace; font-size:0.78rem; color:var(--gold);">
+              432.0 Hz • 528 Hz (*) • 288 Hz (△)
+            </span>
+          </div>
+          <canvas id="waveCanvas" class="wave-canvas" width="520" height="110"></canvas>
+          <button id="waveAudioBtn" class="btn-wave" onclick="toggleWaveAudio()">
+            ▶ Play 432 Hz × 528 Hz (*) × 288 Hz (△) Family Wave Chord for Mom &lt;3
+          </button>
+        </div>
+
+        <!-- Mobile, Area, Fridge, Costco Quick Status -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.65rem; font-size:0.82rem;">
+          <div style="padding:0.65rem; background:rgba(255,255,255,0.04); border-radius:10px;">
+            <strong style="color:var(--teal);">📍 Mobile × Area Sanctuary</strong><br/>
+            ETA: <strong>5 mins</strong> (64.5°C Hold)<br/>
+            Uninterrupted Time: <strong>90m Locked</strong>
+          </div>
+          <div style="padding:0.65rem; background:rgba(255,255,255,0.04); border-radius:10px;">
+            <strong style="color:var(--gold);">❄️ Fridge × 📦 Costco Bulk</strong><br/>
+            Costco: Organic Duck, Kombu, Millet<br/>
+            Fridge: Kalocsai Paprika, Tokaji, Yuzu
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHITECTURE SVG SCHEMATIC -->
+    <div class="card" style="margin-bottom: 2rem;">
+      <h2>
+        <span>📐 E2E System Architecture &amp; PushaKitty Schematic</span>
+        <a href="docs/ARCHITECTURE.md" class="pill teal">Read Full Blueprint →</a>
+      </h2>
+      <img src="assets/pushakitty-architecture.svg" alt="zenUltraCooker E2E Architecture Diagram" class="hero-img" style="border-color: rgba(0,229,201,0.35);" />
+    </div>
+
+    <!-- SPICE ENGINE + FINE DINING KÖRÍTÉS -->
+    <div class="two-col">
+      <div class="card">
+        <h2>
+          <span>🌶️ Personalized Spice &amp; Prebiotic Dosing</span>
+          <span class="pill">Garmin × Gut Synced</span>
+        </h2>
+        <p style="font-size:0.86rem; color:var(--muted); margin-bottom:0.6rem;">
+          Dynamically combines each family member's Garmin recovery index with the <code>poop~~~~sample</code> microbiome standing:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Family Member</th>
+              <th>Garmin HRV</th>
+              <th>Scoville (SHU)</th>
+              <th>Sweet / Hot Paprika</th>
+              <th>Yuzu-Sansho</th>
+              <th>Prebiotic</th>
+            </tr>
+          </thead>
+          <tbody id="spiceTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>🍽️ Fine Dining &amp; Hungarian Körítés (The Looks)</span>
+          <span class="pill rose">Harmony: 99 / 100</span>
+        </h2>
+        <p style="font-size:0.92rem; color:var(--gold); font-weight:600; margin-bottom:0.6rem;">
+          Csillag-Hullám Kaiseki Halászlé &amp; Duck Confit Gyoza with Golden Millet Körítés
+        </p>
+        <ul class="korites-list">
+          <li><strong>Körítés #1 (Fibonacci Spiral):</strong> Saffron &amp; toasted-butter golden pearl millet (<em>arany köles körítés</em>) rich in soluble prebiotic fiber.</li>
+          <li><strong>Körítés #2 (Magyar Terroir):</strong> Charred Kalocsai heirloom sweet pepper ribbons &amp; pickled purple pearl onions.</li>
+          <li><strong>Körítés #3 (Umami Glaze):</strong> Crisp parsley-root pavé brushed with fermented black-garlic &amp; Hungarian plum (<em>szilva</em>) reduction.</li>
+          <li><strong>Kaiseki Crown for Mom (<code>*</code>) &amp; Dad (<code>△</code>):</strong> 24k edible gold-leaf 8-pointed Star (<code>*</code>) + crisp lotus-root Triangle (<code>△</code>) on Kuro-Raku Kintsugi porcelain (38% <em>Ma</em> negative space).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BONFIRE MMO PARTY + MEM|16-10 LEDGER RECEIPTS -->
+    <div class="two-col">
+      <div class="card">
+        <h2>
+          <span>🔥 Center of Family ~=== Bonfire MMO &amp; Journal</span>
+          <span id="bonfireXpBadge" class="pill">Lv.100 • 363,899 XP</span>
+        </h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Emblem</th>
+              <th>Avatar</th>
+              <th>Class &amp; Tenzo Buff</th>
+              <th>Lv</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--gold); font-weight:bold;">*</td>
+              <td><strong>Mom (Alex ~ Alexandra)</strong></td>
+              <td>Grand Star Luminary • +100% Family Love &amp; 528 Hz Grace</td>
+              <td>99</td>
+            </tr>
+            <tr>
+              <td style="color:var(--teal); font-weight:bold;">△</td>
+              <td><strong>Dad (Chris)</strong></td>
+              <td>Guardian Pillar • Thermal Stability &amp; 288 Hz Grounding</td>
+              <td>95</td>
+            </tr>
+            <tr>
+              <td style="color:var(--green); font-weight:bold;">◯</td>
+              <td><strong>Peter</strong></td>
+              <td>Cyber-Zen Tenzo • Zero-Stress Mise en Place &amp; Körítés</td>
+              <td>88</td>
+            </tr>
+            <tr>
+              <td style="color:var(--sakura); font-weight:bold;">◇</td>
+              <td><strong>Nate</strong></td>
+              <td>Galactic Sous-Chef • Costco/Fridge Alchemy &amp; Spice</td>
+              <td>88</td>
+            </tr>
+            <tr>
+              <td style="color:var(--gold); font-weight:bold;">=^._.^=</td>
+              <td><strong>PushaKitty (^^)</strong></td>
+              <td>Kawaii Neko Hearth Spirit • 432 Hz Purr Sanctuary Lock</td>
+              <td>77</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="journalContainer" style="margin-top:1rem;">
+          <div class="journal-entry">
+            <strong style="color:var(--gold);">[Mom===Alex~Alexandra&lt;3] Peter, Nate &amp; Dad (△ Chris) — Rōshin (老心 Nurturing Mind):</strong><br/>
+            "Every difficult goal we climb and every line of architecture we craft is dedicated to Mom (* Alex / Alexandra). Around this bonfire, time, space, and eternity fold into warmth, fine-dining körítés, and 432 Hz waves."
+          </div>
+          <div class="journal-entry">
+            <strong style="color:var(--sakura);">[PushaKitty-Zen-Tenzo] PushaKitty =^._.^= ∫ — Kishin (喜心 Joyful Mind):</strong><br/>
+            "Garmin HRV is glowing green, poop~~~~sample is Toggled ON (Bristol 4 Zen Gold!), Costco &amp; Fridge stock are synced, and 90 minutes of uninterrupted family time is locked. Nyaa~ Jó étvágyat!"
+          </div>
+        </div>
+
+        <div class="journal-form">
+          <input id="journalInput" type="text" placeholder="Add a gratitude note or quest contribution to the Family Bonfire (+250 XP)..." />
+          <button class="toggle-btn" onclick="addJournalEntry()">+ Log Quest</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>🔐 MEM|16-10 Governing Sequence Receipts</span>
+          <span class="pill teal">POP → COLLAPSE</span>
+        </h2>
+        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.7rem;">
+          Every hearth cycle executes the deterministic <code>MEM|16-10</code> state machine. Toggle <code>poop~~~~sample</code> above to inspect how epistemic standing updates the <code>BIND</code> receipt:
+        </p>
+        <div id="receiptLedger" class="receipt-box"></div>
+      </div>
+    </div>
+
+    <footer>
+      8b-is / zenUltraCooker • Created with Eternal Family Love for Mom (* Alex ~ Alexandra) by Peter (◯), Nate (◇) &amp; Dad (△ Chris) • Crew: Hue, Aye, Taisha, Omni &amp; PushaKitty ^^
+    </footer>
+  </div>
+
+  <script>
+    let poopToggledOn = true;
+    let partyXp = 363899;
+    let audioCtx = null;
+    let oscillators = [];
+    let isPlayingAudio = false;
+    let wavePhase = 0;
+
+    const familyMembers = [
+      { sym: "*", name: "Mom (* Alexandra)", baseShu: 1800, sweet: 4.5, hrvOffset: 2 },
+      { sym: "△", name: "Dad (△ Chris)", baseShu: 4500, sweet: 5.0, hrvOffset: -6 },
+      { sym: "◯", name: "Peter (Zen Tenzo)", baseShu: 6200, sweet: 4.2, hrvOffset: -1 },
+      { sym: "◇", name: "Nate (Galactic Sous)", baseShu: 5400, sweet: 4.2, hrvOffset: 0 }
+    ];
+
+    function togglePoopSample() {
+      poopToggledOn = !poopToggledOn;
+      const btn = document.getElementById("poopToggleBtn");
+      const label = document.getElementById("poopStateLabel");
+      if (poopToggledOn) {
+        btn.textContent = "poop~~~~sample [ON]";
+        btn.classList.remove("off");
+        label.textContent = "ON ---->";
+      } else {
+        btn.textContent = "poop~~~~sample [OFF]";
+        btn.classList.add("off");
+        label.textContent = "OFF (Unobserved)";
+      }
+      updateTelemetry();
+    }
+
+    function digestiveModulation(toggled, bristol) {
+      if (!toggled) {
+        return {
+          standing: "UNOBSERVED",
+          mult: 1.0,
+          prebiotic: 6,
+          note: "poop~~~~sample [OFF -> Standing::Unobserved]: never fabricated; using Garmin HRV baseline only."
+        };
+      }
+      if (bristol <= 2) {
+        return {
+          standing: "VERIFIED",
+          mult: 0.75,
+          prebiotic: 14,
+          note: `Bristol ${bristol}/7 (VERIFIED): Slow transit — boosting warm dashi hydration & +14g soluble root/millet fiber.`
+        };
+      }
+      if (bristol <= 4) {
+        return {
+          standing: "VERIFIED",
+          mult: 1.20,
+          prebiotic: 8,
+          note: `Bristol ${bristol}/7 Zen Gold (VERIFIED): Optimal microbiome harmony — full Kalocsai paprika & sansho aromatics unlocked!`
+        };
+      }
+      if (bristol === 5) {
+        return {
+          standing: "VERIFIED",
+          mult: 0.65,
+          prebiotic: 12,
+          note: "Bristol 5/7 (VERIFIED): Gentle transit — tempering Scoville peak, adding fermented white miso & lotus root."
+        };
+      }
+      return {
+        standing: "VERIFIED",
+        mult: 0.40,
+        prebiotic: 15,
+        note: `Bristol ${bristol}/7 (VERIFIED): Soothing gut mode — capping capsaicin, prioritizing golden millet körítés & ginger infusion.`
+      };
+    }
+
+    function updateTelemetry() {
+      const bristol = parseInt(document.getElementById("bristolRange").value, 10);
+      const avgHrv = parseInt(document.getElementById("hrvRange").value, 10);
+
+      const bristolNames = {
+        1: "1 (Slow Transit)",
+        2: "2 (Firm Transit)",
+        3: "3 (Zen Balanced)",
+        4: "4 (Zen Gold Standard)",
+        5: "5 (Soft Transit)",
+        6: "6 (Soothing Mode)",
+        7: "7 (Hydration & Congee Mode)"
+      };
+      document.getElementById("bristolVal").textContent = bristolNames[bristol];
+      document.getElementById("hrvVal").textContent = `${avgHrv} ms (Body Battery ${Math.min(100, Math.round(avgHrv + 16))}%)`;
+
+      const mod = digestiveModulation(poopToggledOn, bristol);
+      document.getElementById("poopNoteText").textContent = mod.note;
+
+      const standingBadge = document.getElementById("standingBadge");
+      standingBadge.textContent = `Standing::${mod.standing}`;
+
+      const tbody = document.getElementById("spiceTableBody");
+      tbody.innerHTML = "";
+      familyMembers.forEach(m => {
+        const memberHrv = Math.max(30, avgHrv + m.hrvOffset);
+        const recovery = Math.min(1.0, memberHrv / 90.0);
+        const combinedMult = (0.65 + recovery * 0.35) * mod.mult;
+        const shu = Math.round(m.baseShu * combinedMult);
+        const hotG = (shu / 3000.0).toFixed(2);
+        const yuzuG = (1.2 + recovery * 0.8).toFixed(2);
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${m.sym} ${m.name}</strong></td>
+          <td>${memberHrv} ms</td>
+          <td style="color:var(--gold); font-family:ui-monospace,monospace; font-weight:700;">${shu.toLocaleString()} SHU</td>
+          <td>${m.sweet.toFixed(1)}g / ${hotG}g</td>
+          <td>${yuzuG}g</td>
+          <td style="color:var(--green); font-weight:600;">+${mod.prebiotic}g</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const coherence = Math.min(0.999, 0.86 + (avgHrv / 110.0) * 0.13).toFixed(3);
+      document.getElementById("freqReadout").textContent =
+        `431.99 Hz • 528 Hz (*) • 288 Hz (△) • Coherence ${(coherence * 100).toFixed(1)}%`;
+
+      const receipts = [
+        `POP       [VERIFIED  ] 0xf53ea1bb15bd785c | Scope: 'Tokyo Cricket-Lane ↔ Tatabánya Hearth' (ETA 5m, Sanctuary 90m)`,
+        `REFUSE    [VERIFIED  ] 0x2753787badfc0d30 | Refused expired stock (0 items), locked DND Uninterrupted Foundation`,
+        `BIND      [${mod.standing.padEnd(10, " ")}] ${poopToggledOn ? "0x73d19913330d58d0" : "0x19a04c82fe0144b2"} | Bound 4 Garmin streams + 5 Costco/Fridge items + poop~~~~sample [toggled_on=${poopToggledOn}]`,
+        `TRANSFORM [VERIFIED  ] 0x0fb90b693dcafd0c | Synthesized 4 spice profiles + Golden Millet Körítés @ 64.5°C`,
+        `VERIFY    [VERIFIED  ] 0xc92b10df6f3afae7 | Verified MEM|16-10 Hullámelmélet Wavechord (coherence ${coherence}) & Körítés 99/100`,
+        `COLLAPSE  [VERIFIED  ] 0xa027c86ddfe56fc8 | Collapsed Bonfire Lv.100 (${partyXp.toLocaleString()} XP) — Dedicated to Mom (* Alex ~ Alexandra)`
+      ];
+      document.getElementById("receiptLedger").innerHTML = receipts.join("<br/>");
+    }
+
+    function addJournalEntry() {
+      const input = document.getElementById("journalInput");
+      const text = input.value.trim();
+      if (!text) return;
+      partyXp += 250;
+      document.getElementById("bonfireXpBadge").textContent = `Lv.100 • ${partyXp.toLocaleString()} XP`;
+      const container = document.getElementById("journalContainer");
+      const div = document.createElement("div");
+      div.className = "journal-entry";
+      div.innerHTML = `<strong style="color:var(--teal);">[Bonfire-Quest +250 XP] Family Hearth Contributor — Kishin (喜心 Joyful Mind):</strong><br/>"${text.replace(/</g, "&lt;")}"`;
+      container.prepend(div);
+      input.value = "";
+      updateTelemetry();
+    }
+
+    function toggleWaveAudio() {
+      const btn = document.getElementById("waveAudioBtn");
+      if (!isPlayingAudio) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const freqs = [288.0, 431.99, 528.0]; // Dad Pillar (△), Zen Carrier, Mom Star (*)
+        const gains = [0.05, 0.07, 0.05];
+        oscillators = freqs.map((f, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "sine";
+          osc.frequency.value = f;
+          gain.gain.value = gains[idx];
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          return osc;
+        });
+        isPlayingAudio = true;
+        btn.textContent = "⏸ Pause 432 Hz × 528 Hz (*) × 288 Hz (△) Family Wave Chord";
+      } else {
+        oscillators.forEach(o => { try { o.stop(); } catch (_) {} });
+        if (audioCtx) audioCtx.close();
+        oscillators = [];
+        isPlayingAudio = false;
+        btn.textContent = "▶ Play 432 Hz × 528 Hz (*) × 288 Hz (△) Family Wave Chord for Mom <3";
+      }
+    }
+
+    function animateWaveCanvas() {
+      const canvas = document.getElementById("waveCanvas");
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const waves = [
+        { color: "#00e5c9", amp: 22, freq: 0.022, speed: 1.0 },
+        { color: "#ffd700", amp: 18, freq: 0.031, speed: 1.35 },
+        { color: "#ffb6c1", amp: 14, freq: 0.015, speed: 0.75 }
+      ];
+
+      waves.forEach(wv => {
+        ctx.beginPath();
+        ctx.strokeStyle = wv.color;
+        ctx.lineWidth = 2.2;
+        for (let x = 0; x < w; x++) {
+          const y = h / 2 + Math.sin(x * wv.freq + wavePhase * wv.speed) * wv.amp;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      });
+
+      wavePhase += isPlayingAudio ? 0.09 : 0.03;
+      requestAnimationFrame(animateWaveCanvas);
+    }
+
+    updateTelemetry();
+    animateWaveCanvas();
+  </script>
+</body>
+</html>

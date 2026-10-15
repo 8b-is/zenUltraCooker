@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/zen-cooker-core",
+    "crates/zen-cooker-cli",
+]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+authors = [
+    "Peter Lodri <peter@8b.is>",
+    "Nate Lodri <nate@8b.is>",
+    "Chris Lodri <chris@8b.is>",
+    "Alexandra Lodri (Mom *) <alex@8b.is>",
+    "8b-is Crew (Hue, Aye, Taisha, Omni)",
+]
+repository = "https://github.com/8b-is/zenUltraCooker"
+homepage = "https://8b-is.github.io/zenUltraCooker/"

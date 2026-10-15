@@ -1,0 +1,11 @@
+[package]
+name = "zen-cooker-core"
+description = "Core cyber-zen culinary engine for zenUltraCooker — MEM|16-10 Wave Theory for Mom (* Alexandra), Garmin health + microbiome telemetry, Costco/Fridge inventory, Fine-Dining Körítés plating, and Family Bonfire MMO."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[dependencies]

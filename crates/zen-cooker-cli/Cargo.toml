@@ -1,0 +1,16 @@
+[package]
+name = "zen-cooker-cli"
+description = "PushaKitty CLI & Bonfire Hearth simulator for zenUltraCooker (8b-is/zenUltraCooker)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[[bin]]
+name = "zen-cooker"
+path = "src/main.rs"
+
+[dependencies]
+zen-cooker-core = { path = "../zen-cooker-core" }
