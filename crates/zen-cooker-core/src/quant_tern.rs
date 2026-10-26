@@ -224,21 +224,23 @@ pub struct QuantTernHearthReceipt {
 
 impl QuantTernHearthReceipt {
     /// Compute the canonical `ULTRA-OMNI-ZEN-peter` `QUANT-TERN` synthesis for the family hearth.
-    pub fn synthesize(poop_standing: Standing, avg_hrv_ms: f32, wave_coherence: f32) -> Self {
+    /// `hearth_standing`: `Standing::Verified` when Air Fryer Ultra + USA ZIP Local Market are active (`+1`),
+    /// or `Standing::Unobserved` (`0`) when falling back to unverified/broken-oven state.
+    pub fn synthesize(hearth_standing: Standing, avg_hrv_ms: f32, wave_coherence: f32) -> Self {
         // Family VAD: high loving valence (+0.96), calm centered zen arousal (+0.42), sovereign dominance (+0.88)
         let family_vad = Vad::new(0.96, 0.42, 0.88);
         let vad_trits = family_vad.trits(DEFAULT_THRESHOLD);
 
-        let poop_trit = Trit::from_standing(poop_standing);
+        let hearth_trit = Trit::from_standing(hearth_standing);
         let hrv_trit = Trit::from_f32((avg_hrv_ms - 50.0) / 40.0, DEFAULT_THRESHOLD);
         let wave_trit = Trit::from_f32(wave_coherence - 0.5, DEFAULT_THRESHOLD);
 
-        // 8-trit gate vector: [Valence, Arousal, Dominance, PoopStanding, GarminHRV, WaveCoherence, MomStar(+), DadPillar(+)]
+        // 8-trit gate vector: [Valence, Arousal, Dominance, AirFryerZipStanding, FamilyUnity, WaveCoherence, MomStar(+), DadPillar(+)]
         let gate_trits = vec![
             vad_trits[0],
             vad_trits[1],
             vad_trits[2],
-            poop_trit,
+            hearth_trit,
             hrv_trit,
             wave_trit,
             Trit::Plus, // Mom (*) Star
@@ -247,16 +249,16 @@ impl QuantTernHearthReceipt {
 
         let (gate_bytes, qt_hex_tag) = pack_gate_trits(&gate_trits);
 
-        // 2x4 ternary weight matrix projected over [HRV, Bristol*10, WaveHz/10, Answer42]
+        // 2x4 ternary weight matrix projected over [UnityScore, AirFryerVerified*21, WaveHz, Answer42]
         let raw_weights: [f32; 8] = [0.92, 0.48, 0.85, -0.05, 0.77, -0.62, 0.95, 0.88];
         let (w_trits, gamma_scale) = quantize_absmean(&raw_weights);
         let weight_packed_bytes = pack_weight_trits(&w_trits);
 
         let x_features: [i16; 4] = [
             avg_hrv_ms.round() as i16,
-            (i16::from(poop_trit.raw()) + 1) * 21, // 42 when Verified (+1)
-            432,                                   // 432 Hz Zen Carrier
-            42,                                    // "Thanks for all the fish, Mom <3"
+            (i16::from(hearth_trit.raw()) + 1) * 21, // 42 when Verified (+1)
+            432,                                     // 432 Hz Zen Carrier
+            42,                                      // "Thanks for all the fish, Mom <3"
         ];
         let matvec_logits = ternary_matvec(&w_trits, &x_features, 2, 4, gamma_scale);
 

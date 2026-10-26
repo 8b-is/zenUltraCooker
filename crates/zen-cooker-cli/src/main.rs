@@ -1,136 +1,174 @@
-//! # `zen-cooker` — PushaKitty Cyber-Zen Hearth CLI (`8b-is/zenUltraCooker`)
+//! # `zen-cooker` v2.0.0 — PawShaw Kitty & Doggy Quantum-Family Household Organizer CLI (`8b-is/zenUltraCooker`)
 //!
-//! Runs a full E2E simulation of `zenUltraCooker`, printing the Japan-style cute
-//! PushaKitty mascot, the `MEM|16-10` Wave Theory chord for Mom (`*` Alexandra),
-//! Garmin + `poop~~~~sample` telemetry, Costco/Fridge inventory, Fine-Dining *Körítés*
-//! plating, and Family Bonfire MMO status.
+//! Runs a full E2E simulation of `zenUltraCooker` v2.0.0:
+//! - USA ZIP Code Local Grocery Ads & Farmers Market Savings
+//! - Fridge, Freezer & Pantry Zero-Waste Tracker + Household Essentials (Dog Poop Bags, TP, Trash Bags, Laundry Soap, Donuts)
+//! - Appliance Status Tracker (Oven Broken -> Auto-Rerouted to Air Fryer Ultra ★)
+//! - Anti-Rachael Ray Honest Prep + Cook + Cleanup Recipe Vault (`zenFamily` Share vs. Family Secret + Star Ratings & Photo Moments)
+//! - Personalized Profile-Based `quantAI` Family Assistant Nudges
+//! - Animal Crossing (`<3<3<3`) Pixel-Art Cozy Bonfire MMO & `PawShaw Kitty (=^._.^=) & Doggy (▽・ω・▽)` Trademark
+//! - Stripe + Apple Pay + Google Pay & 4-Burner Sovereign Hearth Firewall (`Gondolkodom, Theat vagyOK -> just BE <3`)
 
 use std::env;
 use zen_cooker_core::execute_family_hearth_cycle;
 
-const PUSHAKITTY_BANNER: &str = r#"
-  ╭──────────────────────────────────────────────────────────────────────────────╮
-  │    ╱|、       8b-is / zenUltraCooker v1.0.0 — PushaKitty Tenzo Hearth       │
-  │   (˚ˎ 。7  *  Dedicated with All Our Family Love to Mom (* Alex ~ Alexandra) │
-  │    |、˜〵     From Peter (◯), Nate (◇) & Dad (△ Chris) — Bonfire == Family   │
-  │    じしˍ,)ノ  Music ~= Waves ~ MEM|16-10 (POP->REFUSE->BIND->TRANSFORM->...) │
-  ╰──────────────────────────────────────────────────────────────────────────────╯
+const PAWSHAW_BANNER: &str = r#"
+  ╭──────────────────────────────────────────────────────────────────────────────────╮
+  │   ╱|、  ▽・ω・▽   8b-is / zenUltraCooker v2.0.0 — PawShaw Kitty & Doggy Hearth  │
+  │  (˚ˎ 。7   *      When Mom (* Alex / Dra) Cooks, the Family Comes Together <3    │
+  │   |、˜〵   🔊     USA ZIP Ads • Air Fryer Ultra ★ • Fridge/Freezer/Pantry • MMO  │
+  │   じしˍ,)ノ       Gondolkodom, Theat vagyOK -> cogito ergo summa summarum | BE   │
+  ╰──────────────────────────────────────────────────────────────────────────────────╯
 "#;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let poop_toggled_on = !args.iter().any(|a| a == "--poop-sample-off");
+    let air_fryer_verified = !args.iter().any(|a| a == "--unverified-appliance");
 
-    let plan = execute_family_hearth_cycle(poop_toggled_on);
+    let plan = execute_family_hearth_cycle(air_fryer_verified);
 
-    println!("{PUSHAKITTY_BANNER}");
+    println!("{PAWSHAW_BANNER}");
     println!("  ✦ DEDICATION : {}", plan.dedication_banner);
     println!(
-        "  ✦ AREA & TIME: {} | Family Arrival ETA: {}m | Uninterrupted Sanctuary: {}m [{}]",
-        plan.area_context.area_name,
-        plan.area_context.family_convergence_eta_mins,
-        plan.area_context.uninterrupted_foundation_mins,
-        plan.area_context.foundation_standing()
+        "  ✦ TRADEMARK  : {}",
+        plan.schedule_context.pawshaw_trademark_badge
     );
     println!(
-        "  ✦ GUT TOGGLE : poop~~~~sample is Toggled {} ----> [Standing: {} | Bristol: {}/7 | Diversity: {}%]",
-        if plan.poop_sample_telemetry.toggled_on {
-            "ON "
+        "  ✦ USA ZIP    : {} ({}) | Tonight Headcount: {}/{} (College Son on Speakerphone 🔊: {})",
+        plan.schedule_context.usa_zip_code,
+        plan.zip_market_feed.city_state,
+        plan.schedule_context.tonight_headcount,
+        plan.schedule_context.regular_headcount,
+        if plan.schedule_context.speakerphone_college_son_connected {
+            "LIVE AT TABLE"
         } else {
             "OFF"
-        },
-        plan.poop_sample_telemetry.standing(),
-        plan.poop_sample_telemetry.bristol_scale,
-        plan.poop_sample_telemetry.microbiome_diversity
+        }
+    );
+    println!(
+        "  ✦ BUDGET     : Weekly Spend ${:.2} / ${:.2} Budget | Ad Savings: ${:.2} | DoorDash Cancel Saved: ${:.2} [{}]",
+        plan.zip_market_feed.projected_weekly_spend_usd,
+        plan.zip_market_feed.weekly_family_budget_usd,
+        plan.zip_market_feed.total_weekly_ad_savings_usd(),
+        plan.zip_market_feed.doordash_cancel_saved_usd,
+        plan.zip_market_feed.standing()
     );
     println!();
 
-    println!("  ┌── 1. MUSIC ~= WAVES ~ MEM|16-10 HULLÁMELMÉLET FOR MOM (* ALEXANDRA) ─────────┐");
-    println!("  │ Chord     : {}", plan.wavechord.dedication_chord_name);
-    println!(
-        "  │ Harmonics : {:.2} Hz Carrier | {:.1} Hz Mom (*) Star | {:.1} Hz Dad (△) Pillar | {:.2} Hz Binaural",
-        plan.wavechord.carrier_hz,
-        plan.wavechord.overtone_mom_star_hz,
-        plan.wavechord.bass_dad_pillar_hz,
-        plan.wavechord.binaural_calm_hz
-    );
-    println!(
-        "  │ Waveform  : [{}] (Coherence: {:.1}%)",
-        plan.wavechord.ascii_wave,
-        plan.wavechord.coherence * 100.0
-    );
-    println!(
-        "  │ Escalation: mem16 (16B) -> 32 (32B XOR:0x{:02x}) ~~> 8k (bleeding-edge 8192B/8192-trit: 0x{:016x})",
-        plan.wavechord.mem32_wave_frame[31],
-        plan.wavechord.bleeding_edge_8k_digest
-    );
-    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
-    println!();
-
-    println!("  ┌── 2. GARMIN BIOMETRICS × PERSONALIZED SPICE & PREBIOTIC ENGINE ──────────────┐");
-    for profile in &plan.spice_profiles {
+    println!("  ┌── 1. APPLIANCE ROUTER (AIR FRYER ULTRA ★ vs. BROKEN OVEN BYPASS) ─────────────┐");
+    for app in &plan.appliances {
         println!(
-            "  │ [{}] {:<24} -> {:>4} SHU | Sweet Paprika: {:.1}g | Hot: {:.2}g | Yuzu-Sansho: {:.2}g | Prebiotic: {}g",
-            profile.member.symbol(),
-            profile.member.display_name(),
-            profile.target_scoville_shu,
-            profile.sweet_paprika_grams,
-            profile.hot_paprika_grams,
-            profile.yuzu_sansho_grams,
-            profile.prebiotic_boost_grams
+            "  │ [{}] {:<48} -> {}",
+            if app.is_working { "ONLINE " } else { "BROKEN " },
+            app.display_name,
+            app.status_note
         );
     }
-    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
+    println!("  └───────────────────────────────────────────────────────────────────────────────┘");
     println!();
 
-    println!("  ┌── 3. FINE DINING & HUNGARIAN KÖRÍTÉS (THE LOOKS — MICHELIN × KAISEKI) ───────┐");
-    println!("  │ Dish   : {}", plan.korites_plating.dish_title);
-    println!("  │ Thermal: {}", plan.korites_plating.centerpiece);
-    for (i, layer) in plan
-        .korites_plating
-        .hungarian_korites_layers
-        .iter()
-        .enumerate()
-    {
-        println!("  │ Körítés #{}: {}", i + 1, layer);
-    }
-    for accent in &plan.korites_plating.kaiseki_visual_accents {
-        println!("  │ Kaiseki  : {}", accent);
-    }
     println!(
-        "  │ Vessel   : {} (Harmony: {}/100)",
-        plan.korites_plating.vessel_and_lighting, plan.korites_plating.visual_harmony_score
+        "  ┌── 2. FRIDGE ❄️ / FREEZER 🧊 / PANTRY 🥫 ZERO-WASTE + HOUSEHOLD ESSENTIALS 🧻 ──┐"
     );
-    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
+    for item in &plan.inventory_used {
+        println!(
+            "  │ {:<10} {:<52} | Exp: {:>3}d | {}",
+            item.zone.label(),
+            item.name,
+            item.days_until_expiry,
+            item.quantity_label
+        );
+    }
+    println!("  ├───────────────────────────────────────────────────────────────────────────────┤");
+    for ess in &plan.household_essentials {
+        println!(
+            "  │ [{}] {:<50} | Runner: {}",
+            if ess.low_stock_alert {
+                "ADD NOW"
+            } else {
+                "STOCKED"
+            },
+            ess.item_name,
+            ess.assigned_runner.display_name()
+        );
+    }
+    println!("  └───────────────────────────────────────────────────────────────────────────────┘");
     println!();
 
-    println!("  ┌── 4. CENTER OF FAMILY ~=== BONFIRE MMO & TECHNO-BUDDHIST JOURNAL ────────────┐");
+    println!("  ┌── 3. PER-FAMILY + PER-PROFILE quantAI ASSISTANT NUDGES ───────────────────────┐");
+    for nudge in &plan.quant_ai_nudges {
+        println!(
+            "  │ [{}] {:<22} ({}) -> {}",
+            nudge.target_member.symbol(),
+            nudge.target_member.display_name(),
+            nudge.trigger_time_label,
+            nudge.message
+        );
+    }
+    println!("  └───────────────────────────────────────────────────────────────────────────────┘");
+    println!();
+
+    println!("  ┌── 4. HONEST REAL-PREP & CLEANUP RECIPES (ANTI-RACHAEL RAY LAW + ROTATION) ────┐");
+    for r in &plan.recipes_in_rotation {
+        println!(
+            "  │ ★ {:.1}/5.0 | {} [{}]",
+            r.family_rating_stars,
+            r.title,
+            r.visibility.badge()
+        );
+        println!(
+            "  │   Honest Total: {}m (Unwashed Prep: {}m + Air Fryer Cook: {}m + Real Dish Cleanup: {}m | Marinate Lead: {}m)",
+            r.honest_total_kitchen_mins(),
+            r.unwashed_prep_mins,
+            r.active_cook_mins,
+            r.cleanup_and_dishes_mins,
+            r.marinate_or_thaw_lead_mins
+        );
+        println!(
+            "  │   Cost/Serving: ${:.2} | School Lunch Leftover Boxes: +{} | Moments: {}",
+            r.cost_per_serving_usd,
+            r.school_leftover_boxes,
+            r.photo_moments.join(" • ")
+        );
+    }
+    println!("  └───────────────────────────────────────────────────────────────────────────────┘");
+    println!();
+
+    println!("  ┌── 5. ANIMAL CROSSING (<3<3<3) PIXEL-ART BONFIRE MMO & PAWSHAW TRADEMARK ──────┐");
     println!(
-        "  │ Bonfire Level {} | Party XP: {} | Flame Warmth: {}%",
+        "  │ Bonfire Level {} | Party XP: {} | Flame Warmth: {}% | {}",
         plan.bonfire_session.bonfire_level,
         plan.bonfire_session.total_party_xp,
-        plan.bonfire_session.flame_warmth_pct
+        plan.bonfire_session.flame_warmth_pct,
+        plan.bonfire_session.pawshaw_trademark
     );
     for avatar in &plan.bonfire_session.avatars {
         println!(
-            "  │   {:<10} {:<22} Lv.{:<3} — {}",
+            "  │   {:<14} {:<26} Lv.{:<3} — {}",
             avatar.emblem, avatar.handle, avatar.level, avatar.class_title
         );
     }
-    println!("  ├──────────────────────────────────────────────────────────────────────────────┤");
-    for entry in &plan.bonfire_session.journal {
-        println!(
-            "  │ [{}] {} ({}):",
-            entry.dedication_tag,
-            entry.author,
-            entry.zen_mind.description()
-        );
-        println!("  │   \"{}\"", entry.reflection);
-    }
-    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
+    println!("  └───────────────────────────────────────────────────────────────────────────────┘");
     println!();
 
-    println!("  ┌── 5. MEM|16-10 GOVERNING SEQUENCE RECEIPTS (POP -> COLLAPSE) ────────────────┐");
+    println!("  ┌── 6. STRIPE + APPLE PAY + GOOGLE PAY & MEM|16-10 WAVE RECEIPTS ───────────────┐");
+    println!(
+        "  │ Stripe Merchant : {} | Apple Pay: {} | Google Pay: {}",
+        plan.payment_rails.stripe_merchant_id,
+        plan.payment_rails.apple_pay_enabled,
+        plan.payment_rails.google_pay_enabled
+    );
+    println!(
+        "  │ Hearth Firewall : {}",
+        plan.payment_rails.four_burner_hearth_firewall
+    );
+    println!(
+        "  │ Wave Theory     : {:.2} Hz Carrier | {:.1} Hz Mom (*) | {:.1} Hz Dad (△) | [{}]",
+        plan.wavechord.carrier_hz,
+        plan.wavechord.overtone_mom_star_hz,
+        plan.wavechord.bass_dad_pillar_hz,
+        plan.wavechord.ascii_wave
+    );
     for receipt in &plan.mem16_receipts {
         println!(
             "  │ {:<9} [{:<10}] 0x{:016x} | {}",
@@ -141,26 +179,10 @@ fn main() {
         );
     }
     println!(
-        "  │ FINAL COLLAPSE LEDGER HASH: 0x{:016x}",
-        plan.final_collapse_hash
-    );
-    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
-    println!();
-
-    println!("  ┌── 6. QUANT-TERN BRIDGE (crush-love-dev × pureQTern × quanttern · 全) ────────┐");
-    println!(
-        "  │ Tribute   : {}",
-        plan.quant_tern_receipt.fish_tribute_for_mom
-    );
-    println!(
-        "  │ Affect Tag: {} | Gate Trits: {:?} | Scale γ = {:.4}",
+        "  │ FINAL COLLAPSE LEDGER HASH: 0x{:016x} | QUANT-TERN: {} (0x{:016x})",
+        plan.final_collapse_hash,
         plan.quant_tern_receipt.qt_hex_tag,
-        plan.quant_tern_receipt.gate_trits,
-        plan.quant_tern_receipt.gamma_scale
+        plan.quant_tern_receipt.golden_hash
     );
-    println!(
-        "  │ Matvec i32: {:?} | Golden Hash: 0x{:016x}",
-        plan.quant_tern_receipt.matvec_logits, plan.quant_tern_receipt.golden_hash
-    );
-    println!("  └──────────────────────────────────────────────────────────────────────────────┘");
+    println!("  └───────────────────────────────────────────────────────────────────────────────┘");
 }
