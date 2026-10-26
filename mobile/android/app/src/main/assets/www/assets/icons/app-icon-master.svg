@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E2923"/>
+      <stop offset="55%" stop-color="#16201B"/>
+      <stop offset="100%" stop-color="#0F1713"/>
+    </linearGradient>
+    <linearGradient id="potGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E06D44"/>
+      <stop offset="100%" stop-color="#B84A27"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6D365"/>
+      <stop offset="100%" stop-color="#D49B35"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1024" height="1024" rx="224" fill="url(#bgGrad)"/>
+  <rect x="36" y="36" width="952" height="952" rx="196" fill="none" stroke="#D49B35" stroke-opacity="0.28" stroke-width="6"/>
+
+  <!-- Subtle Warm Hearth Halo -->
+  <circle cx="512" cy="540" r="320" fill="#E06D44" fill-opacity="0.10"/>
+
+  <!-- Warm Rising Steam Waves (3 clean culinary curves) -->
+  <path d="M392 310 C372 265, 412 230, 392 185" fill="none" stroke="url(#goldGrad)" stroke-width="22" stroke-linecap="round"/>
+  <path d="M512 290 C492 240, 532 200, 512 150" fill="none" stroke="url(#goldGrad)" stroke-width="26" stroke-linecap="round"/>
+  <path d="M632 310 C612 265, 652 230, 632 185" fill="none" stroke="url(#goldGrad)" stroke-width="22" stroke-linecap="round"/>
+
+  <!-- Dutch Oven / Air Fryer Lid & Gold Knob -->
+  <rect x="466" y="344" width="92" height="34" rx="17" fill="url(#goldGrad)"/>
+  <path d="M268 418 C268 378, 360 364, 512 364 C664 364, 756 378, 756 418 Z" fill="#F4EFE6"/>
+
+  <!-- Side Handles -->
+  <path d="M206 476 H266 V526 H206 C190 526, 180 514, 180 501 C180 488, 190 476, 206 476 Z" fill="#D49B35"/>
+  <path d="M758 476 H818 C834 476, 844 488, 844 501 C844 514, 834 526, 818 526 H758 Z" fill="#D49B35"/>
+
+  <!-- Cast-Iron Hearth Vessel Body -->
+  <path d="M256 436 H768 L732 692 C718 776, 646 828, 558 828 H466 C378 828, 306 776, 292 692 Z" fill="url(#potGrad)"/>
+
+  <!-- Clean Warm Hearth Flame / Leaf Emblem on Vessel Center -->
+  <path d="M512 520 C550 568, 576 606, 576 648 C576 686, 548 716, 512 716 C476 716, 448 686, 448 648 C448 606, 474 568, 512 520 Z" fill="#FFF8EB"/>
+  <path d="M512 578 C532 606, 544 628, 544 652 C544 672, 530 688, 512 688 C494 688, 480 672, 480 652 C480 628, 492 606, 512 578 Z" fill="#F6D365"/>
+
+  <!-- Minimalist Base Trivet Line -->
+  <rect x="352" y="856" width="320" height="18" rx="9" fill="#4A9E8E" fill-opacity="0.85"/>
+</svg>

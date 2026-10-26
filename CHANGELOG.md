@@ -1,39 +1,47 @@
-# Changelog — `8b-is/zenUltraCooker`
+# Changelog
 
-All notable changes to `8b-is/zenUltraCooker` follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) (`MAJOR.MINOR.PATCH` ↔ mobile `versionCode = MAJOR*10000 + MINOR*100 + PATCH`).
+All notable changes to **`zenUltraCooker`** are documented in this file.
+This project adheres strictly to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+
+| Surface | SemVer | Integer Build / Version Code | Package / Bundle Identifier |
+| :--- | :--- | :--- | :--- |
+| **Workspace (`VERSION` / `Cargo.toml`)** | `2.2.0` | `20200` | `zen-cooker-core` / `zen-cooker-cli` / `zen-cooker-quant-tern` |
+| **Android APK (`mobile/android`)** | `2.2.0` | `versionCode = 20200` | `is.eightb.zenultracooker` |
+| **iOS / iPadOS App (`mobile/ios`)** | `2.2.0` | `CFBundleVersion = 20200` | `is.8b.zenultracooker` |
+| **Web / PWA (`index.html`)** | `2.2.0` | `20200` | `https://8b-is.github.io/zenUltraCooker/` |
 
 ---
 
-## [2.1.0] — 2026-10-26 (`versionCode: 20100`)
+## [2.2.0] - 2026-10-26
 
 ### Added
-- **📱 Native Android APK Application (`mobile/android/` & `releases/zenUltraCooker-v2.1.0.apk`)**:
-  - Package `is.eightb.zenultracooker` (`minSdk 26`, `targetSdk 36`, `versionCode 20100`, `versionName "2.1.0"`).
-  - Native `MainActivity.java` + `AndroidHearthBridge` (`@JavascriptInterface`) wiring native **Google Pay (`G Pay`) / Stripe PaymentSheet** checkout dialogs, `quantAI` family notifications, and `zencooker://hearth` deep links around the full offline-first `zenUltraCooker` v2.1.0 experience.
-  - Reproducible SDK build pipeline (`scripts/build-apk.sh`) using `aapt2`, `javac`, `d8`, `zipalign`, and `apksigner` (v2/v3 signature verified).
-- **🍎 Native iOS / iPadOS / macOS SwiftUI Application (`mobile/ios/ZenUltraCookerApp`)**:
-  - Bundle ID `is.8b.zenultracooker` (`CFBundleShortVersionString = "2.1.0"`, `CFBundleVersion = "20100"`), Apple Pay Merchant ID `merchant.is.8b.zenultracooker`.
-  - Native SwiftUI views + `ZenUltraCookerKit` Swift package (`Package.swift`) with unit test suite (`swift test`) covering USA ZIP local ads, Fridge/Freezer/Pantry zero-waste, Broken-Oven -> Air Fryer Ultra routing, Anti-Rachael Ray honest prep+cleanup timers, Speakerphone College Son (`🔊`), Animal Crossing Pixel MMO, and Apple Pay + Stripe PaymentIntent creation.
-- **🧒 ELI5 ("Explain Like I'm 5") Guide for Stripe + Apple Pay (` Pay`) + Google Pay (`G Pay`) (`docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md`)**:
-  - Step-by-step plain-English walkthrough (including Alex's iPad 2FA login checklist) for flipping Stripe (`acct_1UUTcTRnidUxAlVy`) to Live mode, enabling Apple Pay (` Pay`) and Google Pay (`G Pay`) on Web, iOS, and Android, and wiring the **4-Burner Sovereign Hearth Firewall (`Cap(Hearth) ⊥ Risk(R&D)`)**.
-- **🔖 Strict SemVer Synchronization (`scripts/verify.sh`)**:
-  - Verifies that `VERSION` (`2.1.0`), `Cargo.toml`, Android `AndroidManifest.xml`, and iOS `Info.plist` stay 100% in lockstep.
+- **End-to-End App Icon & Brand Asset Packs (`scripts/generate-app-icons.py`)**:
+  - **Master Vector Icon & Editorial Hero**: Created [`assets/icons/app-icon-master.svg`](assets/icons/app-icon-master.svg) and [`assets/brand-hero.svg`](assets/brand-hero.svg) featuring a clean, warm terracotta Dutch-oven / Air-Fryer hearth emblem on a deep forest-espresso canvas.
+  - **iOS / iPadOS / macOS `AppIcon.appiconset`**: Generated all 15 standard Xcode Asset Catalog PNG sizes (`20pt` through `1024×1024` App Store icon) plus `Contents.json` under `mobile/ios/ZenUltraCookerApp/Assets.xcassets/AppIcon.appiconset/`.
+  - **Android Mipmap & Adaptive Icon Suite**: Generated `ic_launcher.png` and `ic_launcher_round.png` across `mipmap-mdpi` (`48px`), `mipmap-hdpi` (`72px`), `mipmap-xhdpi` (`96px`), `mipmap-xxhdpi` (`144px`), and `mipmap-xxxhdpi` (`192px`), plus `assets/icons/playstore-icon-512.png` (`512×512`) and vector `drawable/ic_pawshaw.xml`.
+  - **Web / PWA / Favicon Pack**: Generated multi-size `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` (`180×180`), `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `og-social-card.png` (`1200×630`), and `site.webmanifest`.
+
+### Changed
+- **Professional Editorial Redesign (`index.html` & `README.md`)**:
+  - Replaced anime/cyberpunk visuals and internal jargon with a warm, editorial consumer kitchen aesthetic (`#FAF6F0` alabaster cream, `#16201B` forest espresso, `#D95D39` terracotta hearth, `#2A7B6C` sage green).
+  - Rebuilt and signed `releases/zenUltraCooker-v2.2.0.apk` (`versionCode: 20200`) with full `mipmap-*` launcher icons and a lightweight offline asset footprint (`< 150 KB`).
 
 ---
 
-## [2.0.0] — 2026-10-26 (`versionCode: 20000`)
-
-### Changed (`BREAKING — SIMPLIFY + PRODUCTIZE`)
-- **Retired Clinical Telemetry**: Removed `poop~~~~sample` and Scoville lab dosing in favor of a practical USA Blended-Family Household Organizer (`When Mom Cooks, the Family Comes Together` — daily family dinner as the #1 anti-addiction shield).
-- **USA 5-Digit ZIP Code Local Ads & Farmers Market (`UsaZipMarketFeed`)**: Added weekly store circulars (Aldi, Kroger, Meijer, H-E-B, Trader Joe's, Costco), weekend Farmers Market deals, and 15-Minute DoorDash-Cancel Rescue (`$68.50` saved).
-- **Dra's Fridge ❄️ / Freezer 🧊 / Pantry 🥫 Zero-Waste Tracker + Household Essentials 🧻🐾**: Added expiry tracking + Toilet Paper, Trash Bags, Laundry Soap, Dog Poop Bags (`▽・ω・▽`), and Advisor Lunch Donuts.
-- **Appliance Status Tracker (`Air Fryer === Ultra Appliance ★`)**: Automatically reroutes meals away from a broken oven (`[−1]`) to the Air Fryer Ultra (`+1`).
-- **Anti-Rachael Ray Honest Prep + Cleanup Recipe Vault (`RealPrepRecipeCard`)**: Honest `unwashed_prep + active_cook + cleanup_and_dishes` timers, Web Import, `zenFamily` Share (`🌐`) vs. Family Secret (`🔒`), `5★` ratings, and Photo Moments (`📸`) rotation.
-- **Animal Crossing (`<3<3<3`) Pixel-Art Cozy Bonfire MMO & `PawShaw Kitty & Doggy` Trademark**: Added interactive pixel-art kitchen village with **College Son live on Speakerphone (`🔊`)** and per-profile `quantAI` nudges.
-
----
-
-## [1.0.0] — 2026-10-15 (`versionCode: 10000`)
+## [2.1.0] - 2026-10-26
 
 ### Added
-- Initial `zenUltraCooker` E2E hearth, `MEM|16-10` (`POP -> REFUSE -> BIND -> TRANSFORM -> VERIFY -> COLLAPSE`) wave chord (`432 Hz × 528 Hz (*) × 288 Hz (△)`), and `QUANT-TERN` Metal kernel parity.
+- **Native Android Application & Signed `.apk` (`mobile/android/`, `releases/zenUltraCooker-v2.1.0.apk`)**:
+  - Added full Android project (`package="is.eightb.zenultracooker"`, `minSdk=26`, `targetSdk=36`) with native `@JavascriptInterface` bridge (`AndroidHearthBridge`) for Google Pay (`G Pay`), Apple Pay / Stripe Link checkout, and household reminder toasts.
+- **Native iOS / iPadOS / macOS SwiftUI Application (`mobile/ios/`)**:
+  - Added Swift Package (`ZenUltraCookerKit` + `ZenUltraCookerApp`) with Apple Pay merchant entitlement (`merchant.is.8b.zenultracooker`) and automated self-tests.
+- **Plain-English (ELI5) Stripe, Apple Pay & Google Pay Guide (`docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md`)**:
+  - Step-by-step setup documentation for Stripe (`acct_1UUTcTRnidUxAlVy`), Apple Pay, Google Pay, and the 4-Burner Household Budget Firewall.
+
+---
+
+## [2.0.0] - 2026-10-26
+
+### Changed
+- **Productized Family Kitchen & Household Planner**:
+  - Added US 5-digit ZIP code grocery flyer & Farmers Market comparison engine, 15-minute DoorDash-cancel freezer rescue, Fridge/Freezer/Pantry zero-waste expiry tracking, household essentials tracking, broken-oven auto-routing to the Air Fryer, honest prep + cook + dish cleanup recipe vault, blended family profiles with a live speakerphone seat for a son in college, and 1-tap Stripe / Apple Pay / Google Pay checkout.

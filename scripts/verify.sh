@@ -47,7 +47,11 @@ if command -v swiftc >/dev/null 2>&1; then
   rm -f /tmp/zen-ios-selftest
 fi
 
-say "Android APK v2.1.0 signature check"
+say "Android APK v${EXPECTED_SEMVER} signature & E2E App Icon Pack check"
+[ -f "assets/icons/app-icon-master.svg" ] || die "missing assets/icons/app-icon-master.svg"
+[ -f "mobile/ios/ZenUltraCookerApp/Assets.xcassets/AppIcon.appiconset/icon-1024.png" ] || die "missing iOS AppIcon 1024"
+[ -f "mobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" ] || die "missing Android mipmap-xxxhdpi ic_launcher.png"
+[ -f "site.webmanifest" ] || die "missing site.webmanifest"
 if [ -f "releases/zenUltraCooker-v${EXPECTED_SEMVER}.apk" ] && [ -x "$HOME/Library/Android/sdk/build-tools/36.0.0/apksigner" ]; then
   "$HOME/Library/Android/sdk/build-tools/36.0.0/apksigner" verify "releases/zenUltraCooker-v${EXPECTED_SEMVER}.apk"
   ls -lh "releases/zenUltraCooker-v${EXPECTED_SEMVER}.apk"

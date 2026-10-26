@@ -27,12 +27,14 @@ BUILD_DIR="target/android-build"
 RELEASE_DIR="releases"
 OUT_APK="$RELEASE_DIR/zenUltraCooker-v${VERSION}.apk"
 
-rm -rf "$BUILD_DIR"
-mkdir -p "$BUILD_DIR/compiled_res" "$BUILD_DIR/classes" "$BUILD_DIR/dex" "$ANDROID_DIR/assets/www/assets" "$RELEASE_DIR"
+rm -rf "$BUILD_DIR" "$ANDROID_DIR/assets/www/assets"
+mkdir -p "$BUILD_DIR/compiled_res" "$BUILD_DIR/classes" "$BUILD_DIR/dex" "$ANDROID_DIR/assets/www/assets/icons" "$RELEASE_DIR"
 
 echo "[apk-build] Syncing web app (v${VERSION}) into Android assets..."
 cp index.html "$ANDROID_DIR/assets/www/index.html"
-cp -R assets/* "$ANDROID_DIR/assets/www/assets/" 2>/dev/null || true
+cp assets/brand-hero.svg "$ANDROID_DIR/assets/www/assets/brand-hero.svg"
+cp assets/icons/app-icon-master.svg "$ANDROID_DIR/assets/www/assets/icons/app-icon-master.svg"
+cp assets/icons/icon-192.png "$ANDROID_DIR/assets/www/assets/icons/icon-192.png"
 
 echo "[apk-build] Compiling Android resources with aapt2..."
 "$AAPT2" compile --dir "$ANDROID_DIR/res" -o "$BUILD_DIR/compiled_res/resources.zip"

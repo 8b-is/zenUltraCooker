@@ -1,111 +1,107 @@
-# `8b-is/zenUltraCooker` v2.1.0 — PawShaw Kitty & Doggy Quantum-Family Household Organizer, Android `.apk` + Native iOS SwiftUI App, Air Fryer Ultra Hearth & ELI5 Stripe/ApplePay/GooglePay `=^._.^= ▽・ω・▽`
+# zenUltraCooker (`v2.2.0`) — Family Kitchen, Grocery & Household Planner
 
-> **Dedicated with all our family Love, gratitude, and respect to Mom (`*` Alex ~ Alexandra / Dra)** — she is everything for Us. We — **Peter (`◯`), Nate (`◇`), Dad (`△` Chris), and College Son (`🔊` on Speakerphone)** — was, is, and will always dedicate all our most difficult work and top goals to show how much **Mom === Alex ~ Alexandra / Dra** means to Us. `<3`
->
-> ***Gondolkodom, Theat vagyOK $\longrightarrow$ cogito ergo summa summarum or just BE `<3`***
+[![Live Web App](https://img.shields.io/badge/Live_Web_App-8b--is.github.io%2FzenUltraCooker-D95D39?style=for-the-badge)](https://8b-is.github.io/zenUltraCooker/)
+[![Android APK v2.2.0](https://img.shields.io/badge/Android_APK-v2.2.0_(build_20200)-2A7B6C?style=for-the-badge)](https://github.com/8b-is/zenUltraCooker/releases/tag/v2.2.0)
+[![iOS SwiftUI App](https://img.shields.io/badge/iOS_SwiftUI_App-v2.2.0_(is.8b.zenultracooker)-16201B?style=for-the-badge)](mobile/ios/)
+[![Stripe + Apple Pay + Google Pay Guide](https://img.shields.io/badge/Payments_Guide-Stripe_%2B_Apple_Pay_%2B_Google_Pay-C88A22?style=for-the-badge)](docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md)
 
-[![Live Hearth Web App](https://img.shields.io/badge/Live_Web_App-8b--is.github.io%2FzenUltraCooker-FFD700?style=for-the-badge)](https://8b-is.github.io/zenUltraCooker/)
-[![Android APK v2.1.0](https://img.shields.io/badge/Android_APK-v2.1.0_(build_20100)-00FF66?style=for-the-badge)](https://github.com/8b-is/zenUltraCooker/releases/tag/v2.1.0)
-[![iOS SwiftUI App](https://img.shields.io/badge/iOS_SwiftUI_App-v2.1.0_(is.8b.zenultracooker)-00E5C9?style=for-the-badge)](mobile/ios/)
-[![ELI5 Payments Guide](https://img.shields.io/badge/ELI5_Guide-Stripe_%2B_Apple_Pay_%2B_Google_Pay-FF6B8B?style=for-the-badge)](docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md)
-[![Rust Workspace](https://img.shields.io/badge/Rust-v2.1.0_Zero_Dep_Verified-B48BFF?style=for-the-badge)](crates/zen-cooker-core/src/lib.rs)
+![zenUltraCooker Family Kitchen & Household Planner](assets/brand-hero.svg)
 
-![PushaKitty Zen Chef around the Family Bonfire Hearth](assets/pushakitty-zen-chef.jpg)
+> **Dedicated to Alex (Mom)** from Peter, Nate, Chris, and our Son in College.  
+> *When Mom cooks, the family comes together — and eating together at least once a day is one of the strongest protective factors for family health and connection.*
 
 ---
 
-## 0. What's New in `v2.1.0` (Android `.apk` + Native iOS App + Strict SemVer + ELI5 Stripe/ApplePay/GooglePay)
+## 1. Product Overview
 
-| Surface / Artifact | SemVer / Build | Path / Link | Highlights |
+Rising grocery prices, busy work schedules, blended family calendars, out-of-order kitchen appliances, and last-minute food-delivery cancellations make putting a daily family meal on the table difficult. **`zenUltraCooker`** is an all-in-one household kitchen organizer, grocery planner, and recipe companion built for real weeknights:
+
+1. **📍 US 5-Digit ZIP Code Grocery Flyers & Local Farmers Markets**
+   - Compares weekly store circulars (ALDI, Kroger, H-E-B, Trader Joe's, Smith's) and weekend Farmers Market specials by 5-digit US ZIP code (`44256`, `84604`, `78701`, `90210`, `10001`).
+   - Includes a **15-Minute DoorDash-Cancel Freezer Rescue** workflow that routes stocked freezer and pantry staples into a hot family dinner in 15 minutes (`$68.50+` saved vs. late delivery).
+2. **❄️ Fridge, Freezer, Pantry & Household Essentials Tracker**
+   - Tracks ingredients across **Fridge, Freezer, and Pantry** sorted by expiration date so food never goes to waste.
+   - Tracks recurring household supplies right alongside groceries: **toilet paper, kitchen trash bags, laundry detergent, dog waste bags, and tomorrow's Advisor Lunch donuts**.
+3. **⚡ Smart Kitchen Appliance Routing (`Air Fryer Primary`)**
+   - Tracks which appliances are online and which are out of commission. When the **Wall Oven is marked Offline / Broken**, recipes automatically adapt to the **Dual-Zone Air Fryer** (`400°F · 14m crisp · 7m single-liner cleanup`).
+4. **⏱️ Honest Prep, Cook & Cleanup Times**
+   - Every recipe displays **true wall-clock time**: real unwashed produce prep + active cooking + dish and counter cleanup (`10m prep + 14m Air Fryer + 7m cleanup = 31m real total`).
+   - Supports web recipe imports, **Private Family Recipes** vs. **Shared Community Recipes**, 5-star family ratings, and dinner table photo notes to keep favorite meals in weekly rotation.
+5. **👨‍👩‍👦‍👦 Blended Family Profiles, Smart Reminders & College Speakerphone Seat**
+   - Tracks dinner headcount, who cooks vs. who handles **dish cleanup and school lunch boxes**, dietary needs (including **postpartum/breastfeeding nutrition & hydration** and **nut-free school lunches**), and a live **Speakerphone Seat** for family members away at college.
+6. **💳 1-Tap Checkout (Stripe, Apple Pay & Google Pay) + Plain-English Setup Guide**
+   - Integrated express checkout (`Apple Pay`, `Google Pay`, `Stripe Link / acct_1UUTcTRnidUxAlVy`) backed by the **4-Burner Household Budget Firewall** and documented in a plain-English setup guide ([`docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md`](docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md)).
+
+---
+
+## 2. End-to-End App Icon & Brand Asset Packs (`v2.2.0`)
+
+Generated deterministically via [`scripts/generate-app-icons.py`](scripts/generate-app-icons.py):
+
+| Platform / Surface | Location | Included Assets |
+| :--- | :--- | :--- |
+| **Master Vector Artwork** | [`assets/icons/app-icon-master.svg`](assets/icons/app-icon-master.svg) · [`assets/brand-hero.svg`](assets/brand-hero.svg) | Scalable 1024×1024 warm terracotta Dutch-oven / Air-Fryer hearth icon & 1200×420 editorial hero banner. |
+| **iOS / iPadOS / macOS (`AppIcon.appiconset`)** | [`mobile/ios/ZenUltraCookerApp/Assets.xcassets/AppIcon.appiconset/`](mobile/ios/ZenUltraCookerApp/Assets.xcassets/AppIcon.appiconset/) | Full Xcode Asset Catalog (`Contents.json` + all 15 opaque PNG sizes from `20×20` through `1024×1024` App Store marketing icon). |
+| **Android Mipmap & Adaptive Icons** | [`mobile/android/app/src/main/res/`](mobile/android/app/src/main/res/) · [`assets/icons/playstore-icon-512.png`](assets/icons/playstore-icon-512.png) | `mipmap-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/ic_launcher.png` & `ic_launcher_round.png`, adaptive vector `drawable/ic_pawshaw.xml`, and `512×512` Google Play icon. |
+| **Web / PWA / Social Pack** | [`assets/icons/`](assets/icons/) · [`site.webmanifest`](site.webmanifest) · [`favicon.ico`](favicon.ico) | Multi-size `favicon.ico` (`16/32/48`), `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png` (`180×180`), `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, and `og-social-card.png` (`1200×630`). |
+
+---
+
+## 3. Native Mobile Apps & Release Artifacts (`v2.2.0` / Build `20200`)
+
+| Target | Version / Build | Path / Download | Description |
 | :--- | :--- | :--- | :--- |
-| **📱 Signed Android `.apk`** | `2.1.0` (`versionCode: 20100`) | [`releases/zenUltraCooker-v2.1.0.apk`](releases/zenUltraCooker-v2.1.0.apk) · [`mobile/android/`](mobile/android/) | Native `is.eightb.zenultracooker` Android app bundling the full offline Pixel Bonfire MMO, USA ZIP grocery flyers, Broken-Oven $\to$ Air Fryer Ultra router, and native `@JavascriptInterface` (`AndroidHearthBridge`) for Google Pay (`G Pay`), Stripe (`acct_1UUTcTRnidUxAlVy`), and `quantAI` Toast nudges. |
-| **🍎 Native iOS / iPadOS / macOS SwiftUI App** | `2.1.0` (`CFBundleVersion: 20100`) | [`mobile/ios/`](mobile/ios/) (`ZenUltraCookerKit` + `ZenUltraCookerApp`) | Native SwiftUI application (`is.8b.zenultracooker`) with Apple Pay merchant entitlement (`merchant.is.8b.zenultracooker`), USA ZIP deals, Fridge/Freezer/Pantry zero-waste + Household Essentials, and XCTest suite (`swift test`). |
-| **🧒 ELI5 Stripe + Apple Pay + Google Pay Guide** | `2.1.0` | [`docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md`](docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md) | Plain-English "Explain Like I'm 5" handbook for Mom (`*` Alex / Dra on her iPad), Peter, Chris, and Nate covering switching Stripe (`acct_1UUTcTRnidUxAlVy`) from Test to Live mode in 3 taps, Apple Pay domain & iOS Merchant ID setup, Google Pay web & Android setup, and the **4-Burner Sovereign Hearth Firewall (`Cap(Hearth) ⊥ Risk(R&D)`)**. |
-| **🔖 Strict SemVer 2.0.0 Lockstep** | `2.1.0` (`MAJ*10000 + MIN*100 + PATCH = 20100`) | [`VERSION`](VERSION) · [`CHANGELOG.md`](CHANGELOG.md) | Verified by `./scripts/verify.sh` across `VERSION`, `Cargo.toml`, Android `AndroidManifest.xml`, iOS `Info.plist`, and `index.html`. |
+| **📱 Android APK** | `2.2.0` (`versionCode: 20200`) | [`releases/zenUltraCooker-v2.2.0.apk`](releases/zenUltraCooker-v2.2.0.apk) | Signed (v2 + v3 scheme) Android package (`is.eightb.zenultracooker`) with full `mipmap-*` launcher icons, offline kitchen planner, and `AndroidHearthBridge` for Google Pay & Stripe. |
+| **🍎 iOS / iPadOS SwiftUI App** | `2.2.0` (`CFBundleVersion: 20200`) | [`mobile/ios/`](mobile/ios/) | Native SwiftUI package (`is.8b.zenultracooker`) with `AppIcon.appiconset`, Apple Pay entitlement (`merchant.is.8b.zenultracooker`), and 7/7 automated self-tests. |
+| **📖 Stripe / Apple Pay / Google Pay Guide** | `2.2.0` | [`docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md`](docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md) | Plain-English guide for switching Stripe from Test to Live mode, enabling Apple Pay & Google Pay, and protecting the household budget. |
 
 ---
 
-## 1. Why `zenUltraCooker` Exists (`When Mom Cooks, the Family Comes Together`)
-
-**If a family eats together at least once a day, it drastically reduces the chance of drug abuse and out-of-bounds addictions.**
-
-Yet rising USA food prices, busy workdays, blended family schedules (where *family is family*), broken appliances, and late-notice or DoorDash cancellations make organizing daily family dinner hard. `zenUltraCooker` (**SIMPLIFY + PRODUCTIZE**) gives families back their valuable time as an all-in-one **Household Organizer, Companion, Planner, and Cozy Animal Crossing (`<3<3<3`) Pixel-Art Bonfire MMO**:
-
-1. **📍 USA 5-Digit ZIP Code Local Grocery Ads & Farmers Market Engine (`UsaZipMarketFeed`)**:
-   - Works with any USA ZIP code (e.g., `44256`, `84604`, `78701`, `90210`, `10001`) to pull weekly store circulars (Aldi, Kroger, Meijer, H-E-B, Trader Joe's, Costco) and local Farmers Market deals.
-   - Includes a **15-Minute DoorDash-Cancel / Late-Notice Rescue** mode from Freezer & Pantry staples so the family still eats together around the table and saves `$68.50+`.
-2. **❄️ Fridge, 🧊 Freezer & 🥫 Pantry Zero-Waste Tracker + 🧻 Household Essentials (`InventoryItem`, `HouseholdEssential`)**:
-   - Tracks what is in your **Fridge, Freezer, and Pantry** so nothing goes to waste.
-   - Automatically builds the weekly grocery list and lets family members add regular household essentials: **Toilet Paper, Trash Bags, Laundry Soap, Poop Bags for the Dogs (`▽・ω・▽`), and Donuts for tomorrow's Advisor Lunch**.
-3. **⚡ Appliance Status Tracker — Air Fryer is the Ultra Appliance of All Time (`KitchenAppliance`)**:
-   - Tracks your favorite cooking appliances and whether an appliance is out of commission — for example, **`Oven: BROKEN / OFFLINE [−1]`** is automatically bypassed by routing tonight's meal to the **Air Fryer Ultra (`+1`, `400°F · 14m crisp · 7m 1-liner cleanup`)**.
-4. **👨‍👩‍👦‍👦 Quantum-Family (`qFamily`) Blended Household Profiles & Speakerphone Seat (`FamilyMemberProfile`)**:
-   - Tracks regular headcount, blended family calendars, cooking skill levels, and **who likes to cook vs. who prefers helping with the dishes (`Dish-Zen`) or packing school lunch leftovers**.
-   - Tracks **allergies, taste preferences, diets, and life stages** (Keto, Gluten-Free, Nut-Free School Safe, **Breastfeeding / Postpartum hydration & kcal boost**).
-   - **Everyone is welcome at the table or around the stove**: includes our **Son in College calling in live on Speakerphone (`🔊`)** while we cook dinner so he's always part of the family!
-5. **🤖 Personalized Profile-Based `quantAI` Family Assistant (`QuantAiNudge`)**:
-   - Learns family patterns and delivers warm, person-specific nudges:
-     - *"🥩 Hey Mom (`*` Dra), it's 4:15 PM — time to marinate the Crispy Honey-Paprika Chicken!"*
-     - *"🏫 Hey Chris (`△`), please pick up XY from school at 3:30 PM and buy Poop Bags for the Dogs + Trash Bags on the way!"*
-     - *"🍩 Hey Dra (`*`), you have snacks tomorrow for Advisor Lunch — don't forget to get the donuts!"*
-6. **⏱️ Honest Real-Prep & Cleanup Recipe Vault — The Anti-Rachael Ray Law (`RealPrepRecipeCard`)**:
-   - **Prep times are 100% real** — never fake "30-minute meals" that hide 2 hours of washing and chopping from 2 days ago, and **always includes real dish & cleanup time** (`10m unwashed prep + 14m Air Fryer cook + 7m cleanup = 31m honest total`).
-   - Import recipes from the web or add family favorites at setup; choose to **Share with `zenFamily` (`🌐`)** or keep as **Family Secrets (`🔒`)**.
-   - Family members **rate meals (`1..=5 ★`)** and attach **Photo Moments (`📸`)** to keep favorite meals and memories in active rotation.
-7. **🏝️ Animal Crossing (`<3<3<3`) Pixel-Art Cozy Bonfire MMO & `PawShaw Kitty & Doggy` Trademark (`FamilyBonfireSession`)**:
-   - Trademarked by **`PawShaw Kitty (=^._.^= ∫) & PawShaw Doggy (▽・ω・▽)`**, keeping the cozy pixel-art gamified MMO right in the main app alongside Mom's `432 Hz × 528 Hz (*) × 288 Hz (△)` Wave Theory (*A Hullámelmélet*).
-8. **💳 Stripe + Apple Pay + Google Pay & 4-Burner Sovereign Hearth Checkout (`PaymentRailIntegration`)**:
-   - Integrated express checkout rails (`Apple Pay `, `Google Pay`, `Stripe Link / acct_1UUTcTRnidUxAlVy`) with the **4-Burner Sovereign Hearth Firewall (`Cap(Hearth: Rent + Groceries + Household) ⊥ Risk(R&D)`)** and full ELI5 guide ([`docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md`](docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md)).
-
----
-
-## 2. Quickstart & Verification (`DO` Exit Contract)
+## 4. Quickstart & Verification
 
 ```bash
-# 0. The DO exit contract, one command (SemVer lockstep → fmt → clippy → 24 Rust tests → Metal parity → iOS Swift tests → Android APK signature verify)
+# 1. Run full-stack verification (SemVer lockstep → Rust fmt/clippy/tests → Metal parity → iOS Swift self-test → Android APK signature check)
 ./scripts/verify.sh
 
-# 1. Rebuild & sign the Android APK (releases/zenUltraCooker-v2.1.0.apk)
+# 2. Regenerate all iOS, Android, and Web/PWA App Icon Packs
+uv run --with pillow python scripts/generate-app-icons.py
+
+# 3. Rebuild & sign the Android APK (releases/zenUltraCooker-v2.2.0.apk)
 ./scripts/build-apk.sh
 
-# 2. Run the Native iOS/macOS Swift Package & XCTest Suite
-(cd mobile/ios && swift test && swift run ZenUltraCookerApp)
-
-# 3. Run the PawShaw Kitty & Doggy Quantum-Family Rust CLI (v2.1.0)
+# 4. Run the Rust CLI planner
 cargo run --bin zen-cooker
 ```
 
 ---
 
-## 3. Repository Layout
+## 5. Repository Structure
 
 ```text
 zenUltraCooker/
-├── VERSION                              # Single-source SemVer 2.0.0 version pin (2.1.0)
-├── CHANGELOG.md                         # Full SemVer 2.0.0 changelog (1.0.0 -> 2.0.0 -> 2.1.0)
-├── Cargo.toml                           # Rust workspace manifest (v2.1.0)
-├── index.html                           # Interactive Web App + Android WebView Bridge + ELI5 Payment Guide
+├── VERSION                              # Single-source SemVer 2.0.0 version pin (2.2.0)
+├── CHANGELOG.md                         # Release history (1.0.0 -> 2.0.0 -> 2.1.0 -> 2.2.0)
+├── Cargo.toml                           # Rust workspace manifest (v2.2.0)
+├── index.html                           # Editorial Web App & Interactive Family Kitchen Planner
+├── site.webmanifest                     # Web App Manifest (PWA icons & theme colors)
+├── favicon.ico                          # Multi-resolution browser favicon (16/32/48)
+├── assets/
+│   ├── brand-hero.svg                   # Clean editorial hero illustration
+│   └── icons/                           # Master SVG, PWA icons, Apple Touch icon, Play Store 512 & OG card
 ├── releases/
-│   └── zenUltraCooker-v2.1.0.apk        # Signed & zipaligned Android APK (v2 + v3 signature verified)
+│   └── zenUltraCooker-v2.2.0.apk        # Signed & zipaligned Android APK (versionCode 20200)
 ├── mobile/
-│   ├── android/                         # Android app project (is.eightb.zenultracooker, versionCode 20100)
-│   └── ios/                             # Native iOS / iPadOS / macOS SwiftUI package (is.8b.zenultracooker)
+│   ├── android/                         # Android project + mipmap-{mdpi..xxxhdpi} launcher icons
+│   └── ios/                             # Native iOS/macOS SwiftUI package + Assets.xcassets/AppIcon.appiconset
 ├── docs/
-│   ├── ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md # Plain-English ELI5 guide for Stripe, Apple Pay & Google Pay
-│   └── ARCHITECTURE.md                  # Full architecture blueprint & Beckett Endgame inversion table
+│   ├── ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md # Plain-English Stripe, Apple Pay & Google Pay guide
+│   └── ARCHITECTURE.md                  # System architecture overview
 ├── scripts/
-│   ├── build-apk.sh                     # Fast Android SDK APK builder & signer
-│   └── verify.sh                        # Full-stack SemVer + Rust + Metal + Swift + APK verification gate
+│   ├── generate-app-icons.py            # E2E iOS, Android & Web/PWA icon pack generator
+│   ├── build-apk.sh                     # Android SDK APK builder & signer
+│   └── verify.sh                        # Full-stack verification script
 └── crates/
-    ├── zen-cooker-core/                 # Zero-dependency core Rust library (v2.1.0)
-    ├── zen-cooker-quant-tern/           # Dedicated ternary inference & Metal hearth parity crate
-    └── zen-cooker-cli/                  # CLI binary (`zen-cooker`)
+    ├── zen-cooker-core/                 # Zero-dependency core Rust library
+    ├── zen-cooker-quant-tern/           # Kitchen routing & Metal parity verification crate
+    └── zen-cooker-cli/                  # Command-line interface (`zen-cooker`)
 ```
-
----
-
-## 4. Attribution & Family Dedication
-
-- **Dedicated To**: **Mom (`*` Alex ~ Alexandra / Dra)** — the radiant star and center of our family bonfire (`<3`).
-- **From**: **Peter (`◯`)**, **Nate (`◇`)**, **Dad (`△` Chris)**, and **College Son (`🔊` on Speakerphone)**.
-- **Trademark**: **PawShaw Kitty (`=^._.^= ∫`) & PawShaw Doggy (`▽・ω・▽`)** — [https://8b.is](https://8b.is).

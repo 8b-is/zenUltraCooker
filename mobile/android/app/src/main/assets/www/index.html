@@ -3,488 +3,542 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>8b-is / zenUltraCooker v2.1.0 — PawShaw Kitty &amp; Doggy Quantum-Family Organizer, Android APK + iOS App &amp; Air Fryer Ultra Hearth</title>
+  <title>zenUltraCooker v2.2.0 — Family Kitchen, Grocery &amp; Household Planner</title>
+  <meta name="description" content="Bring the family back to the dinner table every night. Local US ZIP grocery flyers, fridge/freezer/pantry zero-waste tracking, smart Air Fryer routing, honest prep + cleanup times, and 1-tap Stripe / Apple Pay / Google Pay checkout." />
+  <meta name="theme-color" content="#16201B" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta property="og:title" content="zenUltraCooker v2.2.0 — Family Kitchen &amp; Household Planner" />
+  <meta property="og:description" content="US ZIP grocery flyers, zero-waste pantry tracking, smart Air Fryer routing, honest prep + cleanup times, and iOS/Android apps." />
+  <meta property="og:image" content="assets/icons/og-social-card.png" />
   <style>
     :root {
-      --bg-void: #0b0d14;
-      --bg-card: #151926;
-      --bg-card-alt: #1b2234;
-      --gold: #ffd700;
-      --kintsugi: #e8b05c;
-      --sakura: #ffb6c1;
-      --rose: #ff6b8b;
-      --teal: #00e5c9;
-      --green: #00ff66;
-      --bonfire: #ff6b2b;
-      --violet: #b48bff;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --border: rgba(255, 215, 0, 0.26);
+      --bg-page: #FAF6F0;
+      --bg-subtle: #F2ECE1;
+      --bg-card: #FFFFFF;
+      --bg-dark: #16201B;
+      --ink: #16201B;
+      --ink-secondary: #4A5A51;
+      --ink-muted: #6E7E75;
+      --terracotta: #D95D39;
+      --terracotta-dark: #B54626;
+      --sage: #2A7B6C;
+      --sage-light: #E6F3F0;
+      --amber: #C88A22;
+      --amber-light: #FDF5E6;
+      --danger: #C93B3B;
+      --danger-light: #FDECEC;
+      --border: #E2D9C8;
+      --shadow-sm: 0 2px 8px rgba(22, 32, 27, 0.05);
+      --shadow-md: 0 8px 24px rgba(22, 32, 27, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      background: radial-gradient(circle at 50% 0%, #241934 0%, var(--bg-void) 65%);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-      line-height: 1.58;
-      padding-bottom: 4.5rem;
+      background-color: var(--bg-page);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 4rem;
+      -webkit-font-smoothing: antialiased;
     }
-    .container {
-      max-width: 1320px;
+
+    a { color: var(--sage); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+
+    /* Top Navigation */
+    .topbar {
+      background: var(--bg-dark);
+      color: #FAF6F0;
+      padding: 0.85rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    }
+    .topbar-inner {
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 1.25rem;
-    }
-    header {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(38, 22, 48, 0.94), rgba(18, 30, 46, 0.94));
-      border: 2px solid var(--gold);
-      box-shadow: 0 0 42px rgba(255, 182, 193, 0.16);
-      margin-bottom: 1.6rem;
-    }
-    .badge-row {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.55rem;
-      margin-bottom: 0.9rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
     }
-    .pill {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.76rem;
-      padding: 0.28rem 0.78rem;
-      border-radius: 999px;
-      background: rgba(255, 215, 0, 0.12);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-weight: 600;
-    }
-    .pill.teal {
-      background: rgba(0, 229, 201, 0.12);
-      border-color: var(--teal);
-      color: var(--teal);
-    }
-    .pill.rose {
-      background: rgba(255, 182, 193, 0.15);
-      border-color: var(--sakura);
-      color: var(--sakura);
-    }
-    .pill.green {
-      background: rgba(0, 255, 102, 0.14);
-      border-color: var(--green);
-      color: var(--green);
-    }
-    .pill.violet {
-      background: rgba(180, 139, 255, 0.15);
-      border-color: var(--violet);
-      color: var(--violet);
-    }
-    h1 {
-      font-size: clamp(1.65rem, 3.2vw, 2.55rem);
-      color: var(--gold);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.55rem;
-    }
-    .mission-banner {
-      max-width: 980px;
-      margin: 0.75rem auto 0;
-      padding: 1rem 1.35rem;
-      border-radius: 16px;
-      background: rgba(0, 229, 201, 0.08);
-      border: 1px solid rgba(0, 229, 201, 0.38);
-      color: #e2f8f5;
-      font-size: 0.98rem;
-    }
-    .dedication-box {
-      max-width: 980px;
-      margin: 0.75rem auto 0;
-      padding: 0.9rem 1.3rem;
-      border-radius: 16px;
-      background: rgba(255, 182, 193, 0.09);
-      border: 1px solid rgba(255, 182, 193, 0.4);
-      color: #ffe4e9;
-      font-size: 0.95rem;
-    }
-    .nav-tabs {
+    .brand {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 1.5rem;
+      align-items: center;
+      gap: 0.75rem;
     }
-    .nav-tab {
-      cursor: pointer;
-      font-family: ui-monospace, monospace;
-      font-size: 0.82rem;
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+    .brand-title {
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: 1.25rem;
       font-weight: 700;
-      padding: 0.55rem 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 215, 0, 0.35);
-      background: rgba(21, 25, 38, 0.9);
-      color: var(--text);
-      transition: all 0.15s ease;
+      color: #FAF6F0;
+      letter-spacing: -0.01em;
     }
-    .nav-tab:hover, .nav-tab.active {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.22), rgba(0, 229, 201, 0.18));
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-1px);
+    .brand-sub {
+      font-size: 0.75rem;
+      color: #A3B8AE;
+      display: block;
     }
-    .hero-grid {
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      align-items: center;
+    }
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #E6EFEA;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .nav-btn:hover { background: rgba(255, 255, 255, 0.18); text-decoration: none; }
+    .nav-btn.primary {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #FFFFFF;
+    }
+    .nav-btn.primary:hover { background: var(--terracotta-dark); }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.75rem 1.25rem;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 1.75rem;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 1.4rem;
-      margin-bottom: 1.6rem;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 2rem;
+      align-items: center;
     }
-    .two-col {
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; padding: 1.5rem; }
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--terracotta);
+      background: #FDF0EC;
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+    }
+    .hero h1 {
+      font-family: Georgia, "Iowan Old Style", serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+    .hero p.lead {
+      font-size: 1.04rem;
+      color: var(--ink-secondary);
+      margin-bottom: 1.15rem;
+    }
+    .mission-callout {
+      background: var(--sage-light);
+      border-left: 4px solid var(--sage);
+      padding: 0.85rem 1.1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    /* Buttons & Badges */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--ink);
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+    .btn:hover { background: #E5DDD0; text-decoration: none; }
+    .btn.primary {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #FFFFFF;
+    }
+    .btn.primary:hover { background: var(--terracotta-dark); }
+    .btn.sage {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: #FFFFFF;
+    }
+    .btn.sage:hover { opacity: 0.92; }
+    .btn.dark {
+      background: var(--bg-dark);
+      border-color: var(--bg-dark);
+      color: #FFFFFF;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      color: var(--ink-secondary);
+    }
+    .badge.sage { background: var(--sage-light); color: var(--sage); }
+    .badge.amber { background: var(--amber-light); color: #9A650E; }
+    .badge.danger { background: var(--danger-light); color: var(--danger); }
+
+    /* Grids & Cards */
+    .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.4rem;
-      margin-bottom: 1.6rem;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
-    .three-col {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      margin-bottom: 1.6rem;
-    }
-    @media (max-width: 980px) {
-      .hero-grid, .two-col, .three-col { grid-template-columns: 1fr !important; }
+    @media (max-width: 960px) {
+      .grid-2 { grid-template-columns: 1fr; }
     }
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.35rem;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
     }
-    .card h2 {
-      font-size: 1.12rem;
-      color: var(--gold);
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      margin-bottom: 0.85rem;
+    .card-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .pixel-canvas {
-      width: 100%;
-      height: 300px;
-      background: #101820;
-      border-radius: 14px;
-      border: 2px solid var(--gold);
-      image-rendering: pixelated;
-      display: block;
-      cursor: pointer;
-    }
-    .control-group {
-      background: rgba(12, 16, 26, 0.78);
-      border: 1px solid rgba(0, 229, 201, 0.28);
-      border-radius: 14px;
-      padding: 0.95rem;
+      align-items: center;
+      gap: 0.75rem;
       margin-bottom: 0.9rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--bg-subtle);
     }
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 0.75rem;
-    }
-    .btn {
-      cursor: pointer;
-      font-family: ui-monospace, monospace;
+    .card-header h2 {
+      font-size: 1.12rem;
       font-weight: 700;
-      font-size: 0.82rem;
-      padding: 0.52rem 0.95rem;
-      border-radius: 10px;
-      border: 1px solid var(--teal);
-      background: rgba(0, 229, 201, 0.14);
-      color: var(--teal);
-      transition: all 0.15s ease;
+      color: var(--ink);
     }
-    .btn:hover { transform: translateY(-1px); filter: brightness(1.15); }
-    .btn.gold {
-      border-color: var(--gold);
-      background: rgba(255, 215, 0, 0.16);
-      color: var(--gold);
+
+    /* Form Controls */
+    input[type="text"], input[type="number"], select {
+      background: #FFFFFF;
+      border: 1px solid #C9BFA8;
+      color: var(--ink);
+      padding: 0.48rem 0.7rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
     }
-    .btn.rose {
-      border-color: var(--rose);
-      background: rgba(255, 107, 139, 0.16);
-      color: var(--sakura);
-    }
-    .btn.green {
-      border-color: var(--green);
-      background: rgba(0, 255, 102, 0.16);
-      color: var(--green);
-    }
-    .toggle-btn {
-      cursor: pointer;
-      font-family: ui-monospace, monospace;
-      font-weight: 700;
-      font-size: 0.82rem;
-      padding: 0.45rem 0.95rem;
-      border-radius: 999px;
-      border: 2px solid var(--green);
-      background: rgba(0, 255, 102, 0.16);
-      color: var(--green);
-      transition: all 0.2s ease;
-    }
-    .toggle-btn.broken {
-      border-color: var(--rose);
-      background: rgba(255, 107, 139, 0.18);
-      color: var(--rose);
-    }
-    input[type="text"], input[type="url"], input[type="number"], select {
-      background: #0c101a;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.52rem 0.75rem;
-      border-radius: 10px;
-      font-size: 0.88rem;
-    }
-    input[type="range"] {
-      width: 100%;
-      accent-color: var(--teal);
-    }
+    input[type="range"] { width: 100%; accent-color: var(--terracotta); }
+
+    /* Tables */
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
-      margin-top: 0.4rem;
+      font-size: 0.86rem;
+      margin-top: 0.5rem;
     }
     th, td {
+      padding: 0.6rem 0.55rem;
       text-align: left;
-      padding: 0.55rem 0.45rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid var(--bg-subtle);
     }
     th {
-      color: var(--teal);
-      font-family: ui-monospace, monospace;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      font-weight: 700;
     }
-    .nudge-card {
-      padding: 0.7rem 0.9rem;
-      border-radius: 12px;
-      background: rgba(255, 215, 0, 0.07);
-      border-left: 4px solid var(--gold);
-      margin-bottom: 0.6rem;
-      font-size: 0.88rem;
+
+    /* Interactive Kitchen Canvas */
+    .kitchen-canvas {
+      width: 100%;
+      height: 270px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: #1B2620;
+      display: block;
+      cursor: pointer;
     }
-    .nudge-card.urgent {
-      border-left-color: var(--teal);
-      background: rgba(0, 229, 201, 0.08);
+
+    /* Reminders Feed */
+    .nudge-item {
+      background: var(--bg-page);
+      border-left: 3px solid var(--sage);
+      padding: 0.65rem 0.85rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 0.55rem;
+      font-size: 0.85rem;
     }
+    .nudge-item.urgent {
+      border-left-color: var(--terracotta);
+      background: #FDF6F3;
+    }
+
+    /* Recipe Cards */
     .recipe-card {
-      background: rgba(15, 20, 32, 0.85);
-      border: 1px solid rgba(255, 215, 0, 0.28);
-      border-radius: 14px;
-      padding: 1rem;
-      margin-bottom: 0.9rem;
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
     }
-    .time-breakdown {
+    .time-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.45rem;
-      margin: 0.65rem 0;
+      gap: 0.5rem;
+      margin: 0.75rem 0;
+    }
+    .time-pill {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem;
       text-align: center;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
     }
-    .time-box {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 0.4rem;
-      font-size: 0.76rem;
-    }
-    .time-box strong {
+    .time-pill strong {
       display: block;
-      font-size: 0.95rem;
-      color: var(--gold);
-      font-family: ui-monospace, monospace;
+      font-size: 0.98rem;
+      color: var(--ink);
     }
+
+    /* Express Pay Buttons */
     .pay-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0.65rem;
-      margin-top: 0.75rem;
+      margin-top: 0.9rem;
     }
     .pay-btn {
       cursor: pointer;
       padding: 0.75rem 0.9rem;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       font-weight: 700;
       font-size: 0.9rem;
       border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: transform 0.12s ease;
     }
-    .pay-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.4); }
-    .pay-apple { background: #ffffff; color: #000000; }
-    .pay-google { background: #1f2937; color: #ffffff; border: 1px solid #4b5563; }
-    .pay-stripe { background: linear-gradient(135deg, #635bff, #8b5cf6); color: #ffffff; }
-    .wave-canvas {
-      width: 100%;
-      height: 86px;
-      background: #0a0c14;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 182, 193, 0.32);
-      margin: 0.5rem 0;
-      display: block;
+    .pay-btn:hover { transform: translateY(-1px); }
+    .pay-apple { background: #000000; color: #FFFFFF; }
+    .pay-google { background: #1F2937; color: #FFFFFF; }
+    .pay-stripe { background: #635BFF; color: #FFFFFF; }
+
+    /* App Icon Showcase Grid */
+    .icon-pack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.85rem;
     }
-    .receipt-box {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.78rem;
-      background: #090b12;
-      border: 1px solid rgba(0, 229, 201, 0.35);
-      border-radius: 12px;
-      padding: 0.85rem;
-      overflow-x: auto;
-      line-height: 1.55;
-    }
-    footer {
+    .icon-tile {
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.9rem;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.84rem;
-      margin-top: 2.5rem;
-      font-family: ui-monospace, monospace;
+      font-size: 0.78rem;
     }
-    a { color: var(--teal); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    .icon-tile img {
+      width: 56px;
+      height: 56px;
+      border-radius: 13px;
+      margin-bottom: 0.45rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    footer {
+      max-width: 1280px;
+      margin: 2.5rem auto 0;
+      padding: 1.5rem 1.25rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="badge-row">
-        <span class="pill">8b-is / zenUltraCooker v2.1.0 (build 20100)</span>
-        <span class="pill rose">Mom === Alex ~ Alexandra / Dra (*) &lt;3</span>
-        <span class="pill green">PawShaw Kitty (=^._.^=) &amp; Doggy (▽・ω・▽) TM</span>
-        <span class="pill teal">Air Fryer === Ultra Appliance ★</span>
-        <span class="pill violet">Animal Crossing (&lt;3&lt;3&lt;3) Pixel Bonfire MMO</span>
-        <span class="pill">Android APK + iOS SwiftUI + ELI5 Stripe/ApplePay/GPay</span>
-      </div>
-      <h1>✦ zenUltraCooker — Quantum-Family Household Organizer &amp; Bonfire Hearth ✦</h1>
-      <div class="mission-banner">
-        <strong>Why We Built This:</strong> When Mom cooks, the family comes together — and <strong>when a family eats together at least once a day, it drastically reduces the chance of drug abuse and out-of-bounds addictions</strong>. Even with rising USA food prices, busy workdays, blended family calendars, broken ovens, and late-notice or DoorDash cancels, <code>zenUltraCooker</code> brings everyone back around the stove and table (including <strong>our Son in College live on Speakerphone <code>🔊</code></strong>!).
-      </div>
-      <div class="dedication-box">
-        <strong>Dedicated with all our family Love to Mom (<code>*</code> Alex ~ Alexandra / Dra)</strong> from
-        <strong>Peter (<code>◯</code>), Nate (<code>◇</code>), Dad (<code>△</code> Chris) &amp; College Son (<code>🔊</code>)</strong> •
-        <em>Gondolkodom, Theat vagyOK &longrightarrow; cogito ergo summa summarum or just BE &lt;3</em>
-        <div class="btn-row" style="justify-content:center; margin-top:0.65rem;">
-          <a class="btn green" href="releases/zenUltraCooker-v2.1.0.apk" download>📱 Download Android APK (v2.1.0 • build 20100)</a>
-          <a class="btn gold" href="https://github.com/8b-is/zenUltraCooker/tree/main/mobile/ios" target="_blank" rel="noopener">🍎 Native iOS / iPadOS SwiftUI App (v2.1.0)</a>
-          <a class="btn rose" href="https://github.com/8b-is/zenUltraCooker/blob/main/docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md" target="_blank" rel="noopener">🧒 Read ELI5 Stripe + Apple Pay + Google Pay Guide</a>
+
+  <!-- TOP NAVIGATION -->
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="assets/icons/app-icon-master.svg" alt="zenUltraCooker App Icon" />
+        <div>
+          <span class="brand-title">zenUltraCooker</span>
+          <span class="brand-sub">Family Kitchen, Grocery &amp; Household Planner • v2.2.0</span>
         </div>
       </div>
-    </header>
-
-    <!-- QUICK JUMP BAR -->
-    <div class="nav-tabs">
-      <button class="nav-tab active" onclick="scrollToSection('sec-mmo')">🐾 Animal Crossing Pixel MMO &amp; Speakerphone</button>
-      <button class="nav-tab" onclick="scrollToSection('sec-zip')">📍 USA ZIP Local Ads &amp; Farmers Market</button>
-      <button class="nav-tab" onclick="scrollToSection('sec-pantry')">❄️ Fridge / Freezer / Pantry &amp; Essentials</button>
-      <button class="nav-tab" onclick="scrollToSection('sec-appliances')">⚡ Appliances (Air Fryer Ultra ★) &amp; quantAI</button>
-      <button class="nav-tab" onclick="scrollToSection('sec-recipes')">⏱️ Real-Prep Recipe Vault &amp; Photo Moments</button>
-      <button class="nav-tab" onclick="scrollToSection('sec-pay')">💳 Stripe • Apple Pay • Google Pay</button>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="scrollToSection('sec-kitchen')">Kitchen &amp; Reminders</button>
+        <button class="nav-btn" onclick="scrollToSection('sec-zip')">US ZIP Grocery Flyers</button>
+        <button class="nav-btn" onclick="scrollToSection('sec-pantry')">Fridge, Pantry &amp; Essentials</button>
+        <button class="nav-btn" onclick="scrollToSection('sec-recipes')">Honest-Time Recipes</button>
+        <button class="nav-btn" onclick="scrollToSection('sec-icons')">App Icon Packs</button>
+        <a class="nav-btn primary" href="releases/zenUltraCooker-v2.2.0.apk" download>Download Android APK</a>
+      </div>
     </div>
+  </nav>
 
-    <!-- SECTION 1: ANIMAL CROSSING PIXEL-ART BONFIRE MMO + QUANT-AI COMPANION -->
-    <div id="sec-mmo" class="hero-grid">
-      <div class="card">
-        <h2>
-          <span>🏝️ Animal Crossing (&lt;3&lt;3&lt;3) Pixel-Art Family Bonfire MMO</span>
-          <span id="bonfireXpBadge" class="pill green">Lv.100 • 416,899 Bells/XP</span>
-        </h2>
-        <canvas id="pixelMmoCanvas" class="pixel-canvas" width="640" height="300" title="Click anywhere in the Pixel Kitchen Village to send a Heart Wave!"></canvas>
-        <p style="font-size:0.8rem; color:var(--sakura); margin-top:0.5rem; font-family:ui-monospace,monospace; text-align:center;">
-          Trademark: <strong>PawShaw Kitty (=^._.^= ∫) &amp; PawShaw Doggy (▽・ω・▽)</strong> • Everyone is welcome at the table or around the stove!
+  <div class="container">
+    <!-- EDITORIAL HERO -->
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Release v2.2.0 • iOS, Android &amp; Web</span>
+        <h1>When Mom cooks, the family comes together.</h1>
+        <p class="lead">
+          Rising grocery prices, busy workdays, blended family schedules, broken appliances, and last-minute DoorDash cancellations make weeknight dinners hard. <strong>zenUltraCooker</strong> organizes your local grocery flyers, pantry inventory, kitchen appliances, and real prep + cleanup times in one calm place.
         </p>
-        <div class="btn-row" style="justify-content:center;">
-          <button id="speakerphoneBtn" class="btn green" onclick="toggleSpeakerphoneSon()">
-            🔊 College Son on Speakerphone: LIVE AT STOVE
+        <div class="mission-callout">
+          <strong>Why Daily Family Dinner Matters:</strong> Decades of family-health research show that eating together at least once a day drastically reduces the risk of substance abuse and keeps blended families connected — including a live <strong>Speakerphone Seat</strong> at the stove for kids away at college.
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="releases/zenUltraCooker-v2.2.0.apk" download>📱 Download Android APK (v2.2.0)</a>
+          <a class="btn sage" href="https://github.com/8b-is/zenUltraCooker/tree/main/mobile/ios" target="_blank" rel="noopener">🍎 iOS &amp; iPadOS SwiftUI App</a>
+          <a class="btn" href="docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md" target="_blank" rel="noopener">💳 Plain-English Stripe / Apple Pay / Google Pay Guide</a>
+        </div>
+      </div>
+      <div>
+        <img src="assets/brand-hero.svg" alt="zenUltraCooker Family Kitchen Planner Overview" style="width:100%; border-radius:14px; box-shadow:var(--shadow-sm);" />
+      </div>
+    </section>
+
+    <!-- SECTION 1: INTERACTIVE KITCHEN TABLE + PERSONALIZED HOUSEHOLD ASSISTANT -->
+    <div id="sec-kitchen" class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <h2>🏡 Interactive Family Kitchen &amp; Dinner Table</h2>
+          <span id="bonfireXpBadge" class="badge sage">Streak: 42 Family Dinners • 4,160 pts</span>
+        </div>
+        <canvas id="pixelMmoCanvas" class="kitchen-canvas" width="640" height="270" title="Click anywhere in the kitchen to log a family table check-in"></canvas>
+        <p style="font-size:0.8rem; color:var(--ink-muted); margin-top:0.55rem;">
+          Live kitchen status: <strong>Air Fryer Active (400°F)</strong> • <strong>Wall Oven Offline (Auto-Bypassed)</strong> • <strong>College Son on Speakerphone</strong>.
+        </p>
+        <div class="cta-row" style="margin-top:0.75rem;">
+          <button id="speakerphoneBtn" class="btn sage" onclick="toggleSpeakerphoneSon()">
+            🔊 College Son on Speakerphone: Connected
           </button>
-          <button class="btn gold" onclick="triggerDoorDashRescue()">
-            🚨 DoorDash Canceled! 15-Min Air Fryer Rescue (+$68.50 Saved)
+          <button class="btn primary" onclick="triggerDoorDashRescue()">
+            🚨 DoorDash Canceled? 15-Min Freezer Rescue ($68.50 Saved)
           </button>
-          <button class="btn rose" onclick="awardFamilyQuest('Completed Dish-Zen &amp; Packed 2 School Leftover Boxes!')">
-            ✨ Complete Dish-Zen &amp; School Leftovers (+250 XP)
+          <button class="btn" onclick="awardFamilyQuest('Completed dish cleanup and packed 2 school lunch boxes.')">
+            ✓ Log Cleanup &amp; School Lunches
           </button>
         </div>
       </div>
 
       <div class="card">
-        <h2>
-          <span>🤖 Personalized Profile-Based <code>quantAI</code> Family Assistant</span>
-          <span class="pill teal">Pattern-Learned Companion</span>
-        </h2>
-        <p style="font-size:0.84rem; color:var(--muted); margin-bottom:0.65rem;">
-          Each family member gets personal, stress-free nudges learned from your blended family calendar, school runs, and kitchen habits:
+        <div class="card-header">
+          <h2>🔔 Smart Household &amp; Schedule Reminders</h2>
+          <span class="badge amber">Learned Family Patterns</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-secondary); margin-bottom:0.75rem;">
+          Timely, practical nudges tailored to each family member's daily commute, school pickup, and kitchen role:
         </p>
         <div id="quantAiFeed">
-          <div class="nudge-card urgent">
-            <strong style="color:var(--gold);">[4:15 PM → Mom * Dra] 🥩 Time to Marinate:</strong><br/>
-            "Hey it's time to marinate the Crispy Honey-Paprika Chicken Thighs! (10m honest prep; Oven is broken so Air Fryer Ultra is pre-routed for 6:15 PM)."
+          <div class="nudge-item urgent">
+            <strong>4:15 PM → Alex (Lead Cook) — Time to Marinate:</strong><br/>
+            "Time to marinate the honey-garlic chicken thighs (10 min prep). Since the wall oven is offline, tonight's bake is automatically routed to the Air Fryer for 6:15 PM."
           </div>
-          <div class="nudge-card">
-            <strong style="color:var(--teal);">[3:20 PM → Dad △ Chris] 🏫 School Pickup &amp; Dog Poop Bags:</strong><br/>
-            "Hey please pick up XY from school at 3:30 PM and buy Poop Bags for the Dogs (▽・ω・▽) + Trash Bags at Aldi on the way home!"
+          <div class="nudge-item">
+            <strong>3:20 PM → Chris (Commute &amp; Pickup) — School Run &amp; Pet Supplies:</strong><br/>
+            "Reminder: School pickup at 3:30 PM, and please grab dog waste bags + kitchen trash bags at ALDI on the way home."
           </div>
-          <div class="nudge-card">
-            <strong style="color:var(--sakura);">[7:30 PM → Mom * Dra] 🍩 Advisor Lunch Tomorrow:</strong><br/>
-            "Hey, you have snacks tomorrow for Advisor Lunch ... don't forget to get the donuts!"
+          <div class="nudge-item">
+            <strong>7:30 PM → Alex — Tomorrow's Advisor Lunch:</strong><br/>
+            "You have snacks scheduled for tomorrow's Advisor Lunch — don't forget to pick up 1 dozen fresh donuts."
           </div>
-          <div class="nudge-card">
-            <strong style="color:var(--green);">[6:10 PM → College Son 🔊 &amp; Nate ◇] 📞 Speakerphone &amp; Dish-Zen:</strong><br/>
-            "Son is calling on Speakerphone in 5m! Nate: Air Fryer liner means only 7m real dish cleanup tonight + pack 2 school lunch boxes."
+          <div class="nudge-item">
+            <strong>6:10 PM → Nate &amp; College Son — Dinner Call &amp; Cleanup:</strong><br/>
+            "Speakerphone call starts in 5 minutes. Using the Air Fryer liner keeps tonight's dish cleanup to just 7 minutes + 2 school lunch boxes."
           </div>
         </div>
-        <div style="display:flex; gap:0.5rem; margin-top:0.65rem;">
-          <select id="nudgeMemberSelect" style="width:135px;">
-            <option value="Mom (* Dra)">Mom (* Dra)</option>
-            <option value="Dad (△ Chris)">Dad (△ Chris)</option>
-            <option value="Peter (◯)">Peter (◯)</option>
-            <option value="Nate (◇)">Nate (◇)</option>
-            <option value="College Son (🔊)">College Son (🔊)</option>
+        <div style="display:flex; gap:0.5rem; margin-top:0.75rem;">
+          <select id="nudgeMemberSelect" style="width:140px;">
+            <option value="Alex (Mom)">Alex (Mom)</option>
+            <option value="Chris (Dad)">Chris (Dad)</option>
+            <option value="Peter">Peter</option>
+            <option value="Nate">Nate</option>
+            <option value="College Son">College Son</option>
           </select>
-          <input id="nudgeCustomInput" type="text" style="flex:1;" placeholder="Add a family reminder (e.g. buy laundry soap, thaw berries)..." />
-          <button class="btn gold" onclick="addQuantAiNudge()">+ Nudge</button>
+          <input id="nudgeCustomInput" type="text" style="flex:1;" placeholder="Add a household reminder (e.g. buy laundry detergent, thaw berries)..." />
+          <button class="btn primary" onclick="addQuantAiNudge()">+ Add</button>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 2: USA ZIP CODE LOCAL GROCERY ADS + FARMERS MARKET + APPLIANCE ROUTER -->
-    <div id="sec-zip" class="two-col">
+    <!-- SECTION 2: US ZIP GROCERY FLYERS + APPLIANCE ROUTER -->
+    <div id="sec-zip" class="grid-2">
       <div class="card">
-        <h2>
-          <span>📍 USA ZIP Code Local Weekly Ads &amp; Farmers Market</span>
-          <span id="zipStandingBadge" class="pill green">ZIP 44256 • VERIFIED</span>
-        </h2>
-        <div class="control-group">
-          <div style="display:flex; flex-wrap:wrap; gap:0.55rem; align-items:center; justify-content:space-between;">
-            <div>
-              <label for="zipInput" style="font-size:0.82rem; color:var(--muted);">Enter USA 5-Digit ZIP Code:</label><br/>
-              <input id="zipInput" type="text" value="44256" maxlength="5" style="width:100px; font-family:ui-monospace,monospace; font-weight:700; color:var(--gold);" oninput="updateZipMarket()" />
-              <select id="zipPresetSelect" onchange="selectZipPreset(this.value)">
-                <option value="44256">44256 — Medina / Cleveland, OH (Aldi + Farmers Market)</option>
-                <option value="84604">84604 — Provo / Utah Valley, UT (Smith's + Local Orchard)</option>
-                <option value="78701">78701 — Austin, TX (H-E-B Weekly Ad + Barton Creek Market)</option>
-                <option value="90210">90210 — Los Angeles, CA (Trader Joe's + Santa Monica Co-op)</option>
-                <option value="10001">10001 — New York, NY (Union Square Greenmarket + Key Food)</option>
-              </select>
-            </div>
-            <div style="text-align:right;">
-              <div style="font-size:0.78rem; color:var(--muted);">Weekly Family Grocery Budget</div>
-              <div style="font-size:1.15rem; font-weight:800; color:var(--green); font-family:ui-monospace,monospace;" id="budgetReadout">
-                $118.40 / $165.00 (Saved $46.60!)
-              </div>
+        <div class="card-header">
+          <h2>📍 US ZIP Code Grocery Flyers &amp; Farmers Markets</h2>
+          <span id="zipStandingBadge" class="badge sage">ZIP 44256 • Active</span>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; justify-content:space-between; background:var(--bg-page); padding:0.85rem; border-radius:var(--radius-sm); margin-bottom:0.75rem;">
+          <div>
+            <label for="zipInput" style="font-size:0.78rem; color:var(--ink-muted); font-weight:600;">5-Digit US ZIP Code:</label><br/>
+            <input id="zipInput" type="text" value="44256" maxlength="5" style="width:90px; font-weight:700;" oninput="updateZipMarket()" />
+            <select id="zipPresetSelect" onchange="selectZipPreset(this.value)">
+              <option value="44256">44256 — Medina / Cleveland, OH (ALDI &amp; Farmers Market)</option>
+              <option value="84604">84604 — Provo, UT (Smith's &amp; Local Orchard)</option>
+              <option value="78701">78701 — Austin, TX (H-E-B Weekly Ad &amp; Farmers Market)</option>
+              <option value="90210">90210 — Los Angeles, CA (Trader Joe's &amp; Co-op)</option>
+              <option value="10001">10001 — New York, NY (Union Square Greenmarket)</option>
+            </select>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.75rem; color:var(--ink-muted);">Weekly Grocery Budget</div>
+            <div id="budgetReadout" style="font-size:1.05rem; font-weight:800; color:var(--sage);">
+              $118.40 / $165.00 (Saved $46.60)
             </div>
           </div>
         </div>
@@ -492,11 +546,11 @@
         <table>
           <thead>
             <tr>
-              <th>Local Store / Farmers Market</th>
-              <th>Weekly Ad Special</th>
-              <th>Ad Price</th>
-              <th>You Save</th>
-              <th>Action</th>
+              <th>Store / Farmers Market</th>
+              <th>Weekly Featured Item</th>
+              <th>Sale Price</th>
+              <th>Savings</th>
+              <th>List</th>
             </tr>
           </thead>
           <tbody id="zipDealsBody"></tbody>
@@ -504,50 +558,39 @@
       </div>
 
       <div id="sec-appliances" class="card">
-        <h2>
-          <span>⚡ Kitchen Appliance Tracker &amp; Broken-Oven Auto-Router</span>
-          <span class="pill gold">Air Fryer === ULTRA ★</span>
-        </h2>
-        <p style="font-size:0.84rem; color:var(--muted); margin-bottom:0.75rem;">
-          Dra's Law: <em>"Your favorite cooking appliances are tracked — for example the oven is broken. <strong>Air Fryer is the ultra appliance of all time.</strong>"</em> Toggle any appliance below to watch <code>quantAI</code> reroute dinner automatically:
-        </p>
-
-        <div id="applianceList" style="display:grid; gap:0.65rem;"></div>
-
-        <div class="control-group" style="margin-top:0.85rem; margin-bottom:0;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:var(--sakura); font-family:ui-monospace,monospace; font-size:0.86rem;">
-              🎵 Music ~= Waves ~ MEM|16-10 (432 Hz × 528 Hz Mom * × 288 Hz Dad △)
-            </strong>
-            <button id="waveAudioBtn" class="btn gold" onclick="toggleWaveAudio()">▶ Play Family Wave</button>
-          </div>
-          <canvas id="waveCanvas" class="wave-canvas" width="520" height="86"></canvas>
+        <div class="card-header">
+          <h2>⚡ Kitchen Appliance Tracker &amp; Auto-Router</h2>
+          <span class="badge amber">Air Fryer Primary</span>
         </div>
+        <p style="font-size:0.85rem; color:var(--ink-secondary); margin-bottom:0.85rem;">
+          Track which kitchen appliances are working and which are out of order. When the <strong>Wall Oven is marked Offline</strong>, recipes automatically adapt to the <strong>Air Fryer</strong> with accurate times:
+        </p>
+        <div id="applianceList" style="display:grid; gap:0.65rem;"></div>
       </div>
     </div>
 
-    <!-- SECTION 3: FRIDGE / FREEZER / PANTRY ZERO-WASTE + HOUSEHOLD ESSENTIALS & BLENDED FAMILY PROFILES -->
-    <div id="sec-pantry" class="two-col">
+    <!-- SECTION 3: FRIDGE / FREEZER / PANTRY & BLENDED FAMILY PROFILES -->
+    <div id="sec-pantry" class="grid-2">
       <div class="card">
-        <h2>
-          <span>❄️ Fridge • 🧊 Freezer • 🥫 Pantry &amp; 🧻 Household Essentials</span>
-          <span class="pill teal">Zero Food Waste</span>
-        </h2>
-        <p style="font-size:0.84rem; color:var(--muted); margin-bottom:0.65rem;">
-          Tracks what is in your Fridge, Freezer, and Pantry so nothing goes to waste — plus regular household additions like <strong>Toilet Paper, Trash Bags, Laundry Soap, Dog Poop Bags, and Advisor Lunch Donuts</strong>:
+        <div class="card-header">
+          <h2>❄️ Fridge, Freezer, Pantry &amp; Household Essentials</h2>
+          <span class="badge sage">Zero Food Waste</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-secondary); margin-bottom:0.65rem;">
+          Prioritizes ingredients by expiration date and keeps everyday household supplies (<strong>toilet paper, trash bags, laundry detergent, dog waste bags, and advisor lunch donuts</strong>) on the weekly list:
         </p>
-        <div class="btn-row" style="margin-top:0; margin-bottom:0.65rem;">
-          <button class="btn gold" onclick="filterInventory('ALL')">All Items</button>
-          <button class="btn" onclick="filterInventory('Fridge ❄️')">Fridge ❄️</button>
-          <button class="btn" onclick="filterInventory('Freezer 🧊')">Freezer 🧊</button>
-          <button class="btn" onclick="filterInventory('Pantry 🥫')">Pantry 🥫</button>
-          <button class="btn rose" onclick="filterInventory('Household 🧻🐾')">Household Essentials 🧻🐾</button>
+        <div class="cta-row" style="margin-bottom:0.65rem;">
+          <button class="btn primary" onclick="filterInventory('ALL')">All</button>
+          <button class="btn" onclick="filterInventory('Fridge')">Fridge</button>
+          <button class="btn" onclick="filterInventory('Freezer')">Freezer</button>
+          <button class="btn" onclick="filterInventory('Pantry')">Pantry</button>
+          <button class="btn" onclick="filterInventory('Household')">Household Supplies</button>
         </div>
 
         <table>
           <thead>
             <tr>
-              <th>Zone / Type</th>
+              <th>Location</th>
               <th>Item</th>
               <th>Status / Expiry</th>
               <th>Action</th>
@@ -556,235 +599,249 @@
           <tbody id="inventoryTableBody"></tbody>
         </table>
 
-        <div style="display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:0.75rem;">
+        <div style="display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:0.85rem;">
           <select id="newInvZone">
-            <option value="Fridge ❄️">Fridge ❄️</option>
-            <option value="Freezer 🧊">Freezer 🧊</option>
-            <option value="Pantry 🥫">Pantry 🥫</option>
-            <option value="Household 🧻🐾">Household 🧻🐾</option>
+            <option value="Fridge">Fridge</option>
+            <option value="Freezer">Freezer</option>
+            <option value="Pantry">Pantry</option>
+            <option value="Household">Household</option>
           </select>
-          <input id="newInvName" type="text" style="flex:1;" placeholder="Add food or household item (e.g. Paper Towels, Avocados, Donuts)..." />
-          <input id="newInvStatus" type="text" style="width:130px;" placeholder="e.g. Exp 3d / Low" value="Use First (3d)" />
-          <button class="btn green" onclick="addInventoryItem()">+ Track Item</button>
+          <input id="newInvName" type="text" style="flex:1;" placeholder="Add food or supply item (e.g. Paper Towels, Avocados)..." />
+          <input id="newInvStatus" type="text" style="width:135px;" value="Use First (3d)" />
+          <button class="btn sage" onclick="addInventoryItem()">+ Add Item</button>
         </div>
       </div>
 
       <div class="card">
-        <h2>
-          <span>👨‍👩‍👦‍👦 Quantum-Family (<code>qFamily</code>) Blended Household Profiles</span>
-          <span id="headcountBadge" class="pill rose">Tonight: 5 at Table (incl. 🔊)</span>
-        </h2>
-        <div class="control-group">
-          <label for="headcountRange" style="font-size:0.84rem;">
-            Regular Blended Family Headcount Tonight: <strong id="headcountVal" style="color:var(--gold);">5 People (4 in Kitchen + 1 College Son on Speakerphone 🔊)</strong>
+        <div class="card-header">
+          <h2>👨‍👩‍👦‍👦 Blended Family Profiles &amp; Kitchen Roles</h2>
+          <span id="headcountBadge" class="badge sage">Tonight: 5 Seated</span>
+        </div>
+        <div style="background:var(--bg-page); padding:0.85rem; border-radius:var(--radius-sm); margin-bottom:0.75rem;">
+          <label for="headcountRange" style="font-size:0.85rem;">
+            Dinner Headcount Tonight: <strong id="headcountVal" style="color:var(--terracotta);">5 People (4 in Kitchen + 1 College Son on Speakerphone)</strong>
           </label>
-          <input id="headcountRange" type="range" min="1" max="10" value="5" oninput="updateHeadcount(this.value)" />
-          <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem; font-size:0.76rem;">
-            <span class="pill rose">✓ Breastfeeding / Postpartum +500 kcal &amp; Hydration Option</span>
-            <span class="pill teal">✓ Nut-Free School Lunch Safe</span>
-            <span class="pill">✓ Keto / Low-Carb / Gluten-Free Toggleable</span>
+          <input id="headcountRange" type="range" min="1" max="10" value="5" oninput="updateHeadcount(this.value)" style="margin-top:0.35rem;" />
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem;">
+            <span class="badge sage">✓ Postpartum / Breastfeeding (+500 kcal &amp; Hydration)</span>
+            <span class="badge amber">✓ Nut-Free School Lunches</span>
+            <span class="badge">✓ Gluten-Free / Low-Carb Options</span>
           </div>
         </div>
 
         <table>
           <thead>
             <tr>
-              <th>Member</th>
-              <th>Kitchen Role (Cooks vs. Dishes)</th>
-              <th>Skill &amp; Time</th>
-              <th>Diet / School Box</th>
+              <th>Family Member</th>
+              <th>Role (Cooking vs. Cleanup)</th>
+              <th>Time Budget</th>
+              <th>Dietary &amp; Lunch Notes</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong style="color:var(--gold);">* Mom (Alex / Dra)</strong></td>
-              <td>Lead Chef &amp; Hearth Organizer</td>
-              <td>Lv.5 • 35m (incl. cleanup)</td>
-              <td>Whole-Food / Lactation-Friendly • 🍱 +1 Box</td>
+              <td><strong>Alex (Mom)</strong></td>
+              <td>Lead Cook &amp; Menu Planner</td>
+              <td>35m (incl. cleanup)</td>
+              <td>Whole-Food / Lactation-Friendly • +1 Lunch Box</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--teal);">△ Dad (Chris)</strong></td>
+              <td><strong>Chris (Dad)</strong></td>
               <td>Sous-Prep, Grill &amp; School Pickup</td>
-              <td>Lv.4 • 30m</td>
-              <td>High-Protein Hearty • Farmers Mkt Scout</td>
+              <td>30m</td>
+              <td>High-Protein • Farmers Market Run</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--green);">◯ Peter</strong></td>
-              <td>Air Fryer Crisp &amp; Körítés Plating</td>
-              <td>Lv.5 • 35m</td>
-              <td>Mindful Balanced • Fibonacci Millet</td>
+              <td><strong>Peter</strong></td>
+              <td>Air Fryer Roast &amp; Side Dishes</td>
+              <td>35m</td>
+              <td>Balanced Whole Grains</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--sakura);">◇ Nate</strong></td>
-              <td><strong>Dish-Zen Cleanup</strong> &amp; Leftover Packer</td>
-              <td>Lv.3 • 20m</td>
-              <td>Nut-Free School Safe • 🍱 +1 School Box</td>
+              <td><strong>Nate</strong></td>
+              <td><strong>Dish Cleanup</strong> &amp; Leftover Packing</td>
+              <td>20m</td>
+              <td>Nut-Free School Safe • +1 School Lunch Box</td>
             </tr>
             <tr>
-              <td><strong style="color:var(--violet);">🔊 College Son</strong></td>
-              <td><strong>On Speakerphone Around the Stove!</strong></td>
-              <td>Lv.2 • Dorm Air Fryer</td>
-              <td>Calls Every Dinner • Part of the Table &lt;3</td>
+              <td><strong>College Son (🔊)</strong></td>
+              <td><strong>Live on Speakerphone at Dinner</strong></td>
+              <td>15m Dorm Air Fryer</td>
+              <td>Calls in Every Evening • Always Part of Dinner</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- SECTION 4: ANTI-RACHAEL RAY HONEST PREP & CLEANUP RECIPE VAULT + RATINGS & PHOTO MOMENTS -->
-    <div id="sec-recipes" class="card" style="margin-bottom: 1.6rem;">
-      <h2>
-        <span>⏱️ Honest Real-Prep &amp; Cleanup Recipe Vault (The Anti-Rachael Ray Law) &amp; Photo Moments</span>
-        <span class="pill gold">Real Prep + Cook + Cleanup • Ratings Keep Meals in Rotation</span>
-      </h2>
-      <p style="font-size:0.86rem; color:var(--muted); margin-bottom:0.9rem;">
-        <em>"Prep times need to be real, not Rachael Ray's 30-minute meals that do not include you did all this prep 2 days ago when you came home from the store. Cooking level and skill and time that you have which includes cleanup."</em> Import from the web or add family favorites — and choose to <strong>Share with <code>zenFamily</code> (🌐)</strong> or keep as a <strong>Family Secret (🔒)</strong>!
+    <!-- SECTION 4: HONEST PREP, COOK & CLEANUP RECIPE VAULT -->
+    <div id="sec-recipes" class="card" style="margin-bottom:1.5rem;">
+      <div class="card-header">
+        <h2>⏱️ Honest Prep, Cook &amp; Cleanup Recipe Vault</h2>
+        <span class="badge amber">Real Unwashed Prep + Active Cook + Dish Cleanup</span>
+      </div>
+      <p style="font-size:0.88rem; color:var(--ink-secondary); margin-bottom:0.9rem;">
+        Every recipe displays <strong>true wall-clock time</strong> — including washing produce, active cooking, and real dish/counter cleanup (no misleading "30-minute meals" that hide two hours of advance prep). Import web recipes or save family favorites as <strong>Private Family Secrets</strong> or <strong>Shared Community Recipes</strong>.
       </p>
 
-      <div id="recipeVaultContainer" class="two-col" style="margin-bottom: 1rem;"></div>
+      <div id="recipeVaultContainer" class="grid-2" style="margin-bottom:1rem;"></div>
 
-      <!-- IMPORT / ADD FAMILY RECIPE FORM -->
-      <div class="control-group" style="margin-bottom:0;">
-        <strong style="color:var(--teal); font-family:ui-monospace,monospace; font-size:0.88rem;">
-          + Import Recipe from Web URL or Add Family Setup Favorite
-        </strong>
-        <div style="display:grid; grid-template-columns: 1.4fr 1fr 0.7fr 0.7fr 0.7fr 1fr auto; gap:0.5rem; margin-top:0.6rem; align-items:center;">
-          <input id="recTitle" type="text" placeholder="Recipe Title (e.g. Grandma's Air Fryer Crispy Pork Chops)" />
-          <input id="recSource" type="text" placeholder="Web URL or Family Favorite" value="Family Setup Favorite" />
-          <input id="recPrep" type="number" placeholder="Prep (m)" value="10" min="1" title="Real Unwashed Prep Minutes" />
-          <input id="recCook" type="number" placeholder="Cook (m)" value="15" min="1" title="Air Fryer / Active Cook Minutes" />
-          <input id="recClean" type="number" placeholder="Clean (m)" value="6" min="1" title="Real Dish &amp; Counter Cleanup Minutes" />
+      <div style="background:var(--bg-page); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border);">
+        <strong style="font-size:0.88rem; color:var(--ink);">+ Add Family Favorite or Import Web Recipe</strong>
+        <div style="display:grid; grid-template-columns: 1.5fr 1fr 0.6fr 0.6fr 0.6fr 1fr auto; gap:0.5rem; margin-top:0.55rem; align-items:center;">
+          <input id="recTitle" type="text" placeholder="Recipe title (e.g. Crispy Air Fryer Pork Chops)" />
+          <input id="recSource" type="text" placeholder="Web URL or Family Cookbook" value="Family Cookbook" />
+          <input id="recPrep" type="number" placeholder="Prep (m)" value="10" min="1" title="Real Prep Minutes" />
+          <input id="recCook" type="number" placeholder="Cook (m)" value="15" min="1" title="Active Cook Minutes" />
+          <input id="recClean" type="number" placeholder="Clean (m)" value="6" min="1" title="Dish Cleanup Minutes" />
           <select id="recVis">
-            <option value="Family Secret Vault 🔒">🔒 Keep as Family Secret</option>
-            <option value="Shared with zenFamily 🌐">🌐 Share with zenFamily</option>
+            <option value="Private Family Recipe">🔒 Private Family Recipe</option>
+            <option value="Shared with Community">🌐 Shared with Community</option>
           </select>
-          <button class="btn gold" onclick="addFamilyRecipe()">+ Save to Rotation</button>
+          <button class="btn primary" onclick="addFamilyRecipe()">+ Save Recipe</button>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 5: STRIPE + APPLE PAY + GOOGLE PAY & 4-BURNER SOVEREIGN HEARTH INTEGRATION -->
-    <div id="sec-pay" class="two-col">
+    <!-- SECTION 5: STRIPE / APPLE PAY / GOOGLE PAY + E2E APP ICON PACKS -->
+    <div id="sec-pay" class="grid-2">
       <div class="card">
-        <h2>
-          <span>💳 Stripe • Apple Pay • Google Pay &amp; 4-Burner Hearth Checkout</span>
-          <span class="pill green">acct_1UUTcTRnidUxAlVy • Ready</span>
-        </h2>
-        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.75rem;">
-          One-tap checkout for the <strong><code>zenUltraCooker</code> Blended Family Pass</strong>, Local Farmers Market Co-Op boxes, and Weekly Ad Curbside bundles — protected by the <strong>4-Burner Sovereign Hearth Firewall (<code>Cap(Hearth) &perp; Risk(R&amp;D)</code>)</strong>:
+        <div class="card-header">
+          <h2>💳 1-Tap Family Checkout (Stripe, Apple Pay &amp; Google Pay)</h2>
+          <span class="badge sage">Stripe Verified</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-secondary); margin-bottom:0.75rem;">
+          Support weekly Farmers Market co-op baskets, curbside grocery bundles, or the <strong>zenUltraCooker Family Pass</strong> with 1-tap Apple Pay, Google Pay, or Stripe Link:
         </p>
 
-        <div class="control-group">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <div>
-              <strong style="color:var(--gold); font-size:0.96rem;">🔥 Select Household Checkout Bundle:</strong>
-            </div>
-            <select id="checkoutBundleSelect" onchange="updateCheckoutTotal()">
-              <option value="4.99">zenUltraCooker Family Pass — $4.99/mo (Unlimited Blended Family + Speakerphone)</option>
-              <option value="42.00">zenUltraCooker Annual Hearth Pass — $42.00/yr (Save 30% + PawShaw Sticker Pack)</option>
-              <option value="34.97">Local ZIP 44256 Weekly Ad + Farmers Market Basket + Donuts — $34.97</option>
-            </select>
-          </div>
-          <div style="font-family:ui-monospace,monospace; font-size:0.82rem; color:var(--teal);">
-            Hearth Protection: <code>Burner 1 (Rent/Roof) • Burner 2 (Groceries &amp; Air Fryer Hearth) • Burner 3 (Child Credit Diode +1) • Burner 4 (Emergency Reserve)</code>
+        <div style="background:var(--bg-page); padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border);">
+          <label for="checkoutBundleSelect" style="font-size:0.82rem; font-weight:700; color:var(--ink);">Select Household Bundle:</label>
+          <select id="checkoutBundleSelect" onchange="updateCheckoutTotal()" style="width:100%; margin:0.4rem 0 0.65rem;">
+            <option value="4.99">zenUltraCooker Family Pass — $4.99/mo (Unlimited Family Profiles &amp; Sync)</option>
+            <option value="42.00">zenUltraCooker Annual Pass — $42.00/yr (Save 30%)</option>
+            <option value="34.97">Local ZIP 44256 Weekly Farmers Market Basket + Advisor Lunch Donuts — $34.97</option>
+          </select>
+
+          <div style="font-size:0.78rem; color:var(--sage); font-weight:600;">
+            ✓ Protected by the 4-Burner Household Budget Firewall (Roof, Groceries, Kids &amp; Emergency Reserve are strictly isolated from R&amp;D spend).
           </div>
 
           <div class="pay-grid">
-            <button class="pay-btn pay-apple" onclick="triggerExpressPay('Apple Pay ( Pay)')">
-              <span> Pay</span>
-            </button>
-            <button class="pay-btn pay-google" onclick="triggerExpressPay('Google Pay (G Pay)')">
-              <span>G Pay</span>
-            </button>
-            <button class="pay-btn pay-stripe" onclick="triggerExpressPay('Stripe Link / Card (acct_1UUTcTRnidUxAlVy)')">
-              <span>⚡ Pay with Stripe</span>
-            </button>
+            <button class="pay-btn pay-apple" onclick="triggerExpressPay('Apple Pay')"> Pay</button>
+            <button class="pay-btn pay-google" onclick="triggerExpressPay('Google Pay')">G Pay</button>
+            <button class="pay-btn pay-stripe" onclick="triggerExpressPay('Stripe')">Pay with Stripe</button>
           </div>
-          <div id="paymentReceiptBox" style="margin-top:0.75rem; font-family:ui-monospace,monospace; font-size:0.8rem; color:var(--green); display:none;"></div>
+          <div id="paymentReceiptBox" style="margin-top:0.75rem; font-size:0.82rem; font-weight:600; color:var(--sage); display:none;"></div>
         </div>
 
-        <details style="margin-top:0.85rem; background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.3); border-radius:12px; padding:0.75rem 1rem;">
-          <summary style="cursor:pointer; font-weight:700; color:var(--gold); font-size:0.9rem;">
-            🧒 ELI5 ("Explain Like I'm 5"): How Stripe, Apple Pay ( Pay) &amp; Google Pay (G Pay) Work Together
+        <details style="margin-top:0.85rem; background:var(--amber-light); border:1px solid #EBD3A7; border-radius:var(--radius-sm); padding:0.75rem 1rem;">
+          <summary style="cursor:pointer; font-weight:700; font-size:0.88rem; color:#7C4E07;">
+            📖 Plain-English (ELI5) Guide: How Stripe, Apple Pay &amp; Google Pay Work
           </summary>
-          <div style="margin-top:0.6rem; font-size:0.83rem; color:var(--text); line-height:1.55;">
-            <p style="margin-bottom:0.45rem;"><strong>1. The Cash Register vs. The Magic Wallet Buttons:</strong> Think of <strong>Stripe</strong> (Account <code>acct_1UUTcTRnidUxAlVy</code>) as our family store's cash register, and <strong>Apple Pay ( Pay)</strong> + <strong>Google Pay (G Pay)</strong> as the 1-tap fingerprint/FaceID buttons on your iPhone, iPad, or Android phone so nobody ever has to type a 16-digit card number while their hands are covered in chicken marinade.</p>
-            <p style="margin-bottom:0.45rem;"><strong>2. How to Turn On Apple Pay &amp; Google Pay (3 Clicks on Mom's iPad):</strong> Open <code>dashboard.stripe.com</code> &rarr; tap <strong>Settings ⚙️ &rarr; Payment methods</strong> &rarr; toggle <strong>Apple Pay</strong> and <strong>Google Pay</strong> to <strong>ON</strong>, and flip the top switch from <em>Test Mode</em> to <em>Live Mode</em>. For the native iOS app, the Merchant ID is <code>merchant.is.8b.zenultracooker</code>.</p>
-            <p style="margin-bottom:0;"><strong>3. The 4-Burner Family Hearth Firewall (<code>Cap(Hearth) &perp; Risk(R&amp;D)</code>):</strong> Burner 1 (Roof &amp; Groceries), Burner 2 (Kids &amp; School/College), and Burner 3 (Emergency Cushion) are 100% walled off from Burner 4 (App R&amp;D). Full guide: <a href="docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md" target="_blank"><code>docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md</code></a>.</p>
+          <div style="margin-top:0.55rem; font-size:0.82rem; color:var(--ink-secondary); line-height:1.55;">
+            <p style="margin-bottom:0.4rem;"><strong>1. Cash Register vs. Digital Wallets:</strong> <strong>Stripe</strong> (<code>acct_1UUTcTRnidUxAlVy</code>) is the secure payment processor, while <strong>Apple Pay</strong> and <strong>Google Pay</strong> let you approve checkout with FaceID or fingerprint so you never type a 16-digit card number while cooking.</p>
+            <p style="margin-bottom:0.4rem;"><strong>2. 3-Click Live Activation:</strong> In <code>dashboard.stripe.com</code> &rarr; <strong>Settings &rarr; Payment methods</strong>, toggle <strong>Apple Pay</strong> and <strong>Google Pay</strong> on, and switch from <em>Test Mode</em> to <em>Live Mode</em>. Native iOS Merchant ID: <code>merchant.is.8b.zenultracooker</code>.</p>
+            <p style="margin-bottom:0;">Full step-by-step documentation: <a href="docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md" target="_blank"><code>docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md</code></a>.</p>
           </div>
         </details>
       </div>
 
-      <!-- SECTION 6: MEM|16-10 RECEIPTS + QUANT-TERN INSPECTOR -->
-      <div class="card">
-        <h2>
-          <span>🔐 MEM|16-10 Governing Receipts &amp; QUANT-TERN (<code>qt:aaaa</code>)</span>
-          <span class="pill teal">POP → COLLAPSE</span>
-        </h2>
-        <div id="receiptLedger" class="receipt-box" style="margin-bottom:0.75rem;"></div>
-        <div id="qtTritRow" style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.55rem;"></div>
-        <div id="qtCodecOut" class="receipt-box" style="font-size:0.74rem;"></div>
+      <div id="sec-icons" class="card">
+        <div class="card-header">
+          <h2>🎨 End-to-End App Icon &amp; Native Mobile Packs (v2.2.0)</h2>
+          <span class="badge sage">iOS • Android • Web PWA</span>
+        </div>
+        <p style="font-size:0.85rem; color:var(--ink-secondary);">
+          Complete, production-ready app icon suites and native mobile packages generated via <code>scripts/generate-app-icons.py</code>:
+        </p>
+
+        <div class="icon-pack-grid">
+          <div class="icon-tile">
+            <img src="assets/icons/app-icon-master.svg" alt="Master SVG Icon" />
+            <div><strong>Master Vector SVG</strong></div>
+            <div style="color:var(--ink-muted); font-size:0.72rem;">1024×1024 • Scalable</div>
+          </div>
+          <div class="icon-tile">
+            <img src="assets/icons/apple-touch-icon.png" alt="iOS AppIcon" />
+            <div><strong>iOS AppIcon.appiconset</strong></div>
+            <div style="color:var(--ink-muted); font-size:0.72rem;">15 Sizes (20pt–1024pt)</div>
+          </div>
+          <div class="icon-tile">
+            <img src="assets/icons/icon-192.png" alt="Android Mipmap" />
+            <div><strong>Android Adaptive &amp; Mipmap</strong></div>
+            <div style="color:var(--ink-muted); font-size:0.72rem;">mdpi–xxxhdpi + Play 512</div>
+          </div>
+          <div class="icon-tile">
+            <img src="assets/icons/icon-maskable-512.png" alt="PWA Maskable" />
+            <div><strong>Web PWA &amp; Favicon Pack</strong></div>
+            <div style="color:var(--ink-muted); font-size:0.72rem;">ICO + 192/512 + Manifest</div>
+          </div>
+        </div>
+
+        <div id="receiptLedger" style="margin-top:0.9rem; background:var(--bg-page); border:1px solid var(--border); border-radius:var(--radius-sm); padding:0.75rem; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:0.75rem; color:var(--ink-secondary); line-height:1.5;"></div>
       </div>
     </div>
 
     <footer>
-      8b-is / zenUltraCooker v2.1.0 (SemVer 2.0.0 • Android versionCode 20100 • iOS CFBundleVersion 20100) • PawShaw Kitty (=^._.^= ∫) &amp; PawShaw Doggy (▽・ω・▽) Trademark • Dedicated with Eternal Love to Mom (* Alex ~ Alexandra / Dra) by Peter (◯), Nate (◇), Dad (△ Chris) &amp; College Son (🔊) • Gondolkodom, Theat vagyOK &longrightarrow; just BE &lt;3
+      <div>
+        <strong>zenUltraCooker v2.2.0</strong> (Build 20200) • Dedicated to Alex (Mom) from Peter, Nate, Chris &amp; our Son in College.
+      </div>
+      <div>
+        <a href="https://github.com/8b-is/zenUltraCooker">GitHub Repository</a> •
+        <a href="releases/zenUltraCooker-v2.2.0.apk" download>Android APK</a> •
+        <a href="docs/ELI5-STRIPE-APPLE-PAY-GOOGLE-PAY.md">Stripe / Apple Pay / Google Pay Guide</a> •
+        <a href="CHANGELOG.md">Changelog</a>
+      </div>
     </footer>
   </div>
 
   <script>
-    // ── STATE ────────────────────────────────────────────────────────────────
-    let partyXp = 416899;
+    let partyXp = 4160;
     let speakerphoneLive = true;
-    let audioCtx = null;
-    let oscillators = [];
-    let isPlayingAudio = false;
-    let wavePhase = 0;
     let mmoTick = 0;
     let heartBursts = [];
     let currentInvFilter = "ALL";
 
     const zipDatabase = {
       "44256": {
-        city: "Medina / Cleveland Metro, OH",
+        city: "Medina / Cleveland, OH",
         budget: 165.00,
         spend: 118.40,
         deals: [
-          { store: "Aldi Weekly Ad (ZIP 44256)", item: "Family Pack Free-Range Chicken Thighs (3.5 lb)", reg: 14.99, sale: 9.49, local: false },
-          { store: "Medina Square Farmers Market", item: "Heirloom Sweet Peppers, Red Onions & Raw Honey", reg: 12.50, sale: 8.00, local: true },
-          { store: "Kroger / Meijer Digital Deal", item: "Crisis-Proof Duck & Veggie Gyoza + Baby Potatoes", reg: 11.98, sale: 7.49, local: false },
-          { store: "Local Bakery Morning Special", item: "1 Dozen Fresh Donuts (Tomorrow's Advisor Lunch!)", reg: 14.00, sale: 9.99, local: true }
+          { store: "ALDI Weekly Flyer (44256)", item: "Family Pack Free-Range Chicken Thighs (3.5 lb)", reg: 14.99, sale: 9.49, local: false },
+          { store: "Medina Square Farmers Market", item: "Sweet Bell Peppers, Red Onions & Local Honey", reg: 12.50, sale: 8.00, local: true },
+          { store: "Buehler's / Kroger Weekly Deal", item: "Vegetable Dumplings & Baby Gold Potatoes", reg: 11.98, sale: 7.49, local: false },
+          { store: "Local Morning Bakery", item: "1 Dozen Fresh Glazed Donuts (Advisor Lunch)", reg: 14.00, sale: 9.99, local: true }
         ]
       },
       "84604": {
-        city: "Provo / Utah Valley, UT",
+        city: "Provo, UT",
         budget: 170.00,
         spend: 114.20,
         deals: [
-          { store: "Smith's Weekly Circular (84604)", item: "Air-Fryer Ready Salmon Fillets & Asparagus Bundle", reg: 18.99, sale: 12.49, local: false },
-          { store: "Provo Pioneer Farmers Market", item: "Utah Orchard Honeycrisp Apples & Sweet Corn", reg: 10.00, sale: 6.50, local: true },
-          { store: "Costco Bulk Orem Bridge", item: "Organic Golden Millet & Free-Range Chicken Pack", reg: 22.00, sale: 15.99, local: false },
+          { store: "Smith's Weekly Circular (84604)", item: "Air-Fryer Salmon Fillets & Asparagus Bundle", reg: 18.99, sale: 12.49, local: false },
+          { store: "Provo Farmers Market", item: "Utah Orchard Honeycrisp Apples & Sweet Corn", reg: 10.00, sale: 6.50, local: true },
           { store: "Local Bakery Provo", item: "Fresh Glazed Donuts for Advisor Lunch", reg: 13.50, sale: 9.50, local: true }
         ]
       },
       "78701": {
-        city: "Austin Metro, TX",
+        city: "Austin, TX",
         budget: 175.00,
         spend: 121.00,
         deals: [
-          { store: "H-E-B Weekly Combo Loco (78701)", item: "Seasoned Fajita Chicken Thighs + Tortilla Pack", reg: 15.99, sale: 10.49, local: false },
-          { store: "Barton Creek Farmers Market", item: "Hill Country Bell Peppers, Cilantro & Local Honey", reg: 11.50, sale: 7.75, local: true },
-          { store: "H-E-B Pantry Essentials", item: "Dog Poop Bags (▽・ω・▽) + Ultra Trash Bags Combo", reg: 12.99, sale: 8.99, local: false }
+          { store: "H-E-B Weekly Ad (78701)", item: "Seasoned Fajita Chicken Thighs & Tortilla Pack", reg: 15.99, sale: 10.49, local: false },
+          { store: "SFC Downtown Farmers Market", item: "Hill Country Bell Peppers, Cilantro & Honey", reg: 11.50, sale: 7.75, local: true },
+          { store: "H-E-B Household Essentials", item: "Dog Waste Bags + Tall Kitchen Trash Bags", reg: 12.99, sale: 8.99, local: false }
         ]
       },
       "90210": {
-        city: "Los Angeles / Westside, CA",
+        city: "Los Angeles, CA",
         budget: 190.00,
         spend: 132.50,
         deals: [
-          { store: "Trader Joe's Weekly Fearless Flyer", item: "Air Fryer Crispy Gyoza, Shawarma Thighs & Yuzu", reg: 16.49, sale: 11.99, local: false },
-          { store: "Santa Monica Farmers Market", item: "Organic Avocados, Baby Gold Potatoes & Fresh Herbs", reg: 14.00, sale: 9.00, local: true },
-          { store: "Local Corner Bakery", item: "Advisor Lunch Artisan Donut Box (12 ct)", reg: 16.00, sale: 11.50, local: true }
+          { store: "Trader Joe's Weekly Flyer", item: "Crispy Vegetable Dumplings & Marinated Chicken", reg: 16.49, sale: 11.99, local: false },
+          { store: "Weekend Farmers Market", item: "Organic Avocados, Baby Potatoes & Fresh Herbs", reg: 14.00, sale: 9.00, local: true },
+          { store: "Neighborhood Bakery", item: "Advisor Lunch Donut Box (12 ct)", reg: 16.00, sale: 11.50, local: true }
         ]
       },
       "10001": {
@@ -792,62 +849,60 @@
         budget: 195.00,
         spend: 136.80,
         deals: [
-          { store: "Union Square Greenmarket (10001)", item: "Hudson Valley Sweet Peppers, Potatoes & Honey", reg: 15.00, sale: 9.99, local: true },
-          { store: "Trader Joe's / Key Food Circular", item: "Air Fryer Honey-Garlic Chicken & Golden Millet", reg: 17.50, sale: 12.25, local: false },
-          { store: "Neighborhood Donut Shop", item: "Fresh Morning Donuts for Advisor Lunch", reg: 15.00, sale: 10.99, local: true }
+          { store: "Union Square Greenmarket", item: "Hudson Valley Sweet Peppers, Potatoes & Honey", reg: 15.00, sale: 9.99, local: true },
+          { store: "Chelsea Weekly Grocery Ad", item: "Air Fryer Honey-Garlic Chicken & Jasmine Rice", reg: 17.50, sale: 12.25, local: false },
+          { store: "Corner Bakery", item: "Fresh Morning Donuts for Advisor Lunch", reg: 15.00, sale: 10.99, local: true }
         ]
       }
     };
 
     const appliances = [
-      { id: "airfryer", name: "Dual-Zone Air Fryer (The Ultra Appliance of All Time ★)", working: true, ultra: true, note: "400°F instant crisp • 14m cook • 1-liner 7m cleanup" },
-      { id: "oven", name: "Built-In Kitchen Wall Oven", working: false, ultra: false, note: "BROKEN / OFFLINE [−1] — quantAI auto-reroutes all baking to Air Fryer Ultra!" },
-      { id: "stovetop", name: "4-Burner Sovereign Hearth Stovetop", working: true, ultra: false, note: "ONLINE — Simmering Golden Pearl Millet Körítés & Honey-Paprika Glaze" },
-      { id: "instantpot", name: "Instant Pot / Slow Cooker", working: true, ultra: false, note: "ONLINE — Ready for Sunday Bone Broth & Hands-Free Stew" }
+      { id: "airfryer", name: "Dual-Zone Air Fryer (Primary Appliance)", working: true, ultra: true, note: "400°F instant crisp • 14m cook • 7m single-liner cleanup" },
+      { id: "oven", name: "Built-In Wall Oven", working: false, ultra: false, note: "OFFLINE / BROKEN — All oven recipes automatically routed to Air Fryer" },
+      { id: "stovetop", name: "4-Burner Kitchen Stovetop", working: true, ultra: false, note: "ONLINE — Simmering side grains & honey-garlic glaze" },
+      { id: "instantpot", name: "Multi-Cooker / Slow Cooker", working: true, ultra: false, note: "ONLINE — Ready for weekend soups & hands-free stews" }
     ];
 
     let inventoryItems = [
-      { zone: "Fridge ❄️", name: "Free-Range Chicken Thighs (Marinating for Air Fryer)", status: "USE FIRST: 2 days left", urgent: true },
-      { zone: "Fridge ❄️", name: "Farmers Market Sweet Peppers, Baby Potatoes & Parsley", status: "USE FIRST: 3 days left", urgent: true },
-      { zone: "Freezer 🧊", name: "Duck & Veggie Gyoza + Wild Blueberries (DoorDash Rescue)", status: "120 days (Stocked)", urgent: false },
-      { zone: "Pantry 🥫", name: "Golden Pearl Millet (Arany Köles), Kalocsai Paprika & Olive Oil", status: "180 days (Bulk)", urgent: false },
-      { zone: "Household 🧻🐾", name: "Poop Bags for the Dogs (PawShaw Doggy ▽・ω・▽)", status: "LOW STOCK -> Dad's Run", urgent: true },
-      { zone: "Household 🧻🐾", name: "Heavy-Duty Kitchen Trash Bags & Laundry Soap", status: "LOW STOCK -> Weekly List", urgent: true },
-      { zone: "Household 🧻🐾", name: "Ultra-Soft Toilet Paper (12 Mega Rolls)", status: "Stocked in Hall Closet", urgent: false },
-      { zone: "Household 🧻🐾", name: "1 Dozen Fresh Donuts for Tomorrow's Advisor Lunch!", status: "REMINDER SET -> Mom * Dra", urgent: true }
+      { zone: "Fridge", name: "Marinated Honey-Garlic Chicken Thighs", status: "Use First: 2 days left", urgent: true },
+      { zone: "Fridge", name: "Farmers Market Sweet Peppers & Baby Potatoes", status: "Use First: 3 days left", urgent: true },
+      { zone: "Freezer", name: "Vegetable Dumplings & Broccoli Florets (15m Rescue)", status: "Stocked (90 days)", urgent: false },
+      { zone: "Pantry", name: "Jasmine Rice, Golden Millet & Olive Oil", status: "Stocked (180 days)", urgent: false },
+      { zone: "Household", name: "Dog Waste Bags (2 Rolls)", status: "Low Stock → Chris's Run", urgent: true },
+      { zone: "Household", name: "Tall Kitchen Trash Bags & Laundry Detergent", status: "Low Stock → Weekly List", urgent: true },
+      { zone: "Household", name: "Toilet Paper (12 Mega Rolls)", status: "Stocked in Hall Closet", urgent: false },
+      { zone: "Household", name: "1 Dozen Fresh Donuts (Tomorrow's Advisor Lunch)", status: "Reminder Set → Alex", urgent: true }
     ];
 
     let recipes = [
       {
-        title: "Mom's Air Fryer Ultra Honey-Paprika Crispy Chicken & Baby Potatoes",
-        source: "Family Setup Favorite (Rerouted from Broken Oven → Air Fryer Ultra ★)",
-        vis: "Family Secret Vault 🔒",
+        title: "Crispy Air Fryer Honey-Garlic Chicken Thighs & Baby Potatoes",
+        source: "Family Favorite (Auto-Routed from Broken Oven → Air Fryer)",
+        vis: "Private Family Recipe",
         prep: 10,
-        marinate: 120,
         cook: 14,
         clean: 7,
         cost: 2.85,
         leftovers: 2,
         stars: 5.0,
         moments: [
-          "📸 Oct 26: College Son laughing on Speakerphone (🔊) right next to the Air Fryer!",
-          "📸 Oct 22: PawShaw Doggy (▽・ω・▽) waiting under the table for a crispy potato!"
+          "📸 Oct 26: Son in college joined on speakerphone while the chicken crisped!",
+          "📸 Oct 22: Packed two extra lunch boxes for tomorrow morning."
         ]
       },
       {
-        title: "15-Minute DoorDash-Cancel Rescue: Crispy Air Fryer Gyoza & Golden Millet Körítés",
-        source: "Web Recipe Import (zenFamily Verified)",
-        vis: "Shared with zenFamily 🌐",
+        title: "15-Minute DoorDash-Cancel Rescue: Crispy Dumplings & Stir-Fry Greens",
+        source: "Verified Quick Weeknight Rescue",
+        vis: "Shared with Community",
         prep: 5,
-        marinate: 0,
         cook: 10,
         clean: 5,
         cost: 2.10,
         leftovers: 1,
+        stars: 4.9,
         moments: [
-          "📸 Oct 19: Saved $68.50 when late delivery canceled — family ate together in 15 mins!"
-        ],
-        stars: 4.9
+          "📸 Oct 19: Saved $68.50 when delivery canceled — dinner on the table in 15 minutes."
+        ]
       }
     ];
 
@@ -856,17 +911,15 @@
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    // ── ANIMAL CROSSING PIXEL-ART BONFIRE MMO CANVAS ─────────────────────────
+    // Interactive Kitchen Canvas
     const pixelCanvas = document.getElementById("pixelMmoCanvas");
     const pctx = pixelCanvas.getContext("2d");
 
-    const mmoSprites = [
-      { name: "Mom * Dra", sym: "*", color: "#ffd700", hat: "#ff6b8b", x: 255, y: 145, role: "Air Fryer Queen" },
-      { name: "Dad △ Chris", sym: "△", color: "#00e5c9", hat: "#38bdf8", x: 375, y: 148, role: "School & Market" },
-      { name: "Peter ◯", sym: "◯", color: "#00ff66", hat: "#a855f7", x: 205, y: 195, role: "Real-Prep & Körítés" },
-      { name: "Nate ◇", sym: "◇", color: "#ffb6c1", hat: "#fb923c", x: 425, y: 195, role: "Dish-Zen & Lunches" },
-      { name: "PawShaw Kitty", sym: "=^.^=", color: "#fde047", hat: "#f43f5e", x: 280, y: 225, role: "Neko TM" },
-      { name: "PawShaw Doggy", sym: "▽・ω・▽", color: "#d97706", hat: "#22c55e", x: 355, y: 225, role: "Inugami TM" }
+    const familyMembers = [
+      { name: "Alex (Mom)", color: "#D95D39", x: 240, y: 145, role: "Lead Cook" },
+      { name: "Chris (Dad)", color: "#2A7B6C", x: 380, y: 145, role: "Prep & Market" },
+      { name: "Peter", color: "#3B82F6", x: 195, y: 192, role: "Air Fryer Roast" },
+      { name: "Nate", color: "#D97706", x: 430, y: 192, role: "Cleanup & Lunches" }
     ];
 
     pixelCanvas.addEventListener("click", (e) => {
@@ -878,155 +931,121 @@
         y: (e.clientY - rect.top) * scaleY,
         age: 0
       });
-      partyXp += 50;
+      partyXp += 25;
       updateBonfireBadge();
     });
 
-    function drawPixelRect(x, y, w, h, color) {
+    function drawRect(x, y, w, h, color) {
       pctx.fillStyle = color;
       pctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
     }
 
-    function renderPixelMmo() {
+    function renderKitchenCanvas() {
       mmoTick++;
       const w = pixelCanvas.width;
       const h = pixelCanvas.height;
 
-      // Cozy Animal Crossing evening sky & warm wooden kitchen floor tiles
-      drawPixelRect(0, 0, w, 105, "#151d2e");
-      drawPixelRect(0, 105, w, h - 105, "#2b2118");
+      drawRect(0, 0, w, 98, "#1E2B24");
+      drawRect(0, 98, w, h - 98, "#2C241D");
 
-      // Checkerboard cozy wood planks
-      for (let row = 0; row < 6; row++) {
+      for (let row = 0; row < 5; row++) {
         for (let col = 0; col < 16; col++) {
           if ((row + col) % 2 === 0) {
-            drawPixelRect(col * 40, 105 + row * 34, 40, 34, "#33271c");
+            drawRect(col * 40, 98 + row * 36, 40, 36, "#352B23");
           }
         }
       }
 
-      // Kitchen Appliances on back counter
-      // 1. Fridge/Freezer (Left)
-      drawPixelRect(28, 32, 58, 78, "#cbd5e1");
-      drawPixelRect(32, 36, 50, 32, "#e2e8f0"); // Freezer
-      drawPixelRect(32, 72, 50, 34, "#f8fafc"); // Fridge
-      pctx.fillStyle = "#0f172a";
-      pctx.font = "bold 9px ui-monospace, monospace";
-      pctx.fillText("FREEZER", 36, 54);
-      pctx.fillText("FRIDGE", 39, 91);
+      // Fridge/Freezer
+      drawRect(26, 24, 58, 72, "#E2E8F0");
+      drawRect(30, 28, 50, 30, "#F8FAFC");
+      drawRect(30, 62, 50, 30, "#FFFFFF");
+      pctx.fillStyle = "#16201B";
+      pctx.font = "bold 9px -apple-system, sans-serif";
+      pctx.fillText("FREEZER", 34, 46);
+      pctx.fillText("FRIDGE", 37, 80);
 
-      // 2. Broken Oven (Crossed out) vs Air Fryer Ultra (Glowing Gold!)
+      // Wall Oven
       const ovenWorking = appliances[1].working;
-      drawPixelRect(105, 52, 64, 58, ovenWorking ? "#334155" : "#3f1d28");
-      pctx.fillStyle = ovenWorking ? "#00ff66" : "#ff6b8b";
-      pctx.fillText(ovenWorking ? "OVEN: OK" : "OVEN: BROKEN", 108, 46);
+      drawRect(102, 42, 68, 54, ovenWorking ? "#334155" : "#4A2525");
+      pctx.fillStyle = ovenWorking ? "#34D399" : "#FCA5A5";
+      pctx.fillText(ovenWorking ? "OVEN: READY" : "OVEN: OFFLINE", 104, 36);
       if (!ovenWorking) {
-        pctx.fillStyle = "#ff6b8b";
-        pctx.fillText("BYPASSED!", 112, 85);
+        pctx.fillText("BYPASSED", 112, 73);
       }
 
-      // 3. AIR FRYER ULTRA (Center-Left Counter — Glowing!)
-      const afGlow = Math.sin(mmoTick * 0.1) * 4;
-      drawPixelRect(190, 44, 70, 66, "#1e293b");
-      drawPixelRect(196, 52, 58, 48, "#ffd700");
-      drawPixelRect(202, 58, 46, 36, "#ff6b2b");
-      pctx.fillStyle = "#ffd700";
-      pctx.fillText("★ AIR FRYER ULTRA", 180, 36);
-      pctx.fillStyle = "#ffffff";
-      pctx.fillText("400°F • 14m", 200, 79);
+      // Air Fryer
+      drawRect(192, 36, 76, 60, "#111827");
+      drawRect(198, 44, 64, 44, "#D95D39");
+      pctx.fillStyle = "#F6D365";
+      pctx.fillText("AIR FRYER (400°F)", 186, 30);
+      pctx.fillStyle = "#FFFFFF";
+      pctx.fillText("14m Crisp", 206, 70);
 
-      // 4. SPEAKERPHONE POD FOR SON IN COLLEGE (Center-Right Counter)
-      drawPixelRect(450, 48, 160, 60, speakerphoneLive ? "#064e3b" : "#1e293b");
-      drawPixelRect(454, 52, 152, 52, speakerphoneLive ? "#047857" : "#334155");
-      pctx.fillStyle = speakerphoneLive ? "#00ff66" : "#94a3b8";
-      pctx.fillText(speakerphoneLive ? "🔊 SON IN COLLEGE (LIVE)" : "🔇 SPEAKERPHONE OFF", 462, 69);
+      // Speakerphone Pod
+      drawRect(442, 38, 172, 56, speakerphoneLive ? "#1E4D3B" : "#334155");
+      pctx.fillStyle = speakerphoneLive ? "#6EE7B7" : "#CBD5E1";
+      pctx.fillText(speakerphoneLive ? "🔊 SON IN COLLEGE (LIVE)" : "🔇 SPEAKERPHONE STANDBY", 452, 60);
       if (speakerphoneLive) {
-        pctx.fillStyle = "#fef08a";
-        pctx.fillText("\"Smells amazing, Mom! <3\"", 462, 88 + Math.sin(mmoTick * 0.08) * 1.5);
+        pctx.fillStyle = "#FAF6F0";
+        pctx.fillText("\"Dinner smells great, Mom!\"", 456, 80);
       }
 
-      // Center Family Bonfire & Cozy Table Rug
-      pctx.fillStyle = "rgba(255, 107, 43, 0.18)";
-      pctx.beginPath();
-      pctx.arc(320, 178, 68 + afGlow, 0, Math.PI * 2);
-      pctx.fill();
+      // Warm Family Dining Table Center
+      drawRect(268, 146, 104, 54, "#854D27");
+      drawRect(274, 152, 92, 42, "#A16236");
+      pctx.fillStyle = "#FFF8EB";
+      pctx.fillText("FAMILY TABLE", 286, 177);
 
-      // Pixel Bonfire Logs & Flame
-      drawPixelRect(302, 182, 36, 10, "#78350f");
-      drawPixelRect(308, 162, 24, 22, "#ff6b2b");
-      drawPixelRect(313, 152 + Math.sin(mmoTick * 0.18) * 3, 14, 18, "#ffd700");
-      drawPixelRect(317, 145 + Math.cos(mmoTick * 0.22) * 3, 6, 10, "#ffffff");
-
-      // Draw each Family & PawShaw Sprite
-      mmoSprites.forEach((sp, idx) => {
-        const bob = Math.sin(mmoTick * 0.09 + idx * 1.1) * 3.5;
-        const sx = sp.x;
-        const sy = sp.y + bob;
-
-        // Shadow
-        drawPixelRect(sx - 12, sp.y + 18, 24, 5, "rgba(0,0,0,0.45)");
-        // Pixel Body
-        drawPixelRect(sx - 10, sy - 6, 20, 22, sp.color);
-        // Pixel Head
-        drawPixelRect(sx - 9, sy - 20, 18, 15, "#fde68a");
-        // Pixel Hat / Crown
-        drawPixelRect(sx - 11, sy - 25, 22, 6, sp.hat);
-        // Eyes
-        drawPixelRect(sx - 5, sy - 14, 3, 3, "#0f172a");
-        drawPixelRect(sx + 2, sy - 14, 3, 3, "#0f172a");
-
-        // Nameplate
-        pctx.fillStyle = "#ffffff";
-        pctx.font = "bold 10px ui-monospace, monospace";
-        pctx.fillText(sp.name, sx - 28, sy + 30);
-        pctx.fillStyle = sp.color;
-        pctx.font = "9px ui-monospace, monospace";
-        pctx.fillText(sp.role, sx - 28, sy + 41);
+      familyMembers.forEach((m, idx) => {
+        const bob = Math.sin(mmoTick * 0.07 + idx) * 2.5;
+        const sx = m.x;
+        const sy = m.y + bob;
+        drawRect(sx - 10, sy - 6, 20, 22, m.color);
+        drawRect(sx - 8, sy - 19, 16, 13, "#FDE68A");
+        pctx.fillStyle = "#FAF6F0";
+        pctx.font = "bold 10px -apple-system, sans-serif";
+        pctx.fillText(m.name, sx - 26, sy + 28);
       });
 
-      // Floating Heart Bursts
-      heartBursts = heartBursts.filter(hb => hb.age < 45);
+      heartBursts = heartBursts.filter(hb => hb.age < 40);
       heartBursts.forEach(hb => {
         hb.age++;
-        pctx.fillStyle = "#ff6b8b";
-        pctx.font = "bold 13px ui-monospace, monospace";
-        pctx.fillText("<3 +50 XP", hb.x - 20, hb.y - hb.age * 0.8);
+        pctx.fillStyle = "#F6D365";
+        pctx.font = "bold 12px -apple-system, sans-serif";
+        pctx.fillText("+25 Table Check-In", hb.x - 36, hb.y - hb.age * 0.7);
       });
 
-      requestAnimationFrame(renderPixelMmo);
+      requestAnimationFrame(renderKitchenCanvas);
     }
 
     function toggleSpeakerphoneSon() {
       speakerphoneLive = !speakerphoneLive;
       const btn = document.getElementById("speakerphoneBtn");
-      if (speakerphoneLive) {
-        btn.textContent = "🔊 College Son on Speakerphone: LIVE AT STOVE";
-        btn.className = "btn green";
-      } else {
-        btn.textContent = "📞 Call College Son on Speakerphone (Join Table)";
-        btn.className = "btn";
-      }
+      btn.textContent = speakerphoneLive
+        ? "🔊 College Son on Speakerphone: Connected"
+        : "📞 Connect College Son on Speakerphone";
+      btn.className = speakerphoneLive ? "btn sage" : "btn";
       renderReceipts();
     }
 
     function triggerDoorDashRescue() {
-      awardFamilyQuest("🚨 DoorDash Canceled! Activated 15-Min Air Fryer Ultra Gyoza & Golden Millet Rescue ($68.50 Saved!)");
-      heartBursts.push({ x: 220, y: 80, age: 0 });
+      awardFamilyQuest("Activated 15-Minute Air Fryer Freezer Rescue — saved $68.50 vs. late delivery.");
     }
 
     function awardFamilyQuest(msg) {
-      partyXp += 250;
+      partyXp += 50;
       updateBonfireBadge();
       const feed = document.getElementById("quantAiFeed");
       const div = document.createElement("div");
-      div.className = "nudge-card urgent";
-      div.innerHTML = `<strong style="color:var(--green);">[PawShaw Bonfire Quest +250 XP] =^._.^= ▽・ω・▽:</strong><br/>"${msg}"`;
+      div.className = "nudge-item urgent";
+      div.innerHTML = `<strong>Kitchen Activity Logged:</strong><br/>"${msg}"`;
       feed.prepend(div);
       renderReceipts();
     }
 
     function updateBonfireBadge() {
-      document.getElementById("bonfireXpBadge").textContent = `Lv.100 • ${partyXp.toLocaleString()} Bells/XP`;
+      document.getElementById("bonfireXpBadge").textContent = `Streak: 42 Family Dinners • ${partyXp.toLocaleString()} pts`;
     }
 
     function addQuantAiNudge() {
@@ -1036,18 +1055,17 @@
       if (!text) return;
       const feed = document.getElementById("quantAiFeed");
       const div = document.createElement("div");
-      div.className = "nudge-card";
-      div.innerHTML = `<strong style="color:var(--gold);">[Now → ${member}] 🔔 Pattern Learned Nudge:</strong><br/>"Hey ${member}, ${text.replace(/</g, "&lt;")}"`;
+      div.className = "nudge-item";
+      div.innerHTML = `<strong>Reminder for ${member}:</strong><br/>"${text.replace(/</g, "&lt;")}"`;
       feed.prepend(div);
       if (window.AndroidHearthBridge && typeof window.AndroidHearthBridge.sendFamilyNudge === "function") {
         try { window.AndroidHearthBridge.sendFamilyNudge(member, text); } catch (_) {}
       }
       input.value = "";
-      partyXp += 100;
+      partyXp += 25;
       updateBonfireBadge();
     }
 
-    // ── USA ZIP CODE LOCAL ADS & FARMERS MARKET ──────────────────────────────
     function selectZipPreset(zip) {
       document.getElementById("zipInput").value = zip;
       updateZipMarket();
@@ -1058,22 +1076,22 @@
       const badge = document.getElementById("zipStandingBadge");
       const validZip = /^\d{5}$/.test(zip);
       const data = zipDatabase[zip] || {
-        city: validZip ? `USA Local Market Zone (ZIP ${zip})` : "Invalid ZIP (Enter 5 Digits)",
+        city: validZip ? `US Local Market (ZIP ${zip})` : "Enter 5-Digit ZIP",
         budget: 165.00,
         spend: 119.50,
         deals: [
-          { store: `Local Grocery Circular (ZIP ${zip || "USA"})`, item: "Family Pack Chicken Thighs (Air Fryer Ready)", reg: 14.99, sale: 9.79, local: false },
-          { store: `County Farmers Market (${zip || "USA"})`, item: "Seasonal Sweet Peppers, Onions, Potatoes & Honey", reg: 12.00, sale: 7.99, local: true },
-          { store: "Local Corner Bakery", item: "1 Dozen Donuts for Tomorrow's Advisor Lunch", reg: 13.99, sale: 9.99, local: true }
+          { store: `Weekly Grocery Flyer (ZIP ${zip || "US"})`, item: "Family Pack Chicken Thighs (Air Fryer Ready)", reg: 14.99, sale: 9.79, local: false },
+          { store: `Local Farmers Market (${zip || "US"})`, item: "Seasonal Bell Peppers, Onions & Potatoes", reg: 12.00, sale: 7.99, local: true },
+          { store: "Neighborhood Bakery", item: "1 Dozen Fresh Donuts (Advisor Lunch)", reg: 13.99, sale: 9.99, local: true }
         ]
       };
 
-      badge.textContent = validZip ? `ZIP ${zip} • ${data.city.split(",")[0]} • VERIFIED` : "UNOBSERVED ZIP";
-      badge.className = validZip ? "pill green" : "pill rose";
+      badge.textContent = validZip ? `ZIP ${zip} • ${data.city.split(",")[0]}` : "Invalid ZIP";
+      badge.className = validZip ? "badge sage" : "badge danger";
 
       const saved = (data.budget - data.spend).toFixed(2);
       document.getElementById("budgetReadout").textContent =
-        `$${data.spend.toFixed(2)} / $${data.budget.toFixed(2)} (Saved $${saved}!)`;
+        `$${data.spend.toFixed(2)} / $${data.budget.toFixed(2)} (Saved $${saved})`;
 
       const tbody = document.getElementById("zipDealsBody");
       tbody.innerHTML = "";
@@ -1083,9 +1101,9 @@
         tr.innerHTML = `
           <td><strong>${d.local ? "🌻 " : "🛒 "}${d.store}</strong></td>
           <td>${d.item}</td>
-          <td style="color:var(--gold); font-family:ui-monospace,monospace; font-weight:700;">$${d.sale.toFixed(2)} <span style="text-decoration:line-through; color:var(--muted); font-weight:400;">$${d.reg.toFixed(2)}</span></td>
-          <td style="color:var(--green); font-weight:700;">-$${diff}</td>
-          <td><button class="btn" style="padding:0.25rem 0.6rem; font-size:0.74rem;" onclick="addDealToPantry('${d.item.replace(/'/g, "")}')">+ Add to List</button></td>
+          <td><strong>$${d.sale.toFixed(2)}</strong> <span style="text-decoration:line-through; color:var(--ink-muted); font-size:0.78rem;">$${d.reg.toFixed(2)}</span></td>
+          <td style="color:var(--sage); font-weight:700;">-$${diff}</td>
+          <td><button class="btn" style="padding:0.25rem 0.6rem; font-size:0.75rem;" onclick="addDealToPantry('${d.item.replace(/'/g, "")}')">+ Add</button></td>
         `;
         tbody.appendChild(tr);
       });
@@ -1094,31 +1112,27 @@
 
     function addDealToPantry(itemName) {
       inventoryItems.unshift({
-        zone: "Fridge ❄️",
-        name: `${itemName} (Added from Local ZIP Ad)`,
-        status: "Weekly Grocery List ✓",
+        zone: "Fridge",
+        name: `${itemName} (From Weekly Flyer)`,
+        status: "Added to Weekly List",
         urgent: false
       });
       renderInventory();
-      awardFamilyQuest(`Added '${itemName}' from Local ZIP Weekly Ad to Family Grocery List!`);
     }
 
-    // ── APPLIANCE TRACKER (AIR FRYER ULTRA vs BROKEN OVEN) ───────────────────
     function renderAppliances() {
       const container = document.getElementById("applianceList");
       container.innerHTML = "";
       appliances.forEach((app, idx) => {
         const div = document.createElement("div");
-        div.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:0.75rem; padding:0.65rem 0.85rem; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid rgba(255,255,255,0.08);";
+        div.style.cssText = "display:flex; justify-content:space-between; align-items:center; gap:0.75rem; padding:0.75rem 0.9rem; background:var(--bg-page); border-radius:var(--radius-sm); border:1px solid var(--border);";
         div.innerHTML = `
           <div>
-            <strong style="color:${app.working ? (app.ultra ? 'var(--gold)' : 'var(--teal)') : 'var(--rose)'};">
-              ${app.ultra ? "★ " : ""}${app.name}
-            </strong>
-            <div style="font-size:0.78rem; color:var(--muted);">${app.note}</div>
+            <strong style="color:${app.working ? 'var(--ink)' : 'var(--danger)'};">${app.name}</strong>
+            <div style="font-size:0.78rem; color:var(--ink-muted);">${app.note}</div>
           </div>
-          <button class="toggle-btn ${app.working ? '' : 'broken'}" onclick="toggleAppliance(${idx})">
-            ${app.working ? (app.ultra ? "ULTRA ONLINE ★" : "ONLINE ✓") : "BROKEN [−1]"}
+          <button class="btn ${app.working ? 'sage' : ''}" onclick="toggleAppliance(${idx})">
+            ${app.working ? "Online ✓" : "Offline (Bypassed)"}
           </button>
         `;
         container.appendChild(div);
@@ -1129,14 +1143,13 @@
       appliances[idx].working = !appliances[idx].working;
       if (appliances[idx].id === "oven") {
         appliances[idx].note = appliances[idx].working
-          ? "ONLINE — Standard baking available (Air Fryer Ultra still 2.5x faster!)"
-          : "BROKEN / OFFLINE [−1] — quantAI auto-reroutes all baking to Air Fryer Ultra!";
+          ? "ONLINE — Standard baking available (Air Fryer remains faster for weeknights)"
+          : "OFFLINE / BROKEN — All oven recipes automatically routed to Air Fryer";
       }
       renderAppliances();
       renderReceipts();
     }
 
-    // ── FRIDGE / FREEZER / PANTRY & HOUSEHOLD ESSENTIALS ─────────────────────
     function filterInventory(zone) {
       currentInvFilter = zone;
       renderInventory();
@@ -1150,14 +1163,10 @@
         .forEach((item, idx) => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td><span class="pill ${item.zone.includes('Household') ? 'rose' : 'teal'}">${item.zone}</span></td>
+            <td><span class="badge ${item.zone === 'Household' ? 'amber' : 'sage'}">${item.zone}</span></td>
             <td><strong>${item.name}</strong></td>
-            <td style="color:${item.urgent ? 'var(--gold)' : 'var(--green)'}; font-family:ui-monospace,monospace; font-size:0.8rem;">
-              ${item.status}
-            </td>
-            <td>
-              <button class="btn" style="padding:0.22rem 0.55rem; font-size:0.72rem;" onclick="markItemUsed(${idx})">✓ Used / Got It</button>
-            </td>
+            <td style="color:${item.urgent ? 'var(--terracotta)' : 'var(--sage)'}; font-weight:600; font-size:0.8rem;">${item.status}</td>
+            <td><button class="btn" style="padding:0.22rem 0.55rem; font-size:0.74rem;" onclick="markItemUsed(${idx})">✓ Done</button></td>
           `;
           tbody.appendChild(tr);
         });
@@ -1177,28 +1186,23 @@
       });
       nameInput.value = "";
       renderInventory();
-      partyXp += 100;
-      updateBonfireBadge();
     }
 
     function markItemUsed(idx) {
       const item = inventoryItems[idx];
       if (!item) return;
-      item.status = "✓ Restocked / Zero-Waste Used!";
+      item.status = "✓ Restocked / Used";
       item.urgent = false;
       renderInventory();
-      partyXp += 75;
-      updateBonfireBadge();
     }
 
     function updateHeadcount(val) {
       document.getElementById("headcountVal").textContent =
-        `${val} People (${Math.max(1, val - (speakerphoneLive ? 1 : 0))} in Kitchen${speakerphoneLive ? " + 1 College Son on Speakerphone 🔊" : ""})`;
-      document.getElementById("headcountBadge").textContent = `Tonight: ${val} at Table (incl. 🔊)`;
+        `${val} People (${Math.max(1, val - (speakerphoneLive ? 1 : 0))} in Kitchen${speakerphoneLive ? " + 1 College Son on Speakerphone" : ""})`;
+      document.getElementById("headcountBadge").textContent = `Tonight: ${val} Seated`;
       renderReceipts();
     }
 
-    // ── HONEST REAL-PREP & CLEANUP RECIPE VAULT + PHOTO MOMENTS ──────────────
     function renderRecipes() {
       const container = document.getElementById("recipeVaultContainer");
       container.innerHTML = "";
@@ -1209,32 +1213,32 @@
         div.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem;">
             <div>
-              <strong style="color:var(--gold); font-size:1rem;">${r.title}</strong>
-              <div style="font-size:0.76rem; color:var(--muted);">${r.source}</div>
+              <strong style="font-size:1rem; color:var(--ink);">${r.title}</strong>
+              <div style="font-size:0.76rem; color:var(--ink-muted);">${r.source}</div>
             </div>
-            <span class="pill ${r.vis.includes('Secret') ? 'rose' : 'teal'}">${r.vis}</span>
+            <span class="badge ${r.vis.includes('Private') ? 'amber' : 'sage'}">${r.vis}</span>
           </div>
 
-          <div class="time-breakdown">
-            <div class="time-box">Unwashed Prep<strong>${r.prep}m</strong></div>
-            <div class="time-box">Air Fryer Cook<strong>${r.cook}m</strong></div>
-            <div class="time-box">Real Cleanup<strong>${r.clean}m</strong></div>
-            <div class="time-box" style="border-color:var(--gold);">Honest Total<strong>${total}m</strong></div>
+          <div class="time-grid">
+            <div class="time-pill">Prep<strong>${r.prep}m</strong></div>
+            <div class="time-pill">Air Fryer<strong>${r.cook}m</strong></div>
+            <div class="time-pill">Cleanup<strong>${r.clean}m</strong></div>
+            <div class="time-pill" style="border-color:var(--terracotta);">Real Total<strong>${total}m</strong></div>
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; margin-bottom:0.55rem;">
-            <span>Rating: <strong style="color:var(--gold);">★ ${r.stars.toFixed(1)}/5.0 (IN ROTATION)</strong></span>
-            <span>Cost: <strong style="color:var(--green);">$${r.cost.toFixed(2)}/serv</strong> • 🍱 +${r.leftovers} School Boxes</span>
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.55rem;">
+            <span>Rating: <strong style="color:var(--amber);">★ ${r.stars.toFixed(1)} / 5.0 (Active Rotation)</strong></span>
+            <span>Est. Cost: <strong style="color:var(--sage);">$${r.cost.toFixed(2)}/serving</strong> • +${r.leftovers} Lunch Boxes</span>
           </div>
 
-          <div style="font-size:0.78rem; color:var(--sakura); background:rgba(255,182,193,0.07); padding:0.45rem 0.65rem; border-radius:8px; margin-bottom:0.55rem;">
+          <div style="font-size:0.78rem; color:var(--ink-secondary); background:#FFFFFF; padding:0.5rem 0.65rem; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:0.65rem;">
             ${r.moments.join("<br/>")}
           </div>
 
-          <div class="btn-row" style="margin-top:0;">
-            <button class="btn gold" style="padding:0.3rem 0.65rem; font-size:0.74rem;" onclick="rateRecipe(${idx})">★ Rate 5.0 &amp; Keep in Rotation</button>
-            <button class="btn" style="padding:0.3rem 0.65rem; font-size:0.74rem;" onclick="toggleRecipeVis(${idx})">🔄 Toggle Secret / zenFamily</button>
-            <button class="btn rose" style="padding:0.3rem 0.65rem; font-size:0.74rem;" onclick="addPhotoMoment(${idx})">📸 + Add Photo Moment</button>
+          <div class="cta-row">
+            <button class="btn" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="rateRecipe(${idx})">★ Rate 5.0</button>
+            <button class="btn" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="toggleRecipeVis(${idx})">Toggle Private / Shared</button>
+            <button class="btn" style="padding:0.3rem 0.65rem; font-size:0.75rem;" onclick="addPhotoMoment(${idx})">📸 + Add Table Note</button>
           </div>
         `;
         container.appendChild(div);
@@ -1244,29 +1248,26 @@
     function rateRecipe(idx) {
       recipes[idx].stars = 5.0;
       renderRecipes();
-      awardFamilyQuest(`Rated '${recipes[idx].title}' 5.0 ★ — locked into Active Family Rotation!`);
     }
 
     function toggleRecipeVis(idx) {
-      recipes[idx].vis = recipes[idx].vis.includes("Secret")
-        ? "Shared with zenFamily 🌐"
-        : "Family Secret Vault 🔒";
+      recipes[idx].vis = recipes[idx].vis.includes("Private")
+        ? "Shared with Community"
+        : "Private Family Recipe";
       renderRecipes();
     }
 
     function addPhotoMoment(idx) {
-      const note = prompt("Add a Family Dinner Photo Moment caption:", "📸 All of us laughing around the table while the Air Fryer dings!");
+      const note = prompt("Add a family dinner memory or note:", "📸 Everyone made it to the table on time tonight!");
       if (!note) return;
       recipes[idx].moments.unshift(note.startsWith("📸") ? note : `📸 ${note}`);
       renderRecipes();
-      partyXp += 150;
-      updateBonfireBadge();
     }
 
     function addFamilyRecipe() {
       const title = document.getElementById("recTitle").value.trim();
       if (!title) return;
-      const source = document.getElementById("recSource").value.trim() || "Family Favorite";
+      const source = document.getElementById("recSource").value.trim() || "Family Cookbook";
       const prep = parseInt(document.getElementById("recPrep").value, 10) || 10;
       const cook = parseInt(document.getElementById("recCook").value, 10) || 15;
       const clean = parseInt(document.getElementById("recClean").value, 10) || 6;
@@ -1277,23 +1278,19 @@
         source,
         vis,
         prep,
-        marinate: 0,
         cook,
         clean,
         cost: 2.50,
         leftovers: 2,
         stars: 5.0,
-        moments: ["📸 Just added to our Family Rotation!"]
+        moments: ["📸 Added to active weekly family rotation."]
       });
       document.getElementById("recTitle").value = "";
       renderRecipes();
-      awardFamilyQuest(`Added '${title}' (${prep + cook + clean}m honest total time) to Recipe Vault!`);
     }
 
-    // ── STRIPE / APPLE PAY / GOOGLE PAY EXPRESS CHECKOUT ─────────────────────
     function updateCheckoutTotal() {
-      const box = document.getElementById("paymentReceiptBox");
-      box.style.display = "none";
+      document.getElementById("paymentReceiptBox").style.display = "none";
     }
 
     function triggerExpressPay(rail) {
@@ -1303,84 +1300,12 @@
       const zip = (document.getElementById("zipInput") && document.getElementById("zipInput").value) || "44256";
       const box = document.getElementById("paymentReceiptBox");
       box.style.display = "block";
-      box.innerHTML = `✓ VERIFIED [${rail}]: Charged $${amount} for "${label}" • Protected by 4-Burner Sovereign Hearth Firewall (Cap(Hearth) ⊥ Risk(R&D)) • Receipt #ZEN-${Math.floor(100000 + Math.random() * 900000)}`;
+      box.innerHTML = `✓ Confirmed [${rail}]: $${amount} for "${label}" • Stripe Account acct_1UUTcTRnidUxAlVy • 4-Burner Household Budget Firewall Active`;
       if (window.AndroidHearthBridge && typeof window.AndroidHearthBridge.triggerGooglePayOrStripe === "function") {
         try { window.AndroidHearthBridge.triggerGooglePayOrStripe(rail, `$${amount}`, zip); } catch (_) {}
       }
-      partyXp += 300;
+      partyXp += 50;
       updateBonfireBadge();
-    }
-
-    // ── MEM|16-10 WAVE SYNTH & QUANT-TERN INSPECTOR ──────────────────────────
-    function toggleWaveAudio() {
-      const btn = document.getElementById("waveAudioBtn");
-      if (!isPlayingAudio) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const freqs = [288.0, 431.99, 528.0];
-        const gains = [0.05, 0.07, 0.05];
-        oscillators = freqs.map((f, idx) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = "sine";
-          osc.frequency.value = f;
-          gain.gain.value = gains[idx];
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start();
-          return osc;
-        });
-        isPlayingAudio = true;
-        btn.textContent = "⏸ Pause 432×528×288 Hz Wave";
-      } else {
-        oscillators.forEach(o => { try { o.stop(); } catch (_) {} });
-        if (audioCtx) audioCtx.close();
-        oscillators = [];
-        isPlayingAudio = false;
-        btn.textContent = "▶ Play Family Wave";
-      }
-    }
-
-    function animateWaveCanvas() {
-      const canvas = document.getElementById("waveCanvas");
-      const ctx = canvas.getContext("2d");
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      const waves = [
-        { color: "#00e5c9", amp: 18, freq: 0.022, speed: 1.0 },
-        { color: "#ffd700", amp: 14, freq: 0.031, speed: 1.35 },
-        { color: "#ffb6c1", amp: 11, freq: 0.015, speed: 0.75 }
-      ];
-
-      waves.forEach(wv => {
-        ctx.beginPath();
-        ctx.strokeStyle = wv.color;
-        ctx.lineWidth = 2.0;
-        for (let x = 0; x < w; x++) {
-          const y = h / 2 + Math.sin(x * wv.freq + wavePhase * wv.speed) * wv.amp;
-          if (x === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-      });
-
-      wavePhase += isPlayingAudio ? 0.09 : 0.03;
-      requestAnimationFrame(animateWaveCanvas);
-    }
-
-    const QT_LABELS = ["Valence", "Arousal", "Dominance", "AirFryer★", "ZIPDeals", "Wave", "Mom*", "Dad△"];
-    let qtTrits = QT_LABELS.map(() => 1);
-
-    function gateByte(trits) {
-      let b = 0;
-      for (let j = 0; j < 4; j++) b |= (trits[j] + 1) << (2 * j);
-      return b;
-    }
-    function wupzByte(trits) {
-      let b = 0;
-      for (let j = 0; j < 5; j++) b += (trits[j] + 1) * Math.pow(3, j);
-      return b;
     }
 
     function renderReceipts() {
@@ -1388,48 +1313,22 @@
       const afOnline = appliances[0].working;
       const ovenOnline = appliances[1].working;
       const hc = document.getElementById("headcountRange").value;
-      qtTrits[3] = afOnline ? 1 : 0;
-
-      const receipts = [
-        `POP       [VERIFIED  ] 0x03b9691b3385a400 | Blended qFamily Hearth in USA ZIP '${zip}' (${hc} at table, Speakerphone=${speakerphoneLive})`,
-        `REFUSE    [VERIFIED  ] 0xfbbcfa5c081c9f7d | Oven=${ovenOnline ? 'ONLINE' : 'BROKEN->BYPASSED'}, refused fake 30m prep lies, saved $68.50 DoorDash cancel`,
-        `BIND      [${afOnline ? 'VERIFIED  ' : 'UNOBSERVED'}] 0x0e17e0e14d796e61 | Bound Air Fryer Ultra [${afOnline}] + Fridge/Freezer/Pantry (${inventoryItems.length} items) + Dog Poop Bags & Donuts`,
-        `TRANSFORM [VERIFIED  ] 0x77a20bb887319771 | Routed 31m honest meal (10m prep + 14m Air Fryer + 7m cleanup) + 2 school lunch boxes`,
-        `VERIFY    [VERIFIED  ] 0x6733dbbcf1260e2f | Verified Daily Family Dinner Unity (+1 anti-addiction shield) & Stripe/ApplePay/GooglePay`,
-        `COLLAPSE  [VERIFIED  ] 0x45d62132a5f8f7ee | Collapsed Animal Crossing Pixel Bonfire Lv.100 (${partyXp.toLocaleString()} XP) — For Mom (* Alex / Dra)`
+      const lines = [
+        `Release Build : zenUltraCooker v2.2.0 (SemVer 2.0.0 • Android versionCode 20200 • iOS CFBundleVersion 20200)`,
+        `Active Market : US ZIP ${zip} • Headcount: ${hc} (${speakerphoneLive ? "Speakerphone Seat Active" : "Local Only"})`,
+        `Appliances    : Air Fryer=${afOnline ? "ONLINE (Primary)" : "STANDBY"} • Wall Oven=${ovenOnline ? "ONLINE" : "OFFLINE (Auto-Bypassed)"}`,
+        `Pantry & List : ${inventoryItems.length} tracked food & household items • Zero-waste expiry priority enabled`,
+        `Payment Rails : Stripe (acct_1UUTcTRnidUxAlVy) • Apple Pay (merchant.is.8b.zenultracooker) • Google Pay`
       ];
-      document.getElementById("receiptLedger").innerHTML = receipts.join("<br/>");
-
-      const row = document.getElementById("qtTritRow");
-      row.innerHTML = "";
-      qtTrits.forEach((t, i) => {
-        const btn = document.createElement("button");
-        btn.className = "btn";
-        btn.style.padding = "0.25rem 0.55rem";
-        btn.style.fontSize = "0.74rem";
-        btn.textContent = `${QT_LABELS[i]}: ${t === 1 ? '+1' : t === -1 ? '−1' : '0'}`;
-        btn.onclick = () => {
-          qtTrits[i] = t === 1 ? -1 : t + 1;
-          renderReceipts();
-        };
-        row.appendChild(btn);
-      });
-
-      const b0 = gateByte(qtTrits.slice(0, 4));
-      const b1 = gateByte(qtTrits.slice(4, 8));
-      const w5 = wupzByte(qtTrits.slice(0, 5));
-      document.getElementById("qtCodecOut").innerHTML =
-        `<b>QUANT-TERN gate:</b> <code>qt:${b0.toString(16).padStart(2, "0")}${b1.toString(16).padStart(2, "0")}</code> • <b>wupz (5 trits/byte):</b> <code>0x${w5.toString(16).padStart(2, "0")}</code> (${w5}) • <b>Beckett Inversion:</b> <code>Gondolkodom, Theat vagyOK → cogito ergo summa summarum or just BE &lt;3</code>`;
+      document.getElementById("receiptLedger").innerHTML = lines.join("<br/>");
     }
 
-    // ── INITIALIZE ───────────────────────────────────────────────────────────
     updateZipMarket();
     renderAppliances();
     renderInventory();
     renderRecipes();
     renderReceipts();
-    renderPixelMmo();
-    animateWaveCanvas();
+    renderKitchenCanvas();
   </script>
 </body>
 </html>

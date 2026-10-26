@@ -106,8 +106,8 @@ public struct ZenUltraCookerRootView: View {
 struct ZenUltraCookerCLIEntry {
     static func main() {
         let store = SovereignHearthStore(zipCode: "44256")
-        precondition(ZenSemVer.versionString == "2.1.0", "SemVer mismatch")
-        precondition(ZenSemVer.androidVersionCode == 20100, "versionCode mismatch")
+        precondition(ZenSemVer.versionString == "2.2.0", "SemVer mismatch")
+        precondition(ZenSemVer.androidVersionCode == 20200, "versionCode mismatch")
         precondition(ZenSemVer.applePayMerchantId == "merchant.is.8b.zenultracooker", "Apple Pay Merchant ID mismatch")
         precondition(ZenSemVer.stripeAccountId == "acct_1UUTcTRnidUxAlVy", "Stripe Account ID mismatch")
         precondition(store.ovenState == .broken && store.airFryerState == .readyOrUltra, "Appliance state mismatch")

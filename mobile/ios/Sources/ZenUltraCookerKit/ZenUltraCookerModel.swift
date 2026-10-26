@@ -6,15 +6,15 @@ import Foundation
 // ============================================================================
 
 public enum ZenSemVer {
-    public static let versionString = "2.1.0"
+    public static let versionString = "2.2.0"
     public static let major = 2
-    public static let minor = 1
+    public static let minor = 2
     public static let patch = 0
-    public static let androidVersionCode = 20100
+    public static let androidVersionCode = 20200
     public static let bundleIdentifier = "is.8b.zenultracooker"
     public static let applePayMerchantId = "merchant.is.8b.zenultracooker"
     public static let stripeAccountId = "acct_1UUTcTRnidUxAlVy"
-    public static let pawShawTrademark = "PawShaw Kitty (=^･ω･^=) & Doggy (▽・ω・▽)™"
+    public static let pawShawTrademark = "PawShaw Kitchen Companion™"
 }
 
 public enum ApplianceState: Int, Codable, Sendable {

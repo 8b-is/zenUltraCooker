@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420">
+  <defs>
+    <linearGradient id="heroBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16201B"/>
+      <stop offset="60%" stop-color="#1E2B24"/>
+      <stop offset="100%" stop-color="#24332B"/>
+    </linearGradient>
+    <linearGradient id="vessel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E06D44"/>
+      <stop offset="100%" stop-color="#B84A27"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="420" rx="28" fill="url(#heroBg)"/>
+  <rect x="16" y="16" width="1168" height="388" rx="20" fill="none" stroke="#D49B35" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- Left Emblem Card -->
+  <g transform="translate(72, 54) scale(0.30)">
+    <rect width="1024" height="1024" rx="224" fill="#101814" stroke="#D49B35" stroke-width="12"/>
+    <path d="M392 310 C372 265, 412 230, 392 185" fill="none" stroke="#F6D365" stroke-width="24" stroke-linecap="round"/>
+    <path d="M512 290 C492 240, 532 200, 512 150" fill="none" stroke="#F6D365" stroke-width="28" stroke-linecap="round"/>
+    <path d="M632 310 C612 265, 652 230, 632 185" fill="none" stroke="#F6D365" stroke-width="24" stroke-linecap="round"/>
+    <rect x="466" y="344" width="92" height="34" rx="17" fill="#F6D365"/>
+    <path d="M268 418 C268 378, 360 364, 512 364 C664 364, 756 378, 756 418 Z" fill="#F4EFE6"/>
+    <path d="M256 436 H768 L732 692 C718 776, 646 828, 558 828 H466 C378 828, 306 776, 292 692 Z" fill="url(#vessel)"/>
+    <path d="M512 520 C550 568, 576 606, 576 648 C576 686, 548 716, 512 716 C476 716, 448 686, 448 648 C448 606, 474 568, 512 520 Z" fill="#FFF8EB"/>
+  </g>
+
+  <!-- Editorial Typography -->
+  <text x="424" y="128" fill="#F6D365" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="16" font-weight="700" letter-spacing="2">FAMILY KITCHEN &amp; HOUSEHOLD PLANNER • v2.2.0</text>
+  <text x="424" y="186" fill="#FAF6F0" font-family="Georgia, 'Iowan Old Style', serif" font-size="46" font-weight="700">zenUltraCooker</text>
+  <text x="424" y="232" fill="#D5E0DA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif" font-size="21" font-weight="400">Bring the family back to the dinner table — without the weeknight stress.</text>
+
+  <!-- Feature Pills -->
+  <g transform="translate(424, 266)">
+    <rect x="0" y="0" width="210" height="40" rx="20" fill="#26382F" stroke="#4A9E8E" stroke-width="1.5"/>
+    <text x="105" y="25" text-anchor="middle" fill="#FAF6F0" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">US ZIP Grocery Flyers</text>
+
+    <rect x="224" y="0" width="220" height="40" rx="20" fill="#26382F" stroke="#E06D44" stroke-width="1.5"/>
+    <text x="334" y="25" text-anchor="middle" fill="#FAF6F0" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">Smart Air Fryer Routing</text>
+
+    <rect x="458" y="0" width="248" height="40" rx="20" fill="#26382F" stroke="#F6D365" stroke-width="1.5"/>
+    <text x="582" y="25" text-anchor="middle" fill="#FAF6F0" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">Honest Prep &amp; Cleanup Times</text>
+  </g>
+
+  <text x="424" y="346" fill="#9BB0A5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15">Fridge / Freezer / Pantry Zero-Waste • Household Essentials • Stripe, Apple Pay &amp; Google Pay • iOS &amp; Android</text>
+</svg>
