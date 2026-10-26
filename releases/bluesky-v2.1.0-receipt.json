@@ -1,0 +1,14 @@
+{
+  "handle": "0xp3t3rl.bsky.social",
+  "did": "did:plc:dqqoktofp3jzbtcempy257hj",
+  "root_post": {
+    "uri": "at://did:plc:dqqoktofp3jzbtcempy257hj/app.bsky.feed.post/3myrq52lfa624",
+    "cid": "bafyreidjv6le5ogpajemeed6mqawwafzgovxasbu6pzvknmik2yfyk7s6q",
+    "url": "https://bsky.app/profile/0xp3t3rl.bsky.social/post/3myrq52lfa624"
+  },
+  "reply_post": {
+    "uri": "at://did:plc:dqqoktofp3jzbtcempy257hj/app.bsky.feed.post/3myrq6734nm2a",
+    "cid": "bafyreiausugbedkpcw2f4i4fnympdifgfjqizyru3xztvixk2j442xkeqq",
+    "url": "https://bsky.app/profile/0xp3t3rl.bsky.social/post/3myrq6734nm2a"
+  }
+}
