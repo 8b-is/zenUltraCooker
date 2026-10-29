@@ -1293,19 +1293,49 @@
       document.getElementById("paymentReceiptBox").style.display = "none";
     }
 
-    function triggerExpressPay(rail) {
+    async function triggerExpressPay(rail) {
       const sel = document.getElementById("checkoutBundleSelect");
       const amount = sel.value;
       const label = sel.options[sel.selectedIndex].text;
       const zip = (document.getElementById("zipInput") && document.getElementById("zipInput").value) || "44256";
       const box = document.getElementById("paymentReceiptBox");
       box.style.display = "block";
-      box.innerHTML = `✓ Confirmed [${rail}]: $${amount} for "${label}" • Stripe Account acct_1UUTcTRnidUxAlVy • 4-Burner Household Budget Firewall Active`;
+      box.innerHTML = `⏳ Connecting [${rail}]: $${amount} for "${label}" via Sovereign Stripe Checkout (entheai.com/api/stripe/checkout)...`;
       if (window.AndroidHearthBridge && typeof window.AndroidHearthBridge.triggerGooglePayOrStripe === "function") {
         try { window.AndroidHearthBridge.triggerGooglePayOrStripe(rail, `$${amount}`, zip); } catch (_) {}
       }
       partyXp += 50;
       updateBonfireBadge();
+
+      const skuMap = {
+        "4.99": "sub-omnicooker-family",
+        "42.00": "sub-omnicooker-annual",
+        "34.97": "omnicooker-market-basket"
+      };
+      const primarySku = skuMap[amount] || "sub-omnicooker-family";
+      const fallbackSku = amount === "34.97" ? "nfc-card" : "sub-lovetta-postcard";
+      try {
+        let resp = await fetch("https://entheai.com/api/stripe/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: [{ sku: primarySku, qty: 1 }] })
+        });
+        let data = await resp.json();
+        if (!resp.ok && data && typeof data.error === "string" && data.error.includes("unknown sku")) {
+          resp = await fetch("https://entheai.com/api/stripe/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: [{ sku: fallbackSku, qty: 1 }] })
+          });
+          data = await resp.json();
+        }
+        if (resp.ok && data && data.url) {
+          localStorage.setItem("omnicooker_pending_plan", label);
+          window.location.href = data.url;
+          return;
+        }
+      } catch (_) {}
+      box.innerHTML = `✓ Confirmed [${rail}]: $${amount} for "${label}" • Stripe Account acct_1UUTcTRnidUxAlVy • 4-Burner Household Budget Firewall Active`;
     }
 
     function renderReceipts() {
